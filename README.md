@@ -17,7 +17,7 @@ bundle exec jekyll serve      # http://localhost:4000
 |---|---|
 | `_layouts/`, `_includes/`, `assets/css/style.css` | the ported theme (changes marked `port:` in the CSS) |
 | `_posts/` | 401 posts (Markdown where possible, see below), original URLs `/<slug>/` |
-| `_pages/` | Impressum, Kontakt, RSS (the old nav) and the year archive `/archiv/` |
+| `_pages/` | Impressum, Kontakt, RSS (the old nav), the year archive `/archiv/` and `/statistiken/` (new: numbers counted at build time, export numbers from `_data/export_report.json`) |
 | `assets/images/YYYY/MM/`, `assets/files/YYYY/MM/` | images and documents used by the posts |
 | `assets/images/theme/` | theme graphics |
 | `assets/js/lightbox.js` | lightbox for post images and galleries (counter, ←/→, swipe, Esc) |
@@ -58,7 +58,7 @@ removed (by the local WordPress' cleanup plugin). On top of that it:
 - switches embedded iframes to https and repairs links written without `http://`,
 - unwraps links to WordPress-only paths (`/wp-login.php`, missing plugin files),
 
-and writes `_migration/export-report.json`.
+and writes `_data/export_report.json`.
 
 ## Markdown posts
 
