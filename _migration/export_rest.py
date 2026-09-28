@@ -11,6 +11,7 @@ Writes (and replaces on every run):
   _posts/YYYY-MM-DD-<slug>.html       one file per published post
   assets/images/YYYY/MM/…             images the posts reference (year/month of the old
   assets/files/YYYY/MM/…              upload path, else of the first post using them)
+  _data/categories.yml, _data/tags.yml   display name -> slug of the terms the posts use
   _migration/export-report.json       what was done / what is missing
 
 Read-only towards WordPress. Usage (from the site/ folder):
@@ -55,6 +56,25 @@ def get_all(endpoint, fields=None):
 OLD_PATH = r"/wp-content/+customers/webs/\d+/www/_subdomains/volkersfreunde/wp-content/"
 
 
+def embed_iframe(m):
+    """Flash <object>/<embed> players -> iframes (YouTube, Vimeo), keeping the size.
+    Other Flash players (issuu, blip.tv, TED, Megavideo, …) can't play anywhere any more and
+    would show an empty box: they become a short note, linked to the source if the embed names one."""
+    obj = m.group(0)
+    w = re.search(r'width[:=]"?(\d+)', obj)
+    h = re.search(r'height[:=]"?(\d+)', obj)
+    size = f' width="{w.group(1) if w else 425}" height="{h.group(1) if h else 344}"'
+    yt = re.search(r"youtube\.com/v/([\w-]{11})", obj)
+    vimeo = re.search(r"clip_id=(\d+)", obj)
+    if yt:
+        return f'<iframe{size} src="https://www.youtube-nocookie.com/embed/{yt.group(1)}" frameborder="0" loading="lazy" allowfullscreen></iframe>'
+    if vimeo:
+        return f'<iframe{size} src="https://player.vimeo.com/video/{vimeo.group(1)}" frameborder="0" loading="lazy" allowfullscreen></iframe>'
+    source = re.search(r"blog_domain=(https?://[^&\"]+)", obj)
+    link = f'<br /><a href="{html.escape(source.group(1))}">Zum Originalbeitrag</a>' if source else ""
+    return f'<span class="embed-gone">Flash-Video (nicht mehr abspielbar){link}</span>'
+
+
 def clean(body):
     # Same spam patterns as vf-local-cleanup.php — defensive, should already be gone.
     body = re.sub(r"<!--maincontentstarts-->.*?<!--maincontentends-->", "", body, flags=re.S)
@@ -72,6 +92,16 @@ def clean(body):
     body = re.sub(r"<p><script[^>]*>\s*<!--\s*podPressShowHidePlayer.*?</script></p>\s*", "", body, flags=re.S)
     body = re.sub(r'<a href="[^"]*podpress_trac[^"]*"[^>]*><img[^>]*podPress_imgicon[^>]*/?></a>\s*', "", body)
     body = re.sub(r'<a href="[^"]*podpress_trac[^"]*"[^>]*>Download</a>', "", body)
+    # Flash players -> iframes (or a note), see embed_iframe().
+    body = re.sub(r"<object.*?</object>", embed_iframe, body, flags=re.S)
+    body = re.sub(r"<embed[^>]*(?:\.swf|youtube\.com/v/)[^>]*>(?:</embed>)?", embed_iframe, body)
+    # Embeds over https (http iframes are blocked as mixed content on an https site).
+    body = re.sub(r'(<iframe[^>]*src=")http://', r"\1https://", body)
+    # External scripts over plain http are blocked on an https site (and these services are
+    # gone: Yahoo Pipes, an Ubuntu countdown). https ones (Gist, Twitter, Podigee) stay.
+    body = re.sub(r'<script[^>]*src="http://[^"]*"[^>]*>.*?</script>', "", body, flags=re.S)
+    # Links written without a scheme ("www.example.com/…") resolve as paths on this site.
+    body = re.sub(r"""(href=["'])(www\.)""", r"\1http://\2", body)
     body = re.sub(r"\n{3,}", "\n\n", body)
     return body.strip() + "\n"
 
@@ -227,8 +257,10 @@ def link_previews(body):
 
 def main():
     posts = get_all("posts")
-    cats = {c["id"]: html.unescape(c["name"]) for c in get_all("categories", ["id", "name"])}
-    tags = {t["id"]: html.unescape(t["name"]) for t in get_all("tags", ["id", "name"])}
+    cat_terms = get_all("categories", ["id", "name", "slug"])
+    tag_terms = get_all("tags", ["id", "name", "slug"])
+    cats = {c["id"]: html.unescape(c["name"]) for c in cat_terms}
+    tags = {t["id"]: html.unescape(t["name"]) for t in tag_terms}
     users = {u["id"]: u["name"] for u in get_all("users", ["id", "name"])}
     # WordPress attachment pages (/<post>/<image>/) -> the image file itself
     attachments = {re.sub(r"^https?://[^/]+", "", a["link"]): clean(a["source_url"]).strip()
@@ -288,6 +320,26 @@ def main():
         new = moved.get(unquote(m.group(3)))
         return m.group(1) + quote(new) if new else m.group(0)
 
+    # Internal pages that exist on the new site; links to anything else lose their <a>
+    # (e.g. a category that was deleted in 2008, a page that was never published).
+    permalinks = {re.sub(r"^https?://[^/]+", "", p["link"]) for p in posts}
+    used_cats = {c for p in posts for c in p["categories"] if cats.get(c) not in DROP_CATEGORIES}
+    used_tags = {t for p in posts for t in p["tags"]}
+    known = (permalinks
+             | {f"/category/{c['slug']}/" for c in cat_terms if c["id"] in used_cats}
+             | {f"/tag/{t['slug']}/" for t in tag_terms if t["id"] in used_tags}
+             | {f"/page/{n}/" for n in range(2, len(posts) // 15 + 2)}
+             | {f"/{name}/" for name in ("impressum", "kontakt", "rss-2", "archiv", "feed")}
+             | {"/", "/feed.xml"})
+    internal_link = re.compile(r"""<a([^>]*)\shref=["'](/(?!assets/)[^"'#?]*)(?:[#?][^"']*)?["']([^>]*)>(.*?)</a>""", re.S)
+
+    def unwrap_unknown(m):
+        path = unquote(m.group(2))
+        if path in known or path.rstrip("/") + "/" in known:
+            return m.group(0)
+        report["dead_links_unwrapped"] += 1
+        return m.group(4)
+
     dead_img = re.compile(r"""<img[^>]*\ssrc=["']/(?:wp-content|downloads)/[^>]*>""")
     dead_link = re.compile(r"""<a[^>]*\shref=["']/(?:wp-content/|downloads/|wp-admin/|wp-login\.php)[^>]*>(.*?)</a>""", re.S)
     report["dead_links_unwrapped"] = report["dead_images_removed"] = 0
@@ -299,6 +351,7 @@ def main():
         report["dead_images_removed"] += n
         body, n = dead_link.subn(r"\1", body)
         report["dead_links_unwrapped"] += n
+        body = internal_link.sub(unwrap_unknown, body)
         permalink = re.sub(r"^https?://[^/]+", "", p["link"])
         categories = [cats[c] for c in p["categories"] if c in cats and cats[c] not in DROP_CATEGORIES]
         front = [
@@ -316,6 +369,26 @@ def main():
         with open(os.path.join(posts_dir, fname), "w", encoding="utf-8") as f:
             f.write("\n".join(front) + "\n" + body)
         report["posts"] += 1
+
+    # Sidebar/taxonomy data: display name -> original slug, only for terms the posts use.
+    # Jekyll groups tags by name, so a name has one page; where the old blog had two terms with
+    # the same name (tag "IMI-Showtime": imi-showtime and showtime), the one used more wins.
+    def term_data(fname, terms, used, what):
+        best = {}
+        for t in terms:
+            if t["id"] not in used:
+                continue
+            name = html.unescape(t["name"])
+            count = sum(1 for p in posts if t["id"] in p[what])
+            if name not in best or count > best[name][1]:
+                best[name] = (t["slug"], count)
+        with open(os.path.join(SITE, "_data", fname), "w", encoding="utf-8") as f:
+            f.write(f"# Generated by _migration/export_rest.py: display name -> original URL slug\n")
+            for name in sorted(best, key=str.lower):
+                f.write(f"- name: {yaml_str(name)}\n  slug: {yaml_str(best[name][0])}\n")
+
+    term_data("categories.yml", cat_terms, used_cats, "categories")
+    term_data("tags.yml", tag_terms, used_tags, "tags")
 
     with open(os.path.join(SITE, "_migration", "export-report.json"), "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2, sort_keys=True)

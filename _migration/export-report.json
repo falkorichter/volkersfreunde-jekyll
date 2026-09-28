@@ -1,7 +1,7 @@
 {
   "copied_files": 259,
   "dead_images_removed": 2,
-  "dead_links_unwrapped": 10,
+  "dead_links_unwrapped": 13,
   "missing_files": {
     "/downloads/Vererbung.java": [
       "raetsel-fuer-die-semesterferien"
@@ -25,5 +25,5 @@
       "freiheit-statt-angst-demo-gegen-die-vorratsdatenspeicherung"
     ]
   },
-  "teasers": 113
+  "teasers": 114
 }

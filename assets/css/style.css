@@ -477,9 +477,7 @@ float: left;
 
 /* ===== port: lightbox (assets/js/lightbox.js) ===== */
 
-.entry-content a[href$=".jpg" i] img, .entry-content a[href$=".jpeg" i] img,
-.entry-content a[href$=".png" i] img, .entry-content a[href$=".gif" i] img,
-.entry-content img.zoomable {
+.entry-content a.lightbox-link, .entry-content img.zoomable {
 	cursor: zoom-in;
 }
 
@@ -494,6 +492,7 @@ dialog.lightbox {
 	background: transparent;
 	color: #FFFFFF;
 	font-family: Arial, Helvetica, sans-serif;
+	overflow: hidden;
 }
 
 dialog.lightbox::backdrop {
@@ -506,21 +505,23 @@ dialog.lightbox figure {
 	align-items: center;
 	justify-content: center;
 	height: 100%;
-	padding: 48px 56px;
+	margin: 0;
+	padding: 52px 64px;
 	box-sizing: border-box;
-	cursor: zoom-out;
 }
 
 dialog.lightbox img {
 	max-width: 100%;
-	max-height: calc(100% - 32px);
+	max-height: calc(100% - 36px);
 	object-fit: contain;
+	border: 4px solid #FFFFFF;
 	background: #FFFFFF;
 	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+	transition: opacity 0.15s;
 }
 
 dialog.lightbox.is-loading img {
-	opacity: 0.4;
+	opacity: 0.35;
 }
 
 dialog.lightbox figcaption {
@@ -528,6 +529,12 @@ dialog.lightbox figcaption {
 	font-size: 13px;
 	color: #E0FFC0;
 	text-align: center;
+}
+
+dialog.lightbox .lightbox-counter {
+	font-weight: bold;
+	color: #76B900;
+	margin-right: 8px;
 }
 
 dialog.lightbox button {
@@ -542,13 +549,28 @@ dialog.lightbox button {
 
 dialog.lightbox button:hover, dialog.lightbox button:focus-visible {
 	color: #76B900;
+	outline: none;
 }
 
 dialog.lightbox .lightbox-close { top: 8px; right: 8px; }
-dialog.lightbox .lightbox-prev { top: 50%; left: 4px; transform: translateY(-50%); font-size: 48px; }
-dialog.lightbox .lightbox-next { top: 50%; right: 4px; transform: translateY(-50%); font-size: 48px; }
+dialog.lightbox .lightbox-prev,
+dialog.lightbox .lightbox-next { top: 50%; transform: translateY(-50%); font-size: 56px; padding: 16px 18px; }
+dialog.lightbox .lightbox-prev { left: 4px; }
+dialog.lightbox .lightbox-next { right: 4px; }
 dialog.lightbox button[hidden] { display: none; }
 
 @media (max-width: 600px) {
-	dialog.lightbox figure { padding: 48px 8px; }
+	dialog.lightbox figure { padding: 52px 8px; }
+	dialog.lightbox .lightbox-prev, dialog.lightbox .lightbox-next { top: auto; bottom: 8px; transform: none; }
 }
+
+/* port: note in place of Flash players that can't play anywhere any more */
+.entry-content .embed-gone {
+	display: inline-block;
+	padding: 8px 12px;
+	border: 1px dotted #D2D2D2;
+	background: #F6F4F0;
+	color: #808080;
+	font-size: 12px;
+}
+
