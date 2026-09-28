@@ -22,6 +22,7 @@ bundle exec jekyll serve      # http://localhost:4000
 | `assets/images/theme/` | theme graphics |
 | `assets/js/lightbox.js` | lightbox for post images and galleries (counter, ←/→, swipe, Esc) |
 | `_data/{categories,tags}.yml` | display name → original slug, keeps `/category/…` and `/tag/…` URLs |
+| `_data/comments.json` | the 365 approved comments, flat list matched by `url` (same format as madrid) |
 | `_plugins/taxonomy_pages.rb` | generates the category/tag archive pages |
 | `_plugins/baseurl_links.rb` | prefixes root links in post bodies when built under a sub-path |
 | `feed-redirect.html` | `/feed/` (the old WordPress feed URL) forwards to `/feed.xml` |
@@ -99,5 +100,5 @@ GitHub Actions*): it runs the custom `_plugins/` and passes the Pages address as
 `_config.yml` keeps `url: https://www.volkersfreunde.de` and `baseurl: ""` for the real domain.
 
 ## Dropped on purpose
-Comments, the podcast (podPress/Podlove players, the `podcast` category), all WordPress plugins,
+The comment form (old comments are shown read-only), the podcast (podPress/Podlove players, the `podcast` category), all WordPress plugins,
 the Meta/Admin, FireStats and App.net widgets, and Google Analytics.

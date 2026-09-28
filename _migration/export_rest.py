@@ -13,6 +13,7 @@ Writes (and replaces on every run):
   assets/images/YYYY/MM/…             images the posts reference (year/month of the old
   assets/files/YYYY/MM/…              upload path, else of the first post using them)
   _data/categories.yml, _data/tags.yml   display name -> slug of the terms the posts use
+  _data/comments.json                 approved comments, shown read-only under the posts
   _migration/export-report.json       what was done / what is missing
 
 Read-only towards WordPress. Usage (from the site/ folder):
@@ -41,10 +42,10 @@ DROP_CATEGORIES = {"podcast"}  # podcast is dropped (README scope)
 MORE = "<!--more-->"
 
 
-def get_all(endpoint, fields=None):
+def get_all(endpoint, fields=None, extra=""):
     items, page = [], 1
     while True:
-        url = f"{WP}/wp-json/wp/v2/{endpoint}?per_page=100&page={page}"
+        url = f"{WP}/wp-json/wp/v2/{endpoint}?per_page=100&page={page}{extra}"
         if fields:
             url += "&_fields=" + ",".join(fields)
         with urllib.request.urlopen(url, timeout=120) as r:
@@ -260,6 +261,11 @@ def link_previews(body):
     return IMG_RE.sub(wrap, body)
 
 
+def author_url(url):
+    """Comment author website; drop what people typed that is no URL ("http://---")."""
+    return url if url and re.match(r"https?://[\w-]+(\.[\w-]+)+", url) else ""
+
+
 def main():
     posts = get_all("posts")
     cat_terms = get_all("categories", ["id", "name", "slug"])
@@ -267,6 +273,7 @@ def main():
     cats = {c["id"]: html.unescape(c["name"]) for c in cat_terms}
     tags = {t["id"]: html.unescape(t["name"]) for t in tag_terms}
     users = {u["id"]: u["name"] for u in get_all("users", ["id", "name"])}
+    comments = get_all("comments", extra="&order=asc")
     # WordPress attachment pages (/<post>/<image>/) -> the image file itself
     attachments = {re.sub(r"^https?://[^/]+", "", a["link"]): clean(a["source_url"]).strip()
                    for a in get_all("media", ["link", "source_url"])}
@@ -402,9 +409,26 @@ def main():
     term_data("categories.yml", cat_terms, used_cats, "categories")
     term_data("tags.yml", tag_terms, used_tags, "tags")
 
+    # Old comments, shown read-only under the posts.
+    post_by_id = {p["id"]: p for p in posts}
+    data = []
+    for c in comments:
+        p = post_by_id.get(c["post"])
+        if not p or c["status"] != "approved":
+            continue
+        data.append({"id": c["id"], "url": re.sub(r"^https?://[^/]+", "", p["link"]),
+                     "post_title": html.unescape(p["title"]["rendered"]),
+                     "author": html.unescape(c["author_name"]), "author_url": author_url(c.get("author_url")),
+                     "date": c["date"].replace("T", " "), "content": clean(c["content"]["rendered"]).strip()})
+    with open(os.path.join(SITE, "_data", "comments.json"), "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=1)
+        f.write("\n")
+    report["comments"] = len(data)
+
     with open(os.path.join(SITE, "_migration", "export-report.json"), "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2, sort_keys=True)
-    print(f"posts: {report['posts']} ({report['markdown_posts']} as Markdown)  teasers: {report['teasers']}  files: {report['copied_files']} copied, "
+    print(f"posts: {report['posts']} ({report['markdown_posts']} as Markdown)  teasers: {report['teasers']}  "
+          f"comments: {report['comments']}  files: {report['copied_files']} copied, "
           f"{len(moved)} links moved, {len(report['missing_files'])} missing, "
           f"{len(report['skipped_file_types'])} skipped (type)")
 

@@ -192,10 +192,21 @@ h2.entry-title a:hover, h2.entry-title a:focus {
 	border-bottom: 1px dotted #D2D2D2;
 }
 
-/* port: no comment counter any more, so the date line takes the full width */
+/* port: the comment counter only shows when a post has (old) comments; otherwise the
+   date line takes the full width */
 p.entry-date {
 	width: 100%;
 	float: left;
+}
+
+.has-comments p.entry-date {
+	width: 78%;
+}
+
+p.entry-comments {
+	width: 20%;
+	float: right;
+	text-align: right;
 }
 
 div.entry-content {
@@ -473,6 +484,59 @@ float: left;
 	#footer div.footer-column:first-child {
 		display: none;
 	}
+}
+
+/* ===== COMMENTS ===== */
+/* port: read-only archive of the old comments (_includes/comments.html) */
+
+li.comment {
+	background: url(../images/theme/comment.png) top left no-repeat;
+	padding: 20px 5px 5px 5px;
+	margin: 10px 0 15px;
+}
+
+li.odd {
+	background: #F6F4F0 url(../images/theme/comment.png) top left no-repeat;
+}
+
+li.byuser {
+	background: #E8FFD0 url(../images/theme/comment-user.png) top left no-repeat;
+}
+
+li.comment div.comment-meta, li.comment div.comment-author {
+	font-size: 11px;
+	color: #808080;
+}
+
+li.comment div.comment-meta a {
+	color: #808080;
+}
+
+li.comment div.comment-author cite {
+	font-weight: bold;
+	font-style: normal;
+}
+
+li.comment p {
+	clear: both;
+	font-size: 13px;
+	color: #676767;
+	line-height: 140%;
+}
+
+h3#comments {
+	margin: 15px 0;
+}
+
+/* port: WordPress' own styles for this were not part of the theme */
+ol.commentlist {
+	overflow-wrap: break-word;
+}
+
+p.nocomments {
+	font-size: 11px;
+	color: #808080;
+	margin: 5px 0;
 }
 
 /* ===== port: lightbox (assets/js/lightbox.js) ===== */
