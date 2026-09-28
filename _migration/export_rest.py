@@ -37,8 +37,8 @@ PROJECT = os.path.dirname(SITE)
 # Where referenced files are copied from, in order. wp-local/ is the content-checked copy.
 FILE_SOURCES = [os.path.join(PROJECT, "wp-local"), os.path.join(PROJECT, "ftp-content")]
 # Only passive file types are copied (never php/html/js/swf/svg from the compromised host).
-COPY_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp", ".pdf", ".rtf", ".txt", ".java"}
-DROP_CATEGORIES = {"podcast"}  # podcast is dropped (README scope)
+COPY_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp", ".pdf", ".rtf", ".txt", ".java", ".mp3"}
+DROP_CATEGORIES = {"podcast"}  # no podcast category/feed; episodes play inline via <audio>
 MORE = "<!--more-->"
 
 
