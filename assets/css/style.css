@@ -474,3 +474,81 @@ float: left;
 		display: none;
 	}
 }
+
+/* ===== port: lightbox (assets/js/lightbox.js) ===== */
+
+.entry-content a[href$=".jpg" i] img, .entry-content a[href$=".jpeg" i] img,
+.entry-content a[href$=".png" i] img, .entry-content a[href$=".gif" i] img,
+.entry-content img.zoomable {
+	cursor: zoom-in;
+}
+
+dialog.lightbox {
+	max-width: none;
+	max-height: none;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+dialog.lightbox::backdrop {
+	background: rgba(36, 36, 36, 0.95);
+}
+
+dialog.lightbox figure {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	padding: 48px 56px;
+	box-sizing: border-box;
+	cursor: zoom-out;
+}
+
+dialog.lightbox img {
+	max-width: 100%;
+	max-height: calc(100% - 32px);
+	object-fit: contain;
+	background: #FFFFFF;
+	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+dialog.lightbox.is-loading img {
+	opacity: 0.4;
+}
+
+dialog.lightbox figcaption {
+	margin-top: 10px;
+	font-size: 13px;
+	color: #E0FFC0;
+	text-align: center;
+}
+
+dialog.lightbox button {
+	position: fixed;
+	border: 0;
+	background: transparent;
+	color: #FFFFFF;
+	font: bold 36px/1 Arial, Helvetica, sans-serif;
+	padding: 8px 14px;
+	cursor: pointer;
+}
+
+dialog.lightbox button:hover, dialog.lightbox button:focus-visible {
+	color: #76B900;
+}
+
+dialog.lightbox .lightbox-close { top: 8px; right: 8px; }
+dialog.lightbox .lightbox-prev { top: 50%; left: 4px; transform: translateY(-50%); font-size: 48px; }
+dialog.lightbox .lightbox-next { top: 50%; right: 4px; transform: translateY(-50%); font-size: 48px; }
+dialog.lightbox button[hidden] { display: none; }
+
+@media (max-width: 600px) {
+	dialog.lightbox figure { padding: 48px 8px; }
+}

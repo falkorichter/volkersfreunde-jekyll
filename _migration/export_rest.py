@@ -196,6 +196,36 @@ def new_location(rel, first_used):
     return f"/assets/{kind}/{year}/{month}/{name}"
 
 
+RESIZED_RE = re.compile(r"^(.+?)(?:-\d+x\d+|\.thumbnail)(\.\w+)$")  # foo-480x336.png, foo.thumbnail.jpg
+
+
+def original_of(path):
+    """Full-size file for a WordPress preview: foo-480x336.png, foo.thumbnail.jpg,
+    wpid-thumb-1431.jpg (WordPress for Android) -> foo.png, foo.jpg, wpid-1431.jpg."""
+    candidates = []
+    r = RESIZED_RE.match(path)
+    if r:
+        candidates.append(r.group(1) + r.group(2))
+    base = candidates[0] if candidates else path
+    if "/wpid-thumb-" in base:
+        candidates.insert(0, base.replace("/wpid-thumb-", "/wpid-"))
+    return next((c for c in candidates if find_source(c)), None)
+IMG_RE = re.compile(r"""<img[^>]*\ssrc=["'](/wp-content/[^"']+)["'][^>]*>""")
+
+
+def link_previews(body):
+    """Wrap unlinked resized previews in a link to the original, so the lightbox can open it."""
+    def wrap(m):
+        start = m.start()
+        if body.rfind("<a ", 0, start) > body.rfind("</a>", 0, start):
+            return m.group(0)  # already inside a link
+        original = original_of(unquote(m.group(1)))
+        if not original:
+            return m.group(0)
+        return f'<a href="{quote(original)}">{m.group(0)}</a>'
+    return IMG_RE.sub(wrap, body)
+
+
 def main():
     posts = get_all("posts")
     cats = {c["id"]: html.unescape(c["name"]) for c in get_all("categories", ["id", "name"])}
@@ -225,6 +255,7 @@ def main():
         report["teasers"] += has_teaser
         body = re.sub(r"""(href=["'])(/[^"'#?]+/)(?=["'])""",
                       lambda m: m.group(1) + attachments.get(m.group(2), m.group(2)), body)
+        body = link_previews(body)
         for m in REF_RE.finditer(body):
             refs.setdefault(unquote(m.group(3)), {"first_used": p["date"], "used_by": set()})["used_by"].add(p["slug"])
         entries.append((p, body))

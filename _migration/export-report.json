@@ -1,5 +1,5 @@
 {
-  "copied_files": 251,
+  "copied_files": 259,
   "dead_images_removed": 2,
   "dead_links_unwrapped": 10,
   "missing_files": {
@@ -13,7 +13,7 @@
       "haeppi-boersday-volkersfreundede"
     ]
   },
-  "posts": 394,
+  "posts": 401,
   "skipped_file_types": {
     "/downloads/mobile_gmaps/mobile_gmaps.html": [
       "video-tutorial-mobile-gmaps"
@@ -25,5 +25,5 @@
       "freiheit-statt-angst-demo-gegen-die-vorratsdatenspeicherung"
     ]
   },
-  "teasers": 112
+  "teasers": 113
 }
