@@ -686,3 +686,13 @@ div.entry-content ul.contact-links li {
 	color: #808080;
 	font-size: 12px;
 }
+
+/* Search page (/suche/, Pagefind default UI) in the theme's colors */
+#search .pagefind-ui {
+	--pagefind-ui-scale: 0.8;
+	--pagefind-ui-primary: #76B900;
+	--pagefind-ui-text: #333;
+	--pagefind-ui-border: #ccc;
+	--pagefind-ui-tag: #eee;
+	--pagefind-ui-font: Arial, Helvetica, sans-serif;
+}

@@ -1,13 +1,12 @@
 {%- comment -%}
   "Sidebar Two" as configured in the DB (sidebars_widgets.sidebar-2): search, meta, buy-me-a-beer, "ADN" text.
-  Kept: search (now a site: web search — no server-side search on a static site) and a feed link.
+  Kept: search (now the site's own Pagefind search, /suche/) and a feed link.
   Dropped: Meta/Admin login, buy-me-a-beer plugin, App.net widget (dead + spam injection).
 {%- endcomment -%}
 	<div class="sidebar sidebar-right">
 		<ul>
 			<li class="widget widget_search">
-				<form role="search" method="get" id="searchform" action="https://duckduckgo.com/">
-					<input type="hidden" name="sites" value="{{ site.url | remove: 'https://' | remove: 'http://' }}" />
+				<form role="search" method="get" id="searchform" action="{{ '/suche/' | relative_url }}">
 					<input type="text" name="q" id="s" placeholder="Suchen…" aria-label="Suchen" />
 				</form>
 			</li>
