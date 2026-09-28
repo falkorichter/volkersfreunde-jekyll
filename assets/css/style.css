@@ -672,4 +672,17 @@ div.entry-content ol.stats-list, div.entry-content ul.stats-list {
 p.stats-note, .stats-list .meta {
 	font-size: 11px;
 	color: #808080;
+
+/* port: contact links on the Kontakt page (_includes/contact-links.html) */
+div.entry-content ul.contact-links {
+	list-style: none;
+	margin: 0 0 10px 0;
+}
+div.entry-content ul.contact-links li {
+	margin-bottom: 4px;
+	font-size: 14px;
+}
+.contact-handle {
+	color: #808080;
+	font-size: 12px;
 }
