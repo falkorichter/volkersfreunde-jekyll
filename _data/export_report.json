@@ -1,9 +1,9 @@
 {
   "comments": 365,
-  "copied_files": 259,
+  "copied_files": 266,
   "dead_images_removed": 2,
   "dead_links_unwrapped": 15,
-  "markdown_posts": 181,
+  "markdown_posts": 180,
   "missing_files": {
     "/downloads/Vererbung.java": [
       "raetsel-fuer-die-semesterferien"
@@ -15,7 +15,7 @@
       "haeppi-boersday-volkersfreundede"
     ]
   },
-  "posts": 401,
+  "posts": 403,
   "skipped_file_types": {
     "/downloads/mobile_gmaps/mobile_gmaps.html": [
       "video-tutorial-mobile-gmaps"
@@ -27,5 +27,5 @@
       "freiheit-statt-angst-demo-gegen-die-vorratsdatenspeicherung"
     ]
   },
-  "teasers": 114
+  "teasers": 116
 }
