@@ -1,0 +1,27 @@
+{
+  "copied_files": 242,
+  "missing_files": {
+    "/downloads/Vererbung.java": [
+      "raetsel-fuer-die-semesterferien"
+    ],
+    "/wp-content/plugins/buy-me-beer/beer.gif": [
+      "unterstuetzt-volkersfreundede"
+    ],
+    "/wp-content/themes/vf20/screenshot.png": [
+      "haeppi-boersday-volkersfreundede"
+    ]
+  },
+  "posts": 394,
+  "skipped_file_types": {
+    "/downloads/mobile_gmaps/mobile_gmaps.html": [
+      "video-tutorial-mobile-gmaps"
+    ],
+    "/downloads/mobile_gmaps/mobile_gmaps.swf": [
+      "video-tutorial-mobile-gmaps"
+    ],
+    "/wp-content/gallery/0709_demo/big/": [
+      "freiheit-statt-angst-demo-gegen-die-vorratsdatenspeicherung"
+    ]
+  },
+  "teasers": 112
+}

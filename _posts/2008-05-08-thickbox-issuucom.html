@@ -1,0 +1,47 @@
+---
+title: "Thickbox + issuu.com"
+date: 2008-05-08 20:50:17 +0000
+permalink: /thickbox-issuucom/
+author: "Falko"
+categories: ["Allgemein"]
+tags: ["ajax"]
+wp_id: 468
+---
+<p>Im <a href="/pdf-als-flash/">letzen Blogeintrag</a> habe ich über <a href="http://www.issuu.com">issuu.com</a> berichtet. Ich habe mich etwas damit beschäftigt wie man diese coole Möglichkeit möglichst gut auf seine Homepage einbinden kann. Der Embedcode hat den Nachteil dass er auf maximal 400&#215;300 Pixel beschränkt ist und ein Popup öffnen will.</p>
+<!--more-->
+
+<h3>Zutaten:</h3>
+<ul>
+<li><a href="http://jquery.com/demo/thickbox/">Thickbox</a>, in diesem Falle das <a href="http://wordpress.org/extend/plugins/thickbox/">WordPress Plugin</a></li>
+<li>Link zu dem Dokument
+<ul>
+<li>z.B. <a href="http://issuu.com/deadfalkon/docs/2008-03?mode=embed&amp;documentId=080508092023-dbb4f192ac5b4eeeb16299ee58010870&amp;pageNumber=6&amp;layout=grey">http://issuu.com/deadfalkon/docs/2008-03?mode=embed&amp;documentId=080508092023-dbb4f192ac5b4eeeb16299ee58010870&amp;pageNumber=6&amp;layout=grey</a></li>
+</ul>
+</li>
+</ul>
+<h3>Was man tun muss:</h3>
+<ol>
+<li>Die Thickbox installieren, wie das geht steht auf der Webseite, für WordPress einfach das Plugin hochladen und Aktivieren.</li>
+<li>Links setzen mit der Höhe und Breite sowie class=&#8221;thickbox&#8221; markieren
+<ul>
+<li>z.B.&lt;a class=&#8221;thickbox&#8221; href=&#8221;http://issuu.com/deadfalkon/docs/filmab2008-01?mode=embed&amp;documentId=080508092023-dbb4f192ac5b4eeeb16299ee58010870&amp;layout=grey&amp;KeepThis=true&amp;TB_iframe=true&amp;height=600&amp;width=900&#8243;&gt;Ausgabe 08-01&lt;/a&gt;</li>
+<li>also entweder &amp;layout=grey&amp;KeepThis=true&amp;TB_iframe=true&amp;height=[höhe]&amp;width=[breite] ranhängen wenn schon ein ?&#8230; da steht</li>
+<li>oder ?layout=grey&amp;KeepThis=true&amp;TB_iframe=true&amp;height=[höhe]&amp;width=[breite]ranhängen</li>
+<li>und dazu in den link class=&#8221;thickbox&#8221; hinzufügen</li>
+</ul>
+</li>
+</ol>
+<p>Ein Beispiel kann man auf <a href="http://filmab.jmmv.de/">filmab.jmmv.de</a> sehen, dort habe ich in der rechten Sidebar oben die Links zu den Ausgaben auf diese Weise realisiert.</p>
+<p>Hier ein Beispielcode, jeweils mit den Links.</p>
+<blockquote><p>&lt;ul&gt;<br />
+&lt;li&gt;&lt;a href=&#8221;http://issuu.com/deadfalkon/docs/filmab2008-01?mode=embed&amp;documentId=080508092023-dbb4f192ac5b4eeeb16299ee58010870&amp;layout=grey&amp;KeepThis=true&amp;TB_iframe=true&amp;height=600&amp;width=900&#8243; class=&#8221;thickbox&#8221;&gt;Ausgabe 08-01&lt;/a&gt;<br />
+&lt;/li&gt;<br />
+&lt;li&gt;&lt;a href=&#8221;http://issuu.com/deadfalkon/docs/filmab2008-02?mode=embed&amp;documentId=080508092023-dbb4f192ac5b4eeeb16299ee58010870&amp;layout=grey&amp;KeepThis=true&amp;TB_iframe=true&amp;height=600&amp;width=900&#8243; class=&#8221;thickbox&#8221;&gt;Ausgabe 08-02&lt;/a&gt;<br />
+&lt;/li&gt;<br />
+&lt;li&gt;&lt;a href=&#8221;http://issuu.com/deadfalkon/docs/2008-03?mode=embed&amp;documentId=080508092023-dbb4f192ac5b4eeeb16299ee58010870&amp;layout=grey&amp;KeepThis=true&amp;TB_iframe=true&amp;height=600&amp;width=900&#8243; class=&#8221;thickbox&#8221;&gt;Ausgabe 08-03&lt;/a&gt;<br />
+&lt;/li&gt;<br />
+&lt;li&gt;&lt;a href=&#8221;http://issuu.com/deadfalkon/docs/2008-04?mode=embed&amp;documentId=080508092023-dbb4f192ac5b4eeeb16299ee58010870&amp;layout=grey&amp;KeepThis=true&amp;TB_iframe=true&amp;height=600&amp;width=900&#8243; class=&#8221;thickbox&#8221;&gt;Ausgabe 08-04&lt;/a&gt;<br />
+&lt;/li&gt;<br />
+&lt;li&gt;&lt;a href=&#8221;http://issuu.com/deadfalkon/docs/filmab2008-05?mode=embed&amp;documentId=080508092023-dbb4f192ac5b4eeeb16299ee58010870&amp;layout=grey&amp;KeepThis=true&amp;TB_iframe=true&amp;height=600&amp;width=900&#8243; class=&#8221;thickbox&#8221;&gt;Ausgabe 08-05&lt;/a&gt;<br />
+&lt;/li&gt;<br />
+&lt;/ul&gt;</p></blockquote>

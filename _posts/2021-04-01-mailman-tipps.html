@@ -1,0 +1,34 @@
+---
+title: "mailman – tipps"
+date: 2021-04-01 08:32:17 +0000
+permalink: /mailman-tipps/
+author: "Falko"
+categories: ["Allgemein"]
+tags: []
+wp_id: 2538
+---
+<h3 class="wp-block-heading">Wenn man Mailingliste für externe zugänglich machen will:</h3>
+
+<p class="wp-block-paragraph">unter /mailman/admin/&lt;deine-liste>/privacy/sender </p>
+
+<p class="wp-block-paragraph"><strong>Alle Absender akzeptieren</strong></p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>Aktion, die beim Eingang einer Nachricht eines Nichtmitgliedes ausgeführt werden soll, wenn für dieses Nichtmitglied bislang keine Aktion hinterlegt ist. (Details zu generic_nonmember_action)</p></blockquote>
+
+<p class="wp-block-paragraph">auf <em>Akzeptieren</em> setzen</p>
+
+<p class="wp-block-paragraph"><strong>Antwort An: einstellen (damit immer an die Liste geantwortet wird)</strong></p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>An welche Adresse sollen die Antworten auf Nachrichten der Liste gesendet werden? Absender wird dringend empfohlen für die meisten Mailinglisten.(Details zu reply_goes_to_list)</p></blockquote>
+
+<p class="wp-block-paragraph">auf <em>This list and Poster</em> setzen. Oder bei internen Listen auf <em>Diese Liste</em>.</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>Sollen vorhandene Reply-To:-Header der Orginal-Nachricht verworfen werden? Falls diese Option aktiviert ist, wird der Header auch dann entfernt, wenn kein explizierter Reply-To:-Header der Liste gesetzt ist.<br />(Details zu first_strip_reply_to)</p></blockquote>
+
+<p class="wp-block-paragraph">auf <em>Ja</em> setzen. Auch hier damit die Antworten immer in der Liste landen.</p>
+
+<p class="wp-block-paragraph">Wenn man die Liste hinter einer Weiterleitung verstecken will:</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>Nachrichten an die Liste müssen exakt an die Listen-Mail-Adresse (oder an einen der unten einstellbaren Aliasnamen) adressiert sein (&#8216;To:&#8217;, &#8216;Cc&#8217;).<br />(Details zu require_explicit_destination)</p></blockquote>
+
+<p class="wp-block-paragraph">unter /mailman/admin/&lt;deine-liste>/privacy/recipient</p>

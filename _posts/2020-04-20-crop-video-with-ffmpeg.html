@@ -1,0 +1,34 @@
+---
+title: "crop video with ffmpeg"
+date: 2020-04-20 13:29:54 +0000
+permalink: /crop-video-with-ffmpeg/
+author: "Falko"
+categories: ["Allgemein"]
+tags: []
+wp_id: 2484
+---
+<p class="wp-block-paragraph">Volker is currently helping out with his semi professional home streaming setup. Streaming from Instagram to facebook for instance.<a href="https://ally-allergens.com"> Ally Allergens</a> is conducting <a href="https://ally-allergens.com/blog/ally-meets-virtually/">interview on Instagram</a> with the live feature, the stream is captured locally using a HDMI grabber and streamed to facebook (or other service)</p>
+
+<div class="wp-block-image"><figure class="aligncenter is-resized"><img loading="lazy" decoding="async" src="https://scontent-ber1-1.xx.fbcdn.net/v/t1.0-9/93149848_219764279457502_7253410670077542400_o.jpg?_nc_cat=111&amp;_nc_sid=2d5d41&amp;_nc_ohc=rRXnhzBr3nQAX_NFZX6&amp;_nc_ht=scontent-ber1-1.xx&amp;oh=f1d89cf009ac7108979c32fc09c07535&amp;oe=5EC1E308" alt="Image may contain: 1 person, text" width="242" height="242"/></figure></div>
+
+<p class="wp-block-paragraph">This is how the stream/recording looks on facebook (or youtube in this instance)</p>
+
+<figure class="wp-block-embed-youtube aligncenter wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<iframe loading="lazy" title="Ally Meets Dr .Yvonne Braun" width="500" height="281" src="https://www.youtube.com/embed/yrwDkS7FL4k?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div></figure>
+
+<p class="wp-block-paragraph">Of course the phone is in portait mode, and some nice background was added to make the landscape experience more pleasing.</p>
+
+<p class="wp-block-paragraph">Now the topic of this post: we want the portrait version of this video. FFMPEG to the rescue:</p>
+
+<p class="wp-block-paragraph"><strong>export frames as PNG: </strong><em>ffmpeg -i Ally_Meets_Dr_Yvonne_Braun.mp4 -r 1 image-%04d.png</em></p>
+
+<p class="wp-block-paragraph">This would export the complete video, so make sure to kill (CTRL+C) the process after a bit.</p>
+
+<p class="wp-block-paragraph"><strong>and crop:</strong> <em>ffmpeg -i Ally_Meets_Dr_Yvonne_Braun.mp4 -filter:v &#8220;crop=378:720:450:0&#8221; Ally_Meets_Dr_Yvonne_Braun_cropped.mp4</em></p>
+
+<p class="wp-block-paragraph">The result.</p>
+
+<p class="wp-block-paragraph">From: <a href="https://video.stackexchange.com/questions/4563/how-can-i-crop-a-video-with-ffmpeg:">https://video.stackexchange.com/questions/4563/how-can-i-crop-a-video-with-ffmpeg:</a></p>
+
+<p class="wp-block-paragraph"><code>ffmpeg -i in.mp4 -filter:v "crop=out_w:out_h:x:y" out.mp4</code></p>

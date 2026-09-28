@@ -1,0 +1,25 @@
+---
+title: "Opensearch in 5 Minuten"
+date: 2007-08-06 23:48:47 +0000
+permalink: /opensearch-in-5-minuten/
+author: "Falko"
+categories: ["Buzz der Woche", "Technik/Software"]
+tags: ["tutorial", "web2.0", "webseiten"]
+wp_id: 257
+---
+<p><img loading="lazy" decoding="async" src="/wp-content/2007/09/buzz2.thumbnail.jpg" alt="Buzz" class="imageframe imgalignleft" align="left" height="57" width="128" /><a href="/wp-content/2007/08/opensearch.jpg" rel="lightbox[pics-1186443433]" title="opensearch"><img loading="lazy" decoding="async" src="/wp-content/2007/08/opensearch.thumbnail.jpg" alt="opensearch" class="imageframe imgalignleft" align="right" height="96" width="128" /></a>Wenn ihr bei euch im Firefox oben rechts auf verschiedenen Webseiten direkt suchen könnt steckt Opensearch dahinter. Volkersfreunde haben auch eine OpenSearch XML Datei:</p>
+<!--more-->
+
+<p><em>&lt;?xml version=&#8221;1.0&#8243;?&gt;<br />
+&lt;OpenSearchDescription xmlns=&#8221;http://a9.com/-/spec/opensearch/1.1/&#8221;&gt;<br />
+&lt;ShortName&gt;<strong>Volkersfreunde (FHTW)</strong>&lt;/ShortName&gt;<br />
+&lt;Description&gt;<strong>Volkersfreunde (FHTW)</strong>&lt;/Description&gt;<br />
+&lt;Image height=&#8221;16&#8243; width=&#8221;16&#8243; type=&#8221;image/x-icon&#8221;&gt;<strong>/favicon.gif</strong>&lt;/Image&gt;<br />
+&lt;Url type=&#8221;text/html&#8221; method=&#8221;<strong>get</strong>&#8221; template= &#8220;<strong>/index.php?s={searchTerms}&amp;sbutt=Find</strong>&#8220;/&gt;<br />
+&lt;/OpenSearchDescription&gt;</em></p>
+<p><em><br />
+</em>Nicht schwierig das Ganze. Nur noch das richtige Header Attribut hinzugefügt:</p>
+<p><em>&lt;link rel=&#8221;search&#8221; type=&#8221;application/opensearchdescription+xml&#8221; href=&#8221;<strong>/opensearch.xml</strong>&#8221; title=&#8221;<strong>Volkersfreunde.de (FHTW)</strong>&#8221; /&gt;</em></p>
+<p>Wenn ihr auch Opensearch benutzen wollt baut euch auch die XML Datei und bindet den Header Tag ein. Die fett gedruckten Sachen müsst ihr selbstverständlich vorher anpassen.</p>
+<p>Mehr Informationen zum Thema auf <a href="http://www.opensearch.org/">der offiziellen Seite</a> oder bei <a href="http://bueltge.de/opensearch-suchfeld-fuer-mozilla-und-internet-explorer-mit-wordpress-anbieten/410/">bueltge.de</a> erklärt.</p>
+<pre id="line1"></pre>

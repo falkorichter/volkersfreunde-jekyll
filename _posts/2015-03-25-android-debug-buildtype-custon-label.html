@@ -1,0 +1,18 @@
+---
+title: "Android debug buildType with custom name"
+date: 2015-03-25 13:12:21 +0000
+permalink: /android-debug-buildtype-custon-label/
+author: "Falko"
+categories: ["Technik/Software"]
+tags: ["android"]
+wp_id: 1518
+---
+<p>If you develop Android apps, you propably have your debug, staging and release version installed on your phone. Here is an easy way to change the application Label, the launcher label.</p>
+<p>Insert the placeholder <strong>${applicationLabel}</strong> in your manifest and define the set the placeholder in your build.gradle file:</p>
+<p><script src="https://gist.github.com/falkorichter/e85564df965f6f5dce7d.js"></script></p>
+<p>These placeholders seem like an awesome tool. Other placeholder features that were added over time:</p>
+<blockquote><p>
+AndroidManifest files in Library project can now include placeholders. If they cannot be resolved in the libraries, they&#8217;ll be resolved in the consuming project.<br />
+AndroidManifest placeholder can now be setup on Product Flavors and Build Types.
+</p></blockquote>
+<p>Check the updates on the <a href="http://tools.android.com/tech-docs/new-build-system">Android gradle site</a> for other details.</p>

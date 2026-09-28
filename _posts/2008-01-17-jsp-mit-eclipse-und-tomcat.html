@@ -1,0 +1,30 @@
+---
+title: "JSP mit Eclipse und Tomcat"
+date: 2008-01-17 13:29:35 +0000
+permalink: /jsp-mit-eclipse-und-tomcat/
+author: "simi"
+categories: ["Technik/Software"]
+tags: ["tutorial"]
+wp_id: 410
+---
+<p>Bei der Programmierung der abschließenden Belegarbeit4 unserer DB-Vorlesung empfiehlt es sich, die JSP-Anwendung mit Eclipse zu entwerfen, so dass man auch auf den gewohnten &#8220;Eclipse-Komfort&#8221; nicht verzichten muss.<br />
+Damit das alles funktioniert, ist es sinnvoll, den Tomcat-Server in Eclipse zu integrieren. Die folgenden Schritte sollen kurz darstellen, wie ich bei der Einrichtung vorgegangen bin, so dass die von Herrn Langbein zur Verfügung gestellten Scripte lauffähig sind:</p>
+<!--more-->
+<p><strong>1. MySQL-Datenbank vorbereiten</strong><br />
+Damit die Beispiel-Dateien funktionieren, sollte man natürlich die SQL-Tabellen, auf welchen die Beispiele basieren, auch in der eigenen Datenbank anlegen. Die nötige sql-Datei ist im war-Archiv bei jedem Beispiel integriert.</p>
+<p><strong>2. Tomcat installieren</strong><br />
+Eine Windows-Installationsdatei für den aktuellen Apache Tomcat gibt es z.B. <a href="http://apache.autinity.de/tomcat/tomcat-6/v6.0.14/bin/apache-tomcat-6.0.14.exe">hier</a>.</p>
+<p><strong>3. Eclipse Plugin installieren</strong><br />
+Das Plugin, welches ich verwendete, heißt &#8220;<a href="http://www.eclipsetotale.com/tomcatPlugin/tomcatPluginV321.zip">Sysdeo/SQLI Eclipse Tomcat Launcher plugin</a>&#8220;. Die zip-Datei einfach in das plugin-Verzeichnis von Eclipse entpacken.</p>
+<p><strong>4. Tomcat-Plugin einrichten</strong><br />
+Nachdem man Eclipse nun gestartet hat, muss man das Tomcat-Plugin einrichten, d.h. dem Puglin mitteilen, wo das Installationsverzeichnis von Tomcat liegt: In Eclipse unter &#8220;Preferences&#8221;-&gt;&#8221;Tomcat&#8221; bei &#8220;Tomcat Home&#8221; das entspr. Verzeichnis wählen.</p>
+<p><strong>5. Tomcat-Projekt erstellen</strong><br />
+Nun kann man ein neues Projekt starten. Als Projekttyp einfach unter &#8220;Java&#8221; den Punkt &#8220;Tomcat Projekt&#8221; wählen. In das neue Projektverzeichnis könnt ihr die Dateien aus einem von Herrn Langbein bereitgestellten war-Archiven kopieren und diese dann in Eclipse bearbeiten (achtet auf die von Herrn Langbein vorgegebenen package-Namen).<br />
+Damit die Beispiele eine Verbindung zur Datenbank herstellen können, braucht Eclipse die nötigen jdbc-Treiber. Dazu müsst ihr die &#8220;mysql-connector&#8230;.&#8221;.jar-Datei, welche im lib-Ordner des war-Archivs liegt, zum Java Build Path hinzufügen, beispielsweise durch Rechtsklick auf die Datei im Package Exlorer und durch Wählen von &#8220;Build Path&#8221;-&gt;&#8221;Add to Build Path&#8221;. Wenn ihr nun noch die DB-Verbindung im Konstruktor der DBZugriff.java mit euren eigenen Mysql-Zugangsdaten ersetzt und im Eclipse-Menü &#8220;Tomcat&#8221; den Tomcat-Server startet, müsste alles klappen.<br />
+Sobald ihr die java-Datei speichert, wird automatisch im WEB-INF-Verzeichnis &#8220;classes&#8221; die entspr. class-Datei kompiliert (so wars zumindest bei mir).</p>
+<p><strong>6. jsp-Dateien im Browser anzeigen</strong><br />
+Wenn eurer Tomcat-Server korrekt läuft, müsstet ihr über / die Startseite des Tomcat-Servers erreichen. Eclipse ändert die Tomcat-Konfiguration so ab, dass er automatisch das Tomcat-Webapps-Verzeichnis auf euren Eclipse-Workspace legt. So könnt ihr eure jsp-Datei ganz einfach erreichen über:<br />
+/<em>Projektname</em>/<em>dateiname.jsp</em></p>
+<p>Evtl. auftretende Fehlermeldungen beim Ausführen der jsp-Datei werden in ausführlicher Form in der Konsole von Eclipse wiedergegeben.</p>
+<p>Na denn, Viel Erfolg!</p>
+<p>Bei Problemen hilft euch evtl. <a href="http://plato.acadiau.ca/courses/comp/dsilver/2513/EclipseAndTomcatTutorial/">diese Anleitung</a> weiter.</p>

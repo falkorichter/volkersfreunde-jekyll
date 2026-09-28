@@ -1,0 +1,32 @@
+---
+title: "Android jar tasks"
+date: 2015-04-01 09:49:59 +0000
+permalink: /android-jar-tasks/
+author: "Falko"
+categories: ["Allgemein"]
+tags: []
+wp_id: 1532
+---
+<p>Android lacks tasks to generate sourceJars, javaDocJars by default.</p>
+<p><a href="http://wiebe-elsinga.com/blog/archive-addition-android-artifacts-with-gradle/">Wiebe posted a neat solution</a>, I improved upon it and uploaded it as a Gist:<br />
+<script src="https://gist.github.com/falkorichter/fa5aa734b03c64bae592.js"></script><br />
+This should work equally good if you replace <em>.libraryVariants</em> with <em>.applicationVariants</em> but I don´t know why you want to generate Javadoc for an App.</p>
+<p>This will create these tasks:</p>
+<p><code><br />
+Jar tasks<br />
+---------<br />
+generateDebugJavadocJar - Assembles a jar archive containing the generated Javadoc API documentation of debug.<br />
+generateDebugProguardFilesJar - Assembles a jar archive containing the Proguard files of debug.<br />
+generateDebugSourcesJar - Assembles a jar archive containing the main sources of debug.<br />
+generateJavadoc - Generate all Javadoc of all Variants<br />
+generateJavadocJar - Generate all Javadoc Jars of all Variants<br />
+generateMinifiedJavadocJar - Assembles a jar archive containing the generated Javadoc API documentation of minified.<br />
+generateMinifiedProguardFilesJar - Assembles a jar archive containing the Proguard files of minified.<br />
+generateMinifiedSourcesJar - Assembles a jar archive containing the main sources of minified.<br />
+generateProguardJar - Generate all Proguard Jars of all Variants<br />
+generateReleaseJavadocJar - Assembles a jar archive containing the generated Javadoc API documentation of release.<br />
+generateReleaseProguardFilesJar - Assembles a jar archive containing the Proguard files of release.<br />
+generateReleaseSourcesJar - Assembles a jar archive containing the main sources of release.<br />
+generateSourcesJar - Generate all Sources Jars of all Variants<br />
+</code></p>
+<p>If you have comments on the solution, feel free add them directly in the Gist, fork it, improve it!</p>

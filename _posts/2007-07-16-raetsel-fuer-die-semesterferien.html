@@ -1,0 +1,124 @@
+---
+title: "Rätsel für die Semesterferien"
+date: 2007-07-16 19:45:36 +0000
+permalink: /raetsel-fuer-die-semesterferien/
+author: "Falko"
+categories: ["Allgemein"]
+tags: []
+wp_id: 253
+---
+<p>Nehmt euch mal 10 Minuten oder einen Tag oder die ganzen Semesterferien und versucht zu ergründen was dieses kleine JAVA Programm in die Konsole schreibt. Kommt im Original von einem Übungsblatt von der <a href="http://www.hu-berlin.de/">Humbold Uni</a>, ich hab es noch etwas gepimpt damit es noch verwirrender wird.Viel Spaß&#8230;</p>
+<p><em><strong>Vorschläge bitte als Kommentar!!! Nicht Kompilieren!!! Die Datei ist in diesem Zustand zu 100% lauffähig und führt zu einem eineindeutigen Ergebniss!!!</strong></em><br />
+<a href="/downloads/Vererbung.java" title="Java"><strong>Vererbung.java:</strong></a></p>
+<!--more-->
+
+<p>class Base implements IBase{<br />
+String s = &#8220;-&#8220;;<br />
+public void print(long n) {<br />
+while (n&#8211; &gt;= 0) {<br />
+print(s);<br />
+}<br />
+}<br />
+public void print(String s) {<br />
+System.out.println(s);<br />
+}</p>
+<p>public void printlt() {<br />
+print(s);<br />
+}</p>
+<p>}</p>
+<p>class Derived extends Base {<br />
+String s = &#8220;.&#8221;;<br />
+public void print(String s) {<br />
+super.print(s);<br />
+super.print(this.s);<br />
+}<br />
+}<br />
+interface IBase{<br />
+String s = &#8220;+&#8221;;<br />
+void print(long n) ;<br />
+void print(String s);<br />
+void printlt();<br />
+}</p>
+<p>interface IDerived{<br />
+String s = &#8220;*&#8221;;<br />
+void print(long n) ;<br />
+void print(String s);<br />
+void printlt();<br />
+}</p>
+<p>public class Vererbung {</p>
+<p>static String s = &#8220;#&#8221;;</p>
+<p>public void print(long n) {<br />
+while (n&#8211; &gt;= -1) {<br />
+print(s);<br />
+}<br />
+}<br />
+public void print(String s) {<br />
+System.out.print(s);<br />
+}</p>
+<p>public void printlt() {<br />
+print(s);<br />
+}</p>
+<p>public static void main(String args[]) {<br />
+Base b = new Derived();<br />
+b.print(&#8220;.&#8221;); //<br />
+b.print(2); //<br />
+b.s=&#8221;-&#8220;; //<br />
+b.printlt(); //<br />
+System.out.println(&#8220;-&#8220;); //<br />
+}<br />
+}</p>
+<p>class Base implements IBase{<br />
+String s = &#8220;-&#8220;;<br />
+public void print(long n) {<br />
+while (n&#8211; &gt;= 0) {<br />
+print(s);<br />
+}<br />
+}<br />
+public void print(String s) {<br />
+System.out.println(s);<br />
+}</p>
+<p>public void printlt() {<br />
+print(s);<br />
+}</p>
+<p>}</p>
+<p>class Derived extends Base {<br />
+String s = &#8220;.&#8221;;<br />
+public void print(String s) {<br />
+super.print(s);<br />
+super.print(this.s);<br />
+}<br />
+}<br />
+interface IBase{<br />
+String s = &#8220;+&#8221;;<br />
+void print(long n) ;<br />
+void print(String s);<br />
+void printlt();<br />
+}</p>
+<p>interface IDerived{<br />
+String s = &#8220;*&#8221;;<br />
+void print(long n) ;<br />
+void print(String s);<br />
+void printlt();<br />
+}</p>
+<p>public class Vererbung {</p>
+<p>static String s = &#8220;#&#8221;;</p>
+<p>public void print(long n) {<br />
+while (n&#8211; &gt;= -1) {<br />
+print(s);<br />
+}<br />
+}<br />
+public void print(String s) {<br />
+System.out.print(s);<br />
+}</p>
+<p>public void printlt() {<br />
+print(s);<br />
+}</p>
+<p>public static void main(String args[]) {<br />
+Base b = new Derived();<br />
+b.print(&#8220;.&#8221;); //<br />
+b.print(2); //<br />
+b.s=&#8221;-&#8220;; //<br />
+b.printlt(); //<br />
+System.out.println(&#8220;-&#8220;); //<br />
+}<br />
+}</p>

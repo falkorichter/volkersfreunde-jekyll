@@ -1,0 +1,62 @@
+---
+title: "Regex"
+date: 2008-12-10 17:45:19 +0000
+permalink: /regex/
+author: "Falko"
+categories: ["Allgemein"]
+tags: []
+wp_id: 880
+---
+<p><img decoding="async" class="aligncenter size-full wp-image-890" title="regex7" src="/wp-content/2008/12/regex9.jpg" alt="regex7" /></p>
+<p><a href="http://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck">Reguläre Ausdrücke</a> sind in <a href="http://imi.fhtw-berlin.de/">unserem Studium</a> leider etwas <a href="http://de.wikipedia.org/wiki/Stiefmutter">stiefmütterlich</a> behandelt worden. Das sie ein Mächtiges Werkzeug sein können wusste ich aber schon immer. Leider habe ich bis heute <strong>a)</strong> keine Fall gehabt wo ich es wirklich gebraucht habe und <strong>b)</strong> niemanden gehabt den ich notfalls fragen konnte. Heute war nun der Fall das <strong>a)</strong> und <strong>b)</strong> zusammen aufgetreten sind. Hier ein Tutorial wie es funktioniert.</p>
+<!--more-->
+
+<p>Ich sollte auf Arbeit stupides Copy&amp;Paste von Vorlagen eines alten Systems in die Vorlage des neuen Systems &#8220;übersetzen&#8221;. Ohne Regex hätte ich die vielen Datein händisch durchsuchen müssen und jedes mal Ersetzungen durchführen &#8211; wenn angebracht. Das schrie förmlich nach regulären Ausdrücken.</p>
+<p>Bevor ich euch jetzt erkläre wie mein Verständnis evolviert ist lest bitte <a href="http://www.regenechsen.de/phpwcms/index.php?regex_allg">dieses Tutorial</a> bei <a href="http://www.regenechsen.de/">regenechsen.de.</a> Dort die Minimumvoraussetzungen. Das <strong>[a-zA-Z]*</strong> belieblige Zeichenketten die nur aus Buchstaben bestehen, will ich hier nicht erklären, das steht dort sehr gut geschrieben.<a href="http://www.regenechsen.de/"><br />
+</a></p>
+<h2>Meine Aufgabe:</h2>
+<p>Ersetze alles was bisher <em>&lt;?=$variable?&gt;</em> war (php für die Rückgabe des Wertes einer Variable) sollte jetzt <em>{variable}</em> werden. Also im Grunde <em>&lt;?=</em> finden und durch <em>{</em> ersetzen, dann bis zum Ende gehen und das <em>?&gt;</em> ersetzen. Wichtig ist das alle anderen php Befehle nicht beachtet werden sollten. Also <em>&lt;?=__(&#8216;hallo_welt&#8217;)?&gt;</em> sollte <em>&lt;?=__(&#8216;hallo_welt&#8217;)?&gt;</em> bleiben.</p>
+<p>Das Ganze passiert bei mir in Eclipse sollte aber so oder sehr änhlich in einer Programmiersprache auch funktionieren. Die Screenshots sind aus dem Finden/Ersetzen Dialog direkt aus Eclipse. Dort kann man per Checkbox festlegen, dass reguläre Ausdrücke verwandt werden.</p>
+<h3>1. Schritt: einfaches Suchen Ersetzen</h3>
+<p>klappt nicht denn wenn ich nach <em>?&gt;</em> suche werden auch die ungewollten Fälle ersetzt. <em>&lt;?=__(&#8216;hallo_welt&#8217;)?&gt; </em>würde ebenso ersetzt wie<em> </em><em>&lt;?=$hallo_welt?&gt;.</em></p>
+<div id="attachment_882" style="width: 434px" class="wp-caption alignnone"><img loading="lazy" decoding="async" aria-describedby="caption-attachment-882" class="size-full wp-image-882" title="regex1" src="/wp-content/2008/12/regex1.jpg" alt="regex1" width="424" height="94" /><p id="caption-attachment-882" class="wp-caption-text">einfaches Suche&amp;Ersetzen</p></div>
+<h3>2. Schritt: reguläre Suche nach &#8220;<em>Buchstabe + &#8220;?&gt;&#8221; </em></h3>
+<p><em>&#8220;Buchstabe&#8221;</em> als regex: <em><strong>\w</strong></em></p>
+<p><em>?&gt;</em> als regex: <strong>\?\&gt; </strong>(Sonderzeichen werden mit Backslash maskiert)<strong><br />
+</strong></p>
+<p>also <em><strong>\w\?\&gt;</strong></em> findet mir alle diese Vorkommen. wenn ich nun ersetze hab ich das Problem das mein Buchstabe auch ersetzt wird.</p>
+<div id="attachment_883" style="width: 434px" class="wp-caption alignnone"><img loading="lazy" decoding="async" aria-describedby="caption-attachment-883" class="size-full wp-image-883" title="regex2" src="/wp-content/2008/12/regex2.jpg" alt="regex2" width="424" height="388" /><p id="caption-attachment-883" class="wp-caption-text">Wichtig: Regular expressions muss angekreuzt sein!!!</p></div>
+<h3>3. Schritt: aufteilen</h3>
+<p>Klammern können eine regex in Teile aufsplitten. die Teile kann ich dann vertauschen/ersetzen wie ich lustig bin.</p>
+<p><strong>(\w)\?\&gt;</strong> findet meine Gruppe und der Buchstabe ist in Klammern also kann ich mit $1 in der Ersetzung Dinge machen</p>
+<p><strong>(\w)(\?\&gt;)</strong> teilt das erbgebnis in 2 Gruppen&#8230; mit <strong>$1</strong> kann man die erste Gruppe ansprechen.</p>
+<div id="attachment_884" style="width: 434px" class="wp-caption alignnone"><img loading="lazy" decoding="async" aria-describedby="caption-attachment-884" class="size-full wp-image-884" title="replace (\w)(\?\&gt;) with $1\}" src="/wp-content/2008/12/regex3.jpg" alt="regex3" width="424" height="98" /><p id="caption-attachment-884" class="wp-caption-text">Regex checkbox ausgeblendet aber aktiv!</p></div>
+<p>Dies findet also das Ende meines Ausdruckes und lässt den Buchstaben stehen, und ersetzt mein Fragezeichen und das Größerzeichen.</p>
+<p style="padding-left: 30px;">aus <em>foo?&gt;</em> wird <em>foo}</em></p>
+<h3>4. Schritt: Anfang+Ende in einer Regex</h3>
+<p>Da ich das Ende sehr gut ersetzen kann wollte ich nicht noch eine 2. regex bauen, die den Anfang findet und ersetzt. Also habe ich mir gesagt ich bauen EINE regex die den Anfang findet, das Zwischenteil identifiziert und dann den Ende findet.</p>
+<p><strong>(\&lt;\?\=\$)([a-zA-Z]+)(\?\&gt;)</strong> ist das Erbenis</p>
+<p><strong>(\&lt;\?\=\$) </strong>für den Anfangsteil also <strong></strong><em>&lt;?=</em></p>
+<p><strong>([a-zA-Z]+)</strong> für eine Zeichenkette aus Buchstaben, mindestens ein Buchstabe lang</p>
+<p><strong>(\?\&gt;)</strong> für den letzen Teil also <em>?&gt;</em></p>
+<p>Durch Klammern getrennt ist das sogar halbwegs übersichtlich. Man stelle sich das ganze ohne Klammern vor.</p>
+<p>Wenn ich das nun mit <strong>\{$2\}</strong> ersetze klappt das ganze schon ganz gut.</p>
+<p><img loading="lazy" decoding="async" class="alignnone size-full wp-image-885" title="repalce (\&lt;\?\=\$)([a-zA-Z]+)(\?\&gt;) with \{$2\}" src="/wp-content/2008/12/regex4.jpg" alt="regex4" width="424" height="99" /></p>
+<p style="padding-left: 30px;">aus <em>&lt;?=$eineVariable?&gt;</em> wird <em>{eineVariable}</em></p>
+<h3>5. Schritt: Feintuning</h3>
+<p>Nun habe ich bemerkt das auch Unterstriche und Zahlen in der Zeichenkette in der Mitte vorkommen dürfen. also:</p>
+<p><strong>(\&lt;\?\=\$)([0-9a-zA-Z\_]+)(\?\&gt;)</strong></p>
+<p><strong>([0-9a-zA-Z\_]+)</strong> für eine Zeichenkette aus Buchstaben, Zahlen und Unterstrichen mindestens ein Buchstabe lang. Der Anfang- und Endteil bleiben gleich.</p>
+<p><img loading="lazy" decoding="async" class="size-full wp-image-886 alignnone" title="replace (\&lt;\?\=\$)([0-9a-zA-Z\_]+)(\?\&gt;) with \{$2\}" src="/wp-content/2008/12/regex5.jpg" alt="regex5" width="424" height="101" /></p>
+<p style="padding-left: 30px;">aus <em>&lt;?=$eine_Variable2?&gt;</em> wird <em>{eine_Variable2}</em></p>
+<h3>6. Schritt: Anderes Muster nach ähnlichem Prinzip finden und ersetzen</h3>
+<p>Nun habe ich mittendrin beim Ersetzen gemerkt, dass ich auch <em>%%foo%%</em> durch <em>{foo}</em> ersetzen muss. Also eine 2. regex für den neuen Fall:</p>
+<p><img loading="lazy" decoding="async" width="424" height="98" class="alignnone size-full wp-image-887" title="regex6" src="/wp-content/2008/12/regex6.jpg" alt="replace (\%\%)([0-9a-zA-Z\_]+)(\%\%) with \{$2\}" /><br />
+<strong></strong></p>
+<p>das sollte sehr einfach sein, wenn man die ersten 5 Schritte kapiert hat. <strong><br />
+</strong></p>
+<p style="padding-left: 30px;">aus <em>%%ein_variable23%%</em> wird <em>{eine_variable23}</em></p>
+<p>Theoretisch sollte sich auch eine Regex finden die beide Fälle behandelt weil sie so sehr verwandt sind. Wer lust hat, schreibt die Lösung bitte in die Kommentare.</p>
+<p>vielen Dank an dieser Stelle an David, unserem Serverguru.<em><br />
+</em></p>
+<p style="padding-left: 30px;">

@@ -1,0 +1,167 @@
+---
+title: "Mete Prüfungsvorbereitung"
+date: 2007-06-28 06:34:43 +0000
+permalink: /mete-pruefungsvorbereitung/
+author: "Falko"
+categories: ["Allgemein"]
+tags: []
+wp_id: 245
+---
+<p>Hallo ihr lieben&#8230; Anbei gibt es die Klausurvorbereitung vom Dienstag&#8230; Bei Fragen fragen</p>
+<p><strong>Fett heißt Frage, bzw Aufgabenstellung</strong></p>
+<!--more-->
+
+<p><strong><br />
+&gt;&gt;Fertig Programmieren, ein Grau Verlauf oben, unten:<br />
+public class prüfung<br />
+{<br />
+int width = 200, height = 100;<br />
+int[] pixels = new int[width+height];<br />
+for (int i=0; i&lt;width*height ; i++  )<br />
+{<br />
+pixels[i]= 0xFFFFFF;</strong></p>
+<p>&lt;Lösung&gt;</p>
+<p>int y = i/width;<br />
+int grau = y* (255/height);<br />
+pixels[i] = 0xFF+ grau&lt;&lt;16 + grau&lt;&lt;8 + grau;<br />
+}<br />
+}<br />
+&lt;/Lösung&gt;</p>
+<p><strong>&gt;&gt;Wenn man in Photoshop ein neues Bild anlegt lassen sich<br />
+&gt;&gt;die Pixelanzahl in der entprechenden Richtung einstellen.<br />
+&gt;&gt;Wie viele dieser Größen können sie unabhängig voneinander<br />
+&gt;&gt;wählen</strong></p>
+<p>// 2 Wählen, weil sie voneinander Abhängen (Pixel/Länge=Auflösung)!!!</p>
+<p><strong>&gt;&gt;Zeichen sie die Graduationskurve eines Operators der eine Binäärisierung<br />
+* eines Bildes erzeugt.</strong><br />
+<a title="Binärisierung die Graduationskurve" rel="lightbox[pics-1183011770]" href="/wp-content/2007/06/mete3.gif"><img loading="lazy" decoding="async" class="imageframe imgalignleft" src="/wp-content/2007/06/mete3.gif" alt="Binärisierung die Graduationskurve" width="238" height="200" /></a></p>
+<p><strong>&gt;&gt; Ein 800*600 großes Bild:</strong></p>
+<p><strong>*  Wie groß in:</strong><br />
+<strong> *    CMYK</strong> 1875 kB<br />
+<strong> *    Gaustufen </strong> 468  kB<br />
+<strong> *    Binär</strong> 58  kB</p>
+<p><strong>&gt;&gt;Was bewirkt diese Graduationskurve? Schreibe den Code dafür! Siehe angehängtes Bild&#8230;<br />
+</strong><a title="mete2.jpg" rel="lightbox[pics245]" href="/wp-content/2007/06/mete2.jpg"><img loading="lazy" decoding="async" class="imageframe imgalignleft" src="/wp-content/2007/06/mete2.thumbnail.jpg" alt="mete2.jpg" width="450" height="281" /></a><br />
+<strong>int (int Y_in)<br />
+{</strong></p>
+<p>&lt;Lösung&gt;</p>
+<p>int Y_out = 0;<br />
+Y_out = 255-Y_in -64;<br />
+Y_out = (Y_out &lt; 0 ? 0: Y_out)</p>
+<p>&lt;/Lösung&gt;<br />
+<strong>returnY_out;<br />
+}</strong></p>
+<p><strong>&gt;&gt;Was bewirkt diese Graduationskurve? Schreibe den Code dafür!Siehe angehängtes Bild&#8230;</strong></p>
+<p><a title="mete.jpg" rel="lightbox[pics245]" href="/wp-content/2007/06/mete.jpg"><img loading="lazy" decoding="async" class="imageframe imgalignleft" src="/wp-content/2007/06/mete.thumbnail.jpg" alt="mete.jpg" width="450" height="281" /></a></p>
+<p><strong>int (int Y_in)<br />
+{</strong></p>
+<p>&lt;Lösung&gt;</p>
+<p>int Y_out = 0;<br />
+Y_out = 255-Y_in -64;<br />
+Y_out = (Y_out &lt; 0 ? 0: Y_out)</p>
+<p>&lt;/Lösung&gt;</p>
+<p><strong><br />
+returnY_out;<br />
+}</strong></p>
+<p><strong>&gt;&gt; Was bewirkt folgender Filter<br />
+* public int filterA(int c)<br />
+*    {<br />
+*    intx = (c &amp; 0xff00)&gt;&gt;8;<br />
+*    return  0xff000000 | (x &lt;&lt; 16) |  (x &lt;&lt; 8 ) | x;<br />
+*    }</strong></p>
+<p>&gt;Lösung<br />
+* Graustufenbild auf Basis der Grünwerte&#8230; R und B bekommen den G Wert</p>
+<p><strong>&gt;&gt;Was bewirkt folgender Filter<br />
+* public int filterA(int c)<br />
+*    {<br />
+*    int a = (c &amp; 0xff000000);<br />
+*    int r = (c &amp; 0xff0000);<br />
+*    int g = (c &amp; 0xff00);<br />
+*  int b = (c &amp; 0xff);<br />
+*    return a| (b &lt;&lt; 16) |  (g &lt;&lt; 8 ) | r;<br />
+* }</strong><br />
+&gt;Lösung<br />
+Vertauscht RGB gegen BGR</p>
+<p><strong>&gt;&gt;Was bewirkt folgender Filter<br />
+* public int filterA(int c)<br />
+*    {<br />
+*    int a = (c &amp; 0xff000000);<br />
+*    int r = (c &amp; 0xff0000);<br />
+*    int g = (c &amp; 0xff00);<br />
+*  int b = (c &amp; 0xff);<br />
+*  r = r / 2+64;<br />
+*  g = g / 2+64;<br />
+*  b = b / 2+64;<br />
+*    return a| (r &lt;&lt; 16) |  (g &lt;&lt; 8 ) | b;<br />
+* }</strong><br />
+&gt;Lösung<br />
+Kontrasthalbierung</p>
+<p><strong>&gt;&gt;3*3 Minimumsfilter anweden</strong><br />
+* nimmt sich alle im kernel und nimmt das minimum als neuen Wert<br />
+*<br />
+* FF   FF   FF<br />
+* FF   FF   FF<br />
+* FF   FF   00<br />
+* wird 00<br />
+*<br />
+* nur<br />
+* FF   FF   FF<br />
+* FF   FF   FF<br />
+* FF   FF   FF<br />
+* wird FF<br />
+*</p>
+<p><strong>&gt;&gt;3*3 Medianfilterung anwenden</strong><br />
+*<br />
+* felder aufschreiben und mittlersten wert übernehmen&#8230;<br />
+* z.b.<br />
+*<br />
+* 0    13    64  ..<br />
+* 68    67    255 ..<br />
+* 90    90    33 ..<br />
+* ..   ..  ..<br />
+*<br />
+*<br />
+*  in reihenfolge auflisten:<br />
+*  00 13 33 64 67 68 90 90 255<br />
+*   1  2  3  4  5  6  7  8  9<br />
+*<br />
+*  nummer 5 = 67<br />
+*<br />
+* lesen: http://de.wikipedia.org/wiki/Rangordnungsfilter<br />
+*<br />
+*<br />
+*<br />
+<strong>&gt;&gt;was bewirken die kernel<br />
+*<br />
+* Kernels:<br />
+* .3  0  0<br />
+*  0 .3  0<br />
+*  0  0  .3</strong><br />
+&gt;Lösung<br />
+diagonaler weichzeichner</p>
+<p><strong> *  0   0  0<br />
+*  -1  3  -1<br />
+*  0   0  0</strong><br />
+&gt;Lösung:<br />
+<span style="text-decoration: line-through;"> horitontale</span> vertikale [update: Team Firenze, 15.04.08, danke Florian] Kanten finden</p>
+<p><strong><br />
+&gt;&gt; Welche Probleme treten bei der Verkleinerung mit „Nearest Neighbour“<br />
+auf? Nenne zwei und die Gründe dafür!</strong></p>
+<p>&gt;Lösung<br />
+ANTWORT: (immer gültig: Bildinformationen gehen verloren)</p>
+<p>1. Bildteile mit hoher Frequenz oder sehr feinen Details werden verfälscht<br />
+dargestellt. (Zum Beispiel könnte bei dem Bild nächste Frage bei der<br />
+Verkleinerung der linke Teil komplett schwarz werden)</p>
+<p>Die Abtastfrequenz sollte immer mindestens doppelt so hoch sein wie die<br />
+Bildfrequenz.</p>
+<p>2. „Zeilensprünge“ treten auf. Durch Verkleinern können diagonale Linien<br />
+plötzliche unschöne Ecken enthalten</p>
+<p><strong>&gt;&gt;FRAGE: Wofür steht das Bild? Was wird dabei gemessen / eingestellt? Was ist der Sinn daraus?</strong></p>
+<p>&gt;Lösung<br />
+ANTWORT:</p>
+<p>Das Bild ist ein Testbild für die Gammakorrektur. Man benutzt es zum<br />
+Kalibrieren / Einstellen von Darstellungsgeräten (Monitoren). Wenn die<br />
+Schwarz-Weiß-Streifen auf der linken Seite den gleichen Grauwert haben wie<br />
+die Fläche (RGB 128 128 128) rechts, ist der Monitor richtig eingestellt für<br />
+optimale Farben und Grauwerte&#8230;</p>
+<p>Im nächsten Tutorium wird David besonders was zum Shiften, zu Photoshop und zu Kanten machen.</p>

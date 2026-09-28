@@ -1,0 +1,49 @@
+---
+title: "how to docker"
+date: 2019-04-23 08:31:21 +0000
+permalink: /how-to-docker/
+author: "Falko"
+categories: ["Allgemein"]
+tags: []
+wp_id: 2421
+---
+<blockquote>
+<p>brew install docker</p>
+<p>brew cask install docker-toolbox</p>
+</blockquote>
+<p>https://kitematic.com gives you some UI</p>
+<p>off you go</p>
+<p><code>bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'</code></p>
+<p><code><br />
+default) Starting the VM...<br />
+(default) Check network to re-create if needed...<br />
+(default) Found a new host-only adapter: "vboxnet0"<br />
+(default) Waiting for an IP...<br />
+Waiting for machine to be running, this may take a few minutes...<br />
+Detecting operating system of created instance...<br />
+Waiting for SSH to be available...<br />
+Detecting the provisioner...<br />
+Provisioning with boot2docker...<br />
+Copying certs to the local machine directory...<br />
+Copying certs to the remote machine...<br />
+Setting Docker configuration on the remote daemon...<br />
+Checking connection to Docker...<br />
+Docker is up and running!<br />
+To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: /usr/local/bin/docker-machine env default</code></p>
+<p><code></code><code></code></p>
+<p>## .<br />## ## ## ==<br />## ## ## ## ## ===<br />/&#8221;&#8221;&#8221;&#8221;&#8221;&#8221;&#8221;&#8221;&#8221;&#8221;&#8221;&#8221;&#8221;&#8221;&#8221;&#8221;&#8221;\___/ ===<br />~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ / ===- ~~~<br />\______ o __/<br />\ \ __/<br />\____\_______/</p>
+<p><code></code><code></code></p>
+<p>docker is configured to use the default machine with IP 192.168.99.100<br />For help getting started, check out the docs at https://docs.docker.com</p>
+<p><code><br />
+</code></p>
+<p><code></code></p>
+
+<p class="wp-block-paragraph">based on https://docs.docker.com/engine/reference/commandline/images/  and some shell splitting:</p>
+
+<p class="wp-block-paragraph">remove all Exited docker containers from your machine:</p>
+
+<p class="wp-block-paragraph"><code>docker rm $(docker ps -a | grep Exited | cut -d' ' -f1)</code></p>
+
+<p class="wp-block-paragraph">and remove al unused images:</p>
+
+<p class="wp-block-paragraph"><code>docker rmi $(docker images --format "{{.ID}} {{.Repository}}" | grep none | cut -d' ' -f1)</code></p>

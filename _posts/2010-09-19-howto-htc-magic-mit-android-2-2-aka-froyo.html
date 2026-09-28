@@ -1,0 +1,54 @@
+---
+title: "HowTo: HTC Magic mit Android 2.2 aka Froyo"
+date: 2010-09-19 07:28:01 +0000
+permalink: /howto-htc-magic-mit-android-2-2-aka-froyo/
+author: "andy"
+categories: ["Allgemein", "Technik/Software"]
+tags: ["android", "froyo", "magic"]
+wp_id: 1190
+---
+<p style="text-align: justify;">Schon seit einiger Zeit ärgere ich mich darüber, dass vodafone bisher keine Android-Updates für mein HTC Magic zur Verfügung stellt und aller Voraussicht auch nicht in der Zukunft tun wird. Da die Performance mit der 1.6 Version ok, aber nicht überragend ist, und das Android OS mittlerweile in der Version 2.2 aka Froyo bereits seit einiger Zeit released wurde, wollte ich ebenfalls in den Genuß der neuen Features kommen, ohne ein neues Smartphone zu erwerben.</p>
+<p style="text-align: justify;"></p>
+<!--more-->
+
+<p style="text-align: justify;">[singlepic id=872 w=320 h=240]</p>
+<p style="text-align: justify;">Also ab ins Netz und nach Erfahrungsberichten suchen. Leider erschlägt einen die Menge an Infos zu diesen Themen weshalb ich an dieser Stelle versuche, mein ERFOLGREICHES Update zu dokumentieren. Natürlich ohne Gewähr 🙂</p>
+<p style="text-align: justify;"><strong>Vertrauen ist gut, Kontrolle ist besser</strong></p>
+<p style="text-align: justify;">Um auf Nummer sicher zu gehen, wird als erstes Titanium Backup installiert, und ein komplettes Backup auf die SD-Karte erstellt. So können später die Apps wieder hergestellt werden.</p>
+<p style="text-align: justify;"><strong>Nutze die Macht: Werde Root</strong></p>
+<p style="text-align: justify;">Da es keine offizielle Version von Android 2.2 für mein Magic gibt,  musste ein &#8220;Mod&#8221; her, der am besten unterstützte war das zur Zeit  aktuelle Relase CM6 RC3 von Cyanogen.  Um diesen Mod installieren zu  können, benötigt man jedoch Root-Rechte auf seinem Gerät, was  konsequenterweise den Verfall der Garantie mit sich zieht.</p>
+<p style="text-align: justify;">Um dies zu vermeiden, gibt es eine nette App: Universal Androot. Diese ist erwartungsgemäß nicht im Market zu finden, sondern kann von hier heruntergeladen werden. einfach auf die SD-Karte kopieren und über eine beliebige Dateimanager-App (Bsp.: Astro) diese installieren. Anschließend startet man das Programm und wählt einen der 2 angezeigten Buttons, das sollte selbsterklärend sein! 😉</p>
+<p style="text-align: justify;"><a rel="lightbox[]" href="../wp-content/gallery/froyo_update/cap201009171059.png"><img loading="lazy" decoding="async" class="ngg-singlepic ngg-left    alignnone" style="margin: 5px;" title="To be or not to be - Root" src="../wp-content/gallery/froyo_update/thumbs/thumbs_cap201009171059.png" alt="To be or not to be - Root" width="70" height="70" /></a>Nun wartet man, bis hoffentlich die Meldung erscheint, dass man von nun an Root-Rechte auf dem Gerät hat. Dieser Vorgang kann durch die alternative Auswahl des anderen Buttons wieder rückgängig gemacht werden. Vorteil: Der Bootloader wird dabei nicht verändert und nach dem Rückgängig machen ist eurer Telefon wieder im Originalzustand.</p>
+<p style="text-align: justify;">Nachdem dies geschafft ist, hat man nun eine SuperUser-App auf dem Gerät, mit dem anderen Programmen der volle Zugriff gewährt werden kann. Dies benötigt man unter anderem für die folgende Aktion.</p>
+<p style="text-align: justify;"><strong>Was darf&#8217;s denn sein?</strong></p>
+<p style="text-align: justify;">Android Froyo wird wie schon erwähnt von Cyanogen als Mod bereitgestellt. Dieser Mod ist aktuell in der Version 6 RC3 verfügbar. Zusätzlich sollte man sich die gapps, also die Google spezifischen Tools als zip herunterladen, da diese nicht im Mod enthalten sind.</p>
+<p style="text-align: justify;">Beide zips werden ins root-Verzeichnis des SD-Karte kopiert und von dort später installiert.</p>
+<p style="text-align: justify;"><strong>ROM-Manager</strong></p>
+<p style="text-align: justify;">[singlepic id=874 w=320 h=240 float=left]Als nächstes wird das Programm ROM-Manager installiert, welches für das Recovery-System sowie das Flashen des ROMs zuständig ist. Eine freie Version gibts im Market. Nach der Installation kann man das entsprechende Recovery-System auswählen, welches nach dem Booten gestartet werden kann und für das Einspielen des Custom-ROM notwendig ist.</p>
+<p style="text-align: justify;">Für mein HTC Magic konnte ich nicht die voreingestellte Recovery-Version (aktuell: 2.5.0.1) nutzen, sondern habe das alternative Recovery-System genutzt, welches weiter unten im Einstellungen-Menu zu finden ist. Beim Installieren dieses RS wird man nach dem Typ seines Gerätes gefragt. Auch hier hat bei mir nicht die Standard-Einstellung &#8220;HTC Magic /GSM&#8221; funktioniert, sondern ich musste &#8220;MyTouch 3G/GSM&#8221; wählen. Dazu gibt es auch einige Forumsbeiträge im Netz.</p>
+<p style="text-align: justify;"><strong>Recovery-System</strong></p>
+<p style="text-align: justify;">[singlepic id=873 w=320 h=240 float=left]Nachdem man diese beiden Einstellungen getan hat, wählt man den Punkt &#8220;Sicherung des aktuellen ROMs&#8221;, welches zum Neustart des Gerätes in den Recovery-Mode führt. Dort wird nun die Sicherung automatisch durchgeführt.</p>
+<p style="text-align: justify;">[singlepic id=879 w=320 h=240 float=left]</p>
+<p style="text-align: justify;">Anschließend sollte man im Recovery-System ein Nandroid-Backup machen, um den aktuellen Stand zu sichern.</p>
+<p style="text-align: justify;">Als nächstes erfolgt das installieren des Mod-ROMs, ebenfalls im Recovery-System. Dazu wählt man den entsprechenden Punkt im Menu und führt anschließend ebenfalls das Installieren der G-Apps, die man auch als zip gespeichert hatte, mit dem gleichen Menupunkt durch. [singlepic id=878 w=320 h=240 float=left]Nachdem dies erfolgreich bestätigt wurde, sollte auch <strong>alle</strong> Punkte zum &#8220;Wipen&#8221; im Recovery-System durchgeführt werden, ansonsten kann es wie bei mir zum Boot-Loop kommen.</p>
+<p style="text-align: justify;"><strong>Es werde Froyo&#8230;</strong></p>
+<p style="text-align: justify;">Nun die Reboot-Option wählen und dem lustigen Androiden beim Starten zuschauen. Wenn alles nach Plan läuft, empfängt euch das neue OS mit einem netten Homescreen 🙂</p>
+<p style="text-align: justify;">[singlepic id=876 w=320 h=240 float=left]</p>
+<p style="text-align: justify;"><strong>Einstellungen</strong></p>
+<p style="text-align: justify;">Ich habe noch nicht alle Einstellungen ausprobiert, auf jeden Fall sollte man das standardmäßig installierte Google-News+Wetter Widget vom Homescreen löschen, da es doch ordentlich Performance und Batterie zieht.</p>
+<p style="text-align: justify;">Unter Einstellungen-CyanogenMod-&gt;Leistung findet man einige experimentelle Einstellungen. Eine davon sollte man auf jeden Fall ausprobieren. Das Aktivieren des Dalvik JIT brachte bei mir subjektiv  nochmal ein bischen flüssigere Performance. Um das objektiv zu beurteilen kann man das Programm LinPack benutzen, welches als App kostenlos zur Verfügung steht und durch Berechnungen eine gewisse Vergleichbarkeit zwischend den einzelnen System gewährleistet.</p>
+<p style="text-align: justify;">Bei meinem Magic war der Zuwachs zwar nicht so groß wie z.B. beim Nexus One, dennoch konnte ich das Ergebnis von 2.2 MFlops auf 3.4 MFlops durch das Aktivieren des JIT Compilers + Neustart steigern. Ein aktzeptabler Wert für so alte Hardware 🙂</p>
+<p style="text-align: justify;">[singlepic id=875 w=320 h=240 float=left]</p>
+<p style="text-align: justify;"><strong>Weitere Infos&#8230;</strong></p>
+<p style="text-align: justify;">Ein paar Links für weitere Infos:</p>
+<ul>
+<li><a href="http://forum.xda-developers.com/showthread.php?t=747598" target="_blank">Universal AndRoot</a></li>
+<li><a href="http://www.cyanogenmod.com/" target="_blank">Cyanogen</a></li>
+<li><a href="http://mirror.kanged.net/" target="_blank">Download ROM und G-Apps</a></li>
+<li><a href="http://wiki.cyanogenmod.com/index.php?title=Howto:_Nandroid_Backup" target="_blank">Nandroid Backup</a></li>
+<li><a href="http://www.android-hilfe.de/root-hacking-modding-fuer-nexus-one/40237-cyanogenmod-6-rc3-haengt-beim-booten.html" target="_blank">Boot-Loop</a></li>
+<li><a href="http://www.htc.com/www/product/magic/overview.html" target="_blank">HTC Magic</a>, <a href="http://forum.xda-developers.com/wiki/index.php?title=HTC_Sapphire" target="_blank">HTC Magic</a></li>
+<li><a href="http://www.greenecomputing.com/apps/linpack/" target="_blank">LinPack</a></li>
+</ul>
+<p>Fragen und Feedback erwünscht!</p>
+<p style="text-align: justify;">
