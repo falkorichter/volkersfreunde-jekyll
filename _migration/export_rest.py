@@ -14,7 +14,7 @@ Writes (and replaces on every run):
   assets/files/YYYY/MM/…              upload path, else of the first post using them)
   _data/categories.yml, _data/tags.yml   display name -> slug of the terms the posts use
   _data/comments.json                 approved comments, shown read-only under the posts
-  _migration/export-report.json       what was done / what is missing
+  _data/export_report.json            what was done / what is missing
 
 Read-only towards WordPress. Usage (from the site/ folder):
   python3 _migration/export_rest.py
@@ -425,7 +425,7 @@ def main():
         f.write("\n")
     report["comments"] = len(data)
 
-    with open(os.path.join(SITE, "_migration", "export-report.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(SITE, "_data", "export_report.json"), "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2, sort_keys=True)
     print(f"posts: {report['posts']} ({report['markdown_posts']} as Markdown)  teasers: {report['teasers']}  "
           f"comments: {report['comments']}  files: {report['copied_files']} copied, "

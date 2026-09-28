@@ -1,0 +1,128 @@
+---
+title: Statistiken
+permalink: /statistiken/
+nav: true
+---
+{%- comment -%}
+  New page (not from WordPress). Numbers about posts and comments are counted at build
+  time, so they stay right after every re-export; the export numbers come from
+  _data/export_report.json (written by _migration/export_rest.py).
+{%- endcomment -%}
+{%- assign posts = site.posts -%}
+{%- assign md_posts = posts | where_exp: "p", "p.path contains '.md'" -%}
+{%- assign html_count = posts.size | minus: md_posts.size -%}
+{%- assign flash_posts = posts | where_exp: "p", "p.content contains 'embed-gone'" | reverse -%}
+{%- assign video_posts = posts | where_exp: "p", "p.content contains 'youtube-nocookie.com/embed' or p.content contains 'youtube.com/embed' or p.content contains 'player.vimeo.com'" -%}
+{%- assign comments = site.data.comments -%}
+{%- assign by_post = comments | group_by: "url" | sort: "size" | reverse -%}
+{%- assign by_author = comments | group_by_exp: "c", "c.author | downcase" | sort: "size" | reverse -%}
+{%- assign by_year = posts | group_by_exp: "p", "p.date | date: '%Y'" | sort: "name" -%}
+{%- assign post_authors = posts | group_by: "author" | sort: "size" | reverse -%}
+{%- assign report = site.data.export_report -%}
+{%- assign words = 0 -%}{%- assign images = 0 -%}{%- assign longest_words = 0 -%}
+{%- for p in posts -%}
+  {%- assign w = p.content | strip_html | number_of_words -%}
+  {%- assign words = words | plus: w -%}
+  {%- if w > longest_words %}{% assign longest_words = w %}{% assign longest = p %}{% endif -%}
+  {%- assign i = p.content | split: "<img" | size | minus: 1 -%}
+  {%- assign images = images | plus: i -%}
+{%- endfor -%}
+{%- assign first_post = posts | last -%}{%- assign last_post = posts | first -%}
+{%- assign first_comment = comments | first -%}{%- assign last_comment = comments | last -%}
+
+<p>Zahlen und Kurioses rund um volkersfreunde.de und seinen Umzug von WordPress zu einer
+statischen Seite (2026).</p>
+
+<h3>Beiträge</h3>
+<table class="stats">
+	<tr><th>Beiträge</th><td>{{ posts.size }}</td></tr>
+	<tr><th>Zeitraum</th><td>{% include date-de.html date=first_post.date %} – {% include date-de.html date=last_post.date %}</td></tr>
+	<tr><th>davon als Markdown gespeichert</th><td>{{ md_posts.size }}</td></tr>
+	<tr><th>davon als HTML gespeichert</th><td>{{ html_count }}</td></tr>
+	<tr><th>Wörter insgesamt</th><td>{{ words }}</td></tr>
+	<tr><th>Längster Beitrag</th><td><a href="{{ longest.url | relative_url }}">{{ longest.title }}</a> ({{ longest_words }} Wörter)</td></tr>
+	<tr><th>Bilder in Beiträgen</th><td>{{ images }}</td></tr>
+	<tr><th>Beiträge mit Video (YouTube, Vimeo)</th><td>{{ video_posts.size }}</td></tr>
+	<tr><th>Beiträge mit „Flash-Video (nicht mehr abspielbar)“</th><td>{{ flash_posts.size }}</td></tr>
+</table>
+<p class="stats-note">Markdown nur dort, wo der Beitrag dadurch exakt gleich aussieht; alles mit
+Einbettungen, Tabellen oder besonderem Markup bleibt HTML.</p>
+
+<h3>Beiträge pro Jahr</h3>
+<table class="stats">
+	{%- for y in by_year %}
+	<tr><th>{{ y.name }}</th><td>{{ y.size }}</td></tr>
+	{%- endfor %}
+</table>
+
+<h3>Autoren</h3>
+<table class="stats">
+	{%- for a in post_authors %}
+	<tr><th>{{ a.name | default: "unbekannt" }}</th><td>{{ a.size }}</td></tr>
+	{%- endfor %}
+</table>
+
+{%- if flash_posts.size > 0 %}
+<h3>Flash-Videos, die nicht mehr abspielbar sind</h3>
+<p>Flash gibt es in keinem Browser mehr. YouTube- und Vimeo-Player wurden durch ihre
+heutigen Einbettungen ersetzt; bei den übrigen (issuu, blip.tv, TED, …) steht jetzt ein Hinweis.</p>
+<ul class="stats-list">
+	{%- for p in flash_posts %}
+	<li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> <span class="meta">({% include date-de.html date=p.date %})</span></li>
+	{%- endfor %}
+</ul>
+{%- endif %}
+
+<h3>Kommentare</h3>
+<table class="stats">
+	<tr><th>Kommentare</th><td>{{ comments.size }}</td></tr>
+	<tr><th>Beiträge mit Kommentaren</th><td>{{ by_post.size }}</td></tr>
+	{%- if comments.size > 0 %}
+	<tr><th>Erster Kommentar</th><td>{% include date-de.html date=first_comment.date %}</td></tr>
+	<tr><th>Letzter Kommentar</th><td>{% include date-de.html date=last_comment.date %}</td></tr>
+	{%- endif %}
+</table>
+
+<h3>Die fleißigsten Kommentatoren</h3>
+<table class="stats">
+	{%- for a in by_author limit: 10 %}
+	<tr><th>{{ a.items[0].author | escape }}</th><td>{{ a.size }}</td></tr>
+	{%- endfor %}
+</table>
+
+<h3>Alle Beiträge mit Kommentaren</h3>
+<ol class="stats-list">
+	{%- for g in by_post %}
+	<li><a href="{{ g.name | relative_url }}#comments">{{ g.items[0].post_title }}</a> <span class="meta">({% if g.size == 1 %}1 Kommentar{% else %}{{ g.size }} Kommentare{% endif %})</span></li>
+	{%- endfor %}
+</ol>
+
+<h3>Vom Umzug</h3>
+<table class="stats">
+	<tr><th>Software vorher</th><td>WordPress 5.4.1, Theme „Volkersfreunde 4.0“</td></tr>
+	<tr><th>In der alten Datenbank</th><td>394 veröffentlichte Beiträge, 32 Entwürfe (7 davon jetzt veröffentlicht), 310 Anhänge, 730 Revisionen</td></tr>
+	<tr><th>Kommentare in WordPress</th><td>394 freigegebene: 365 Kommentare, 21 Pingbacks, 8 Trackbacks (Ping- und Trackbacks sind nicht übernommen)</td></tr>
+	<tr><th>Übernommene Dateien</th><td>{{ report.copied_files }} (Bilder, PDFs, …); {{ report.missing_files | size }} fehlten schon auf dem alten Server</td></tr>
+	<tr><th>Tote Links entfernt</th><td>{{ report.dead_links_unwrapped }} Links (Text bleibt), {{ report.dead_images_removed }} Bilder ohne Datei</td></tr>
+	<tr><th>Beiträge mit „weiter lesen“</th><td>{{ report.teasers }}</td></tr>
+</table>
+
+<h3>Kurioses</h3>
+<ul class="stats-list">
+	<li>Die alte Installation war <strong>gehackt</strong>: eine Hintertür in einem Bilderordner
+	(<code>wp-content/2019/10/</code>) und zahlreiche Schad-<code>.htaccess</code>-Dateien.
+	Darum gibt es jetzt nur noch statisches HTML, ohne PHP und ohne Datenbank.</li>
+	<li>Zwei <strong>Spam-Kampagnen</strong> steckten unsichtbar in den Texten: versteckte Links weit
+	außerhalb des Bildschirms in 16 Beiträgen (um 2011/12) und ein Cialis-Block im Impressum,
+	einem Beitrag und zwei Sidebar-Widgets (2020). Alles entfernt.</li>
+	<li>Rund 18 <strong>Spam-Benutzerkonten</strong> aus 2008/09 – die Kommentare selbst waren
+	dank Akismet sauber.</li>
+	<li>Die Texte lagen als <strong>doppelt kodiertes UTF-8</strong> in latin1-Tabellen; ohne
+	Umweg wäre aus „für“ ein „fÃ¼r“ geworden.</li>
+	<li>Weggefallen sind der <strong>Podcast</strong>, alle Plugins (42 Plugin-Tabellen in der Datenbank)
+	und die Statistik-Plugins FireStats und StatPress – diese Seite ist ihr Nachfolger.</li>
+	<li>Alle alten Adressen <code>/&lt;beitrag&gt;/</code>, <code>/category/…</code> und
+	<code>/tag/…</code> funktionieren weiter.</li>
+</ul>
+
+<p>Schwesterblog: <a href="https://falkorichter.github.io/madrid-blog-jekyll/statistiken/">Falko en Madrid – Statistiken</a></p>
