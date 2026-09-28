@@ -44,9 +44,8 @@ plugins:
   - jekyll-paginate
   - jekyll-feed
 
-# WordPress served the main feed at /feed/
-feed:
-  path: feed/index.xml
+# Feed at /feed.xml (jekyll-feed default, works on any static host);
+# /feed/ (WordPress' feed URL) is a static page that forwards there, see feed-redirect.html.
 
-include: [.htaccess, _pages]   # _pages/ holds the static pages (Impressum, Kontakt, RSS)
+include: [_pages]   # _pages/ holds the static pages (Impressum, Kontakt, RSS)
 exclude: [Gemfile, Gemfile.lock, README.md, vendor, .bundle]
