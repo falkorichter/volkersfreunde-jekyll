@@ -638,3 +638,51 @@ dialog.lightbox button[hidden] { display: none; }
 	font-size: 12px;
 }
 
+
+/* ===== port: Statistiken page (_pages/statistiken.html) ===== */
+table.stats {
+	margin: 0 0 15px 0;
+	border-collapse: collapse;
+}
+
+table.stats th, table.stats td {
+	padding: 3px 15px 3px 0;
+	border-bottom: 1px dotted #D2D2D2;
+	text-align: left;
+	vertical-align: top;
+}
+
+table.stats th {
+	font-weight: normal;
+	color: #676767;
+}
+
+table.stats td {
+	font-weight: bold;
+}
+
+div.entry-content ol.stats-list, div.entry-content ul.stats-list {
+	margin-bottom: 15px;
+}
+
+.stats-list li {
+	margin-bottom: 4px;
+}
+
+p.stats-note, .stats-list .meta {
+	font-size: 11px;
+	color: #808080;
+
+/* port: contact links on the Kontakt page (_includes/contact-links.html) */
+div.entry-content ul.contact-links {
+	list-style: none;
+	margin: 0 0 10px 0;
+}
+div.entry-content ul.contact-links li {
+	margin-bottom: 4px;
+	font-size: 14px;
+}
+.contact-handle {
+	color: #808080;
+	font-size: 12px;
+}
