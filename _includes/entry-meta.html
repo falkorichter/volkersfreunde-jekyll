@@ -1,0 +1,4 @@
+{%- comment -%} index.php / single.php: "05. Mai 2014 in Kategorie, … von Autor" {%- endcomment -%}
+<p class="meta entry-date">{% include date-de.html date=include.post.date %}
+{%- if include.post.categories.size > 0 %} in {% for c in include.post.categories %}{% include category-link.html name=c %}{% unless forloop.last %}, {% endunless %}{% endfor %}{% endif %}
+{%- if include.post.author %} von {{ include.post.author }}{% endif %}</p>

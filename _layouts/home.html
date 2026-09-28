@@ -1,0 +1,29 @@
+---
+layout: three-column
+---
+{%- comment -%} index.php — the paginated post list {%- endcomment -%}
+{%- assign posts = paginator.posts | default: site.posts %}
+{%- for post in posts %}
+			<div class="entry">
+				<div class="entry-header">
+					<h2 class="entry-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+					{% include entry-meta.html post=post %}
+					<div class="clear"></div>
+				</div>
+				<div class="entry-content">
+				{%- if post.content contains site.excerpt_separator %}
+					{{ post.excerpt }}
+					<p><a href="{{ post.url | relative_url }}#more" class="more-link">weiter&nbsp;lesen&nbsp;&raquo;</a></p>
+				{%- else %}
+					{{ post.content }}
+				{%- endif %}
+					<div class="clear"></div>
+				</div>
+			</div>
+{%- endfor %}
+
+			<div id="entrynavi">
+				<p class="navleft">{% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">&laquo; &Auml;ltere Artikel</a>{% endif %}</p>
+				<p class="navright">{% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | relative_url }}">Neuere Artikel &raquo;</a>{% endif %}</p>
+				<div class="clear"></div>
+			</div>

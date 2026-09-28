@@ -1,0 +1,52 @@
+# volkersfreunde.de — static Jekyll port of the WordPress blog
+# Theme: "Volkersfreunde 4.0" (volkersfreunde40) by Friedrich Maiwald, ported to Liquid.
+# Values below were read from vf_options in the WordPress DB.
+
+title: volkersfreunde                             # blogname
+description: Computer, Medien und Berliner Kultur # blogdescription
+lang: de
+url: "https://www.volkersfreunde.de"   # adjust once the final host under falkorichter.de is fixed
+baseurl: ""
+timezone: Europe/Berlin
+since: 2007
+
+# --- URLs: must match the old WordPress permalinks -------------------------
+# permalink_structure = /%postname%/  (posts also carry an explicit permalink)
+permalink: /:title/
+# posts_per_page = 15, WordPress paging = /page/N/
+paginate: 15
+paginate_path: /page/:num/
+# category_base / tag_base were empty → WordPress defaults
+category_base: /category/
+tag_base: /tag/
+
+# <!--more--> splits the teaser on the home page ("weiter lesen »")
+excerpt_separator: "<!--more-->"
+
+# German month names for "05. Mai 2014"-style dates (theme uses d. F Y)
+months_de: [Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
+
+# Tag cloud (WordPress defaults: 45 tags, 8pt–22pt)
+tag_cloud:
+  limit: 45
+  min_pt: 8
+  max_pt: 22
+
+defaults:
+  - scope: { path: "", type: posts }
+    values:
+      layout: post
+      render_with_liquid: false   # old post bodies contain literal {{ … }} / {% … %}
+  - scope: { path: "_pages", type: pages }
+    values: { layout: page }
+
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+
+# WordPress served the main feed at /feed/
+feed:
+  path: feed/index.xml
+
+include: [.htaccess, _pages]   # _pages/ holds the static pages (Impressum, Kontakt, RSS)
+exclude: [Gemfile, Gemfile.lock, README.md, vendor, .bundle]

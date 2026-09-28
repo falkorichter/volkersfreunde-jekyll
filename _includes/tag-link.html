@@ -1,0 +1,3 @@
+{%- comment -%} Link a tag name to its original /tag/<slug>/ URL. {%- endcomment -%}
+{%- assign _t = site.data.tags | where: "name", include.name | first -%}
+{%- if _t -%}<a href="{{ site.tag_base | append: _t.slug | append: '/' | relative_url }}" rel="tag"{% if include.style %} style="{{ include.style }}"{% endif %}>{{ include.name }}</a>{%- else -%}{{ include.name }}{%- endif -%}

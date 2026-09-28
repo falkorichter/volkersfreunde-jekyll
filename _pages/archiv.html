@@ -1,0 +1,13 @@
+---
+title: Archiv
+permalink: /archiv/
+---
+{%- assign by_year = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+{%- for y in by_year %}
+<h2 id="{{ y.name }}">{{ y.name }}</h2>
+<ul>
+{%- for post in y.items %}
+	<li>{% include date-de.html date=post.date %}: <a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+{%- endfor %}
+</ul>
+{%- endfor %}

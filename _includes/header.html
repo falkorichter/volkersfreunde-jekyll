@@ -1,0 +1,14 @@
+	<div id="header">
+		<h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+		<p><a href="{{ '/' | relative_url }}">{{ site.description }}</a></p>
+	</div>
+	<div id="navi">
+		<ul>
+			<li{% if page.url == '/' %} class="current_page_item"{% endif %}><a href="{{ '/' | relative_url }}">Home</a></li>
+			{%- comment -%} wp_list_pages("depth=1") — sorted by title like WordPress {%- endcomment -%}
+			{%- assign nav_pages = site.pages | where: "nav", true | sort: "title" %}
+			{%- for p in nav_pages %}
+			<li{% if page.url == p.url %} class="current_page_item"{% endif %}><a href="{{ p.url | relative_url }}">{{ p.nav_title | default: p.title }}</a></li>
+			{%- endfor %}
+		</ul>
+	</div>

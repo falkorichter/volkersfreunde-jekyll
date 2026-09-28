@@ -1,0 +1,4 @@
+# Apache (the old host): serve /feed/ from feed/index.xml and use the themed 404 page.
+DirectoryIndex index.html index.xml
+ErrorDocument 404 /404.html
+AddType application/rss+xml .xml

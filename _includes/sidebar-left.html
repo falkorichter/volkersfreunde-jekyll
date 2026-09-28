@@ -1,0 +1,51 @@
+{%- comment -%}
+  "Sidebar One" as configured in the DB (sidebars_widgets.sidebar-1):
+  categories, tag cloud. Dropped: text widget (spam injection), recent comments, FireStats.
+{%- endcomment -%}
+		<div class="sidebar sidebar-left">
+			<ul>
+				<li class="widget widget_categories">
+					<h2 class="widgettitle">Kategorien</h2>
+					<ul>
+					{%- for c in site.data.categories %}
+						{%- if site.categories[c.name] %}
+						<li class="cat-item"><a href="{{ site.category_base | append: c.slug | append: '/' | relative_url }}">{{ c.name }}</a></li>
+						{%- endif %}
+					{%- endfor %}
+					</ul>
+				</li>
+
+				{%- if site.tags.size > 0 %}
+				<li class="widget widget_tag_cloud">
+					<h2 class="widgettitle">Schlagwörter</h2>
+					<div class="tagcloud">
+					{%- comment -%} wp_tag_cloud(): top N tags by count, shown alphabetically, 8–22pt {%- endcomment -%}
+					{%- assign ranked = "" | split: "" -%}
+					{%- for t in site.tags -%}
+						{%- capture key -%}{{ t[1].size | prepend: "00000" | slice: -5, 5 }}|{{ t[0] }}{%- endcapture -%}
+						{%- assign ranked = ranked | push: key -%}
+					{%- endfor -%}
+					{%- assign ranked = ranked | sort | reverse -%}
+					{%- assign top = "" | split: "" -%}
+					{%- for k in ranked limit: site.tag_cloud.limit -%}
+						{%- assign name = k | split: "|" | last -%}
+						{%- assign top = top | push: name -%}
+					{%- endfor -%}
+					{%- assign top = top | sort_natural -%}
+					{%- assign max = ranked.first | split: "|" | first | plus: 0 -%}
+					{%- assign min_key = ranked | slice: 0, site.tag_cloud.limit | last -%}
+					{%- assign min = min_key | split: "|" | first | plus: 0 -%}
+					{%- assign spread = max | minus: min -%}{%- if spread < 1 -%}{%- assign spread = 1 -%}{%- endif -%}
+					{%- assign steps = site.tag_cloud.max_pt | minus: site.tag_cloud.min_pt -%}
+					{%- for name in top %}
+						{%- assign n = site.tags[name].size | minus: min -%}
+						{%- assign pt = n | times: steps | divided_by: spread | plus: site.tag_cloud.min_pt -%}
+						{%- capture tag_style %}font-size: {{ pt }}pt;{% endcapture %}
+						{% include tag-link.html name=name style=tag_style %}
+					{%- endfor %}
+					</div>
+				</li>
+				{%- endif %}
+			</ul>
+		</div>
+	</div><!-- /#left (opened in the layout, closed here like sidebar-left.php) -->

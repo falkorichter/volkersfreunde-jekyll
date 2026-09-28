@@ -1,0 +1,13 @@
+---
+layout: default
+---
+{%- comment -%}
+  The theme's 3-column frame: #left wraps #content (floated right) + the left sidebar;
+  sidebar-left.html closes #left, exactly as sidebar-left.php did.
+{%- endcomment -%}
+	<div id="left">
+		<div id="content">
+{{ content }}
+		</div>
+{% include sidebar-left.html %}
+{% include sidebar-right.html %}

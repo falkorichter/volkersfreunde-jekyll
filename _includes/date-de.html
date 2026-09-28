@@ -1,0 +1,3 @@
+{%- comment -%} WordPress: the_time('d'). the_time('F') the_time('Y') → "05. Mai 2014" {%- endcomment -%}
+{%- assign _m = include.date | date: "%-m" | minus: 1 -%}
+{{ include.date | date: "%d" }}. {{ site.months_de[_m] }} {{ include.date | date: "%Y" }}

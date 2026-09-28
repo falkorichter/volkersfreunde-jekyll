@@ -1,0 +1,24 @@
+---
+layout: three-column
+---
+{%- comment -%} single.php {%- endcomment -%}
+			<div class="entry single">
+				<div class="entry-header">
+					<h2 class="entry-title"><a href="{{ page.url | relative_url }}">{{ page.title }}</a></h2>
+					{% include entry-meta.html post=page %}
+					<div class="clear"></div>
+				</div>
+				<div class="entry-content">
+					{{ content | replace: site.excerpt_separator, '<span id="more"></span>' }}
+					<div class="clear"></div>
+				</div>
+				{%- if page.tags.size > 0 %}
+				<p class="meta">Tags: {% for t in page.tags %}{% include tag-link.html name=t %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
+				{%- endif %}
+			</div>
+
+			<div id="entrynavi">
+				<p class="navleft">{% if page.previous %}&laquo; <a href="{{ page.previous.url | relative_url }}" rel="prev">{{ page.previous.title }}</a>{% endif %}</p>
+				<p class="navright">{% if page.next %}<a href="{{ page.next.url | relative_url }}" rel="next">{{ page.next.title }}</a> &raquo;{% endif %}</p>
+				<div class="clear"></div>
+			</div>

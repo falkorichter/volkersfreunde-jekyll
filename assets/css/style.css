@@ -1,0 +1,476 @@
+/*
+Theme Name: Volkersfreunde 4.0
+Description: Ein simples 3-Spalten-Theme mit zwei Sidebars im Volkersfreunde-Design.
+Author: Friedrich Maiwald (http://www.friedrichmaiwald.de/)
+Ported from the WordPress theme "volkersfreunde40" to Jekyll. The original rules are kept
+as-is; changes are marked with "port:".
+*/
+
+html, body, div, span, applet, object, iframe, img,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+:focus {
+	outline: 0;
+}
+
+/* port: keep a visible keyboard focus ring (the reset above removed it) */
+:focus-visible {
+	outline: 2px solid #76B900;
+	outline-offset: 2px;
+}
+
+body {
+	background: #F6F5F2 url(../images/theme/back.png) repeat-x;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+	color: #76B900;
+	text-decoration: underline;
+}
+
+a:hover, a:focus {
+	text-decoration: none;
+	color:black;
+}
+
+abbr {
+	border-bottom: 1px dotted #808080;
+}
+
+/* ===== WRAPPER ====== */
+
+#wrapper {
+	width: 1000px;
+	margin: 0 auto 0 auto;
+	background: url(../images/theme/content-back.png);
+}
+
+#wrapper-gradient {
+	width: 960px;
+	padding: 0 20px 0 20px;
+	background: url(../images/theme/content-back-gradient.png) top no-repeat;
+}
+
+/* ===== HEADER ===== */
+
+#header {
+	height: 120px;
+	background: #76B900 url(../images/theme/header-back.png) repeat-x;
+}
+
+/* port: h1/p inside #header had no rules of their own; floats are on the links */
+#header h1, #header p {
+	font-size: inherit;
+	font-weight: normal;
+}
+
+#header a {
+	font-size: 30px;
+	font-family: "Trebuchet MS", sans-serif;
+	font-weight: normal;
+	text-decoration: none;
+	text-transform: lowercase;
+	color: #E0FFC0;
+	margin: 40px;
+	float: left;
+}
+
+#header a:hover, #header a:focus {
+	color: #FFFFFF;
+}
+
+#header p a {
+	font-size: 17px;
+	text-transform: none;
+	float: right;
+	text-align: right;
+	margin-top: 53px;
+}
+
+/* ===== MAIN NAVIGATION ===== */
+
+#navi {
+	height: 30px;
+	background: url(../images/theme/navi-back.png) top repeat-x;
+}
+
+#navi ul {
+	list-style: none;
+}
+
+#navi ul li {
+	float: left;
+}
+
+#navi ul li a {
+	color: #FFFFFF;
+	text-decoration: none;
+	font: bold 13px Arial, Helvetica, sans-serif;
+	margin: 1px 0 1px 0;
+	padding: 6px 17px;
+	display: block;
+	border-left: 1px solid #84C01A;
+	border-right: 1px solid #65911A;
+}
+
+#navi ul li a:hover, #navi ul li a:focus {
+	margin: 0;
+	padding: 7px 17px;
+	background: url(../images/theme/navi-back.png) bottom repeat-x;
+	border-left: 1px solid #484848;
+	border-right: 1px solid #252525;
+}
+
+/* ===== MAIN CONTENT ===== */
+
+#content {
+	width: 480px;
+	float: right;
+	padding: 20px;
+}
+
+#left {
+	width: 740px;
+	display: block;
+	min-height: 100px;
+	float: left;
+}
+
+.entry div.entry-header {
+	padding: 5px;
+	border-top: 1px dotted #D2D2D2;
+	border-bottom: 1px dotted #D2D2D2;
+	background: #F6F4F0
+}
+
+h2.entry-title {
+	font-size: 22px;
+	font-weight: bold;
+}
+
+h2.entry-title a {
+	color: #000000;
+	text-decoration: none;
+}
+
+h2.entry-title a:hover, h2.entry-title a:focus {
+	color: #76B900;
+}
+
+#content p.meta {
+	font-size: 11px;
+	color: #808080;
+}
+
+#content p.meta a {
+	color: #808080;
+}
+
+#content .entry {
+	padding-bottom: 15px;
+	margin-bottom: 30px;
+	border-bottom: 1px dotted #D2D2D2;
+}
+
+/* port: no comment counter any more, so the date line takes the full width */
+p.entry-date {
+	width: 100%;
+	float: left;
+}
+
+div.entry-content {
+	clear: both;
+	overflow-wrap: break-word; /* port: long bare URLs in old posts */
+	padding: 15px 0;
+	line-height: 140%;
+	font-size: 13px;
+	color: #242424;
+}
+
+div.entry-content h1, div.entry-content h2, div.entry-content h3, div.entry-content h4, div.entry-content h5,  div.entry-content h6 {
+	margin-bottom: 10px;
+}
+
+div.entry-content h1 {
+	font-size: 18px;
+}
+
+div.entry-content h2 {
+	font-size: 16px;
+}
+
+div.entry-content h3 {
+	font-size: 14px;
+}
+
+div.entry-content p {
+	margin-bottom: 10px;
+}
+
+div.entry-content ol {
+	list-style: decimal;
+	margin: 0 20px 10px 30px;
+}
+
+div.entry-content ul {
+	list-style: square;
+	margin: 0 20px 10px 30px;
+}
+
+div.entry-content blockquote {
+	border-left: 2px solid #76B900;
+	margin: 0 10px 10px 13px;
+	padding-left: 15px;
+	font-style: italic;
+	color: #454545;
+}
+
+div.entry-content img {
+	margin: 10px 0;
+}
+
+/* port: old inline images/embeds were sized for this 480px column — never overflow it */
+div.entry-content img, div.entry-content iframe, div.entry-content object, div.entry-content embed, div.entry-content video {
+	max-width: 100%;
+}
+div.entry-content img {
+	height: auto;
+}
+
+/* port: code/pre had no styles in the original */
+div.entry-content pre {
+	overflow-x: auto;
+	margin-bottom: 10px;
+	padding: 5px;
+	background: #F6F4F0;
+	font-size: 12px;
+}
+
+#entrynavi {
+	margin: -10px 0 55px 0;
+	font-size: 13px;
+	color: #242424;
+}
+
+p.navleft {
+	float: left;
+	width: 45%;
+}
+
+p.navright {
+	float: right;
+	width: 45%;
+	text-align: right;
+}
+
+
+/* ===== PAGE ===== */
+
+#content > div.page {
+	border:none;
+	padding: 0;
+	margin: 0;
+}
+
+/* port: title block on category/tag archives */
+#content > div.archive-title {
+	margin-bottom: 20px;
+}
+
+#nosidebars {
+	padding: 20px;
+	background: #FFFFFF;
+}
+
+/* ===== SIDEBAR ===== */
+
+div.sidebar {
+	width: 180px;
+	padding: 20px;
+}
+
+div.sidebar-left {
+	float: left;
+}
+
+div.sidebar-right {
+	float: right;
+}
+
+div.sidebar > ul > li {
+	padding-bottom: 15px;
+	border-bottom: 1px dotted #D2D2D2;
+	margin-bottom: 30px;
+	color: #676767;
+	font-size: 12px;
+	line-height: 140%;
+}
+
+div.sidebar > ul > li > h2{
+	color: #676767;
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+/* ===== FOOTER ===== */
+
+#footer {
+	background: #484848 url(../images/theme/footer-back.png) top repeat-x;
+	color: #FFFFFF;
+}
+
+#footer div.footer-column {
+	width: 450px;
+	float: left;
+	margin: 15px 0 15px 20px;
+}
+
+#footer p {
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+
+#footer p.cc {
+	padding-left: 30px;
+	background: url(../images/theme/cc.png) no-repeat;
+}
+
+/* port: replaces p.wp (WordPress logo) — same indent, no logo */
+#footer p.theme {
+	padding-left: 30px;
+}
+
+/* ===== SEARCH ===== */
+
+input[type="text"] {
+	width: 200px;
+	border: 1px solid #C0C0C0;
+	margin-bottom: 5px;
+	color: #808080;
+	font-size: 12px;
+	padding: 2px;
+}
+
+input[type="text"]:focus {
+	border-color: #808080;
+	color: #000000;
+}
+
+input#s {
+	width: 100%;
+	box-sizing: border-box; /* port */
+}
+
+/* ===== CLASSES ===== */
+
+.clear {
+	clear: both;
+}
+
+.entry-content img.wp-smiley {
+	margin: 0;
+}
+
+img.centered, .aligncenter, div.aligncenter {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+img.alignright {
+padding: 4px;
+margin: 0 0 2px 7px;
+display: inline;
+}
+
+img.alignleft {
+padding: 4px;
+margin: 0 7px 2px 0;
+display: inline;
+}
+
+.alignright {
+float: right;
+}
+
+.alignleft {
+float: left;
+}
+
+/* port: WordPress caption markup ([caption] → .wp-caption) */
+.wp-caption {
+	max-width: 100%;
+	text-align: center;
+	font-size: 11px;
+	color: #808080;
+}
+
+/* ===== port: narrow screens =====
+   The original is a fixed 1000px layout. Below that, stack the columns
+   (content first, then both sidebars) instead of scrolling sideways. */
+
+@media (max-width: 1000px) {
+	#wrapper, #wrapper-gradient, #left, #content, div.sidebar, #footer div.footer-column {
+		width: auto;
+		float: none;
+	}
+	#wrapper, #wrapper-gradient {
+		padding: 0;
+		background: #FFFFFF; /* the column-shading images only fit the 1000px grid */
+	}
+	#left {
+		display: flex;
+		flex-direction: column;
+	}
+	#content {
+		order: -1;
+		padding: 20px 16px;
+	}
+	div.sidebar {
+		padding: 0 16px 20px;
+	}
+	#header {
+		height: auto;
+		overflow: hidden;
+		padding: 16px;
+	}
+	#header a, #header p a {
+		float: none;
+		display: block;
+		margin: 0;
+		text-align: left;
+	}
+	#header p a {
+		margin-top: 4px;
+	}
+	#navi {
+		height: auto;
+		overflow: hidden;
+	}
+	#footer div.footer-column {
+		margin: 15px 16px;
+	}
+	#footer div.footer-column:first-child {
+		display: none;
+	}
+}
