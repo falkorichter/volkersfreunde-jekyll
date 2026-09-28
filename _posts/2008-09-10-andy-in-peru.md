@@ -1,0 +1,10 @@
+---
+title: "Andy in Peru"
+date: 2008-09-10 14:58:28 +0000
+permalink: /andy-in-peru/
+author: "Falko"
+categories: ["featured"]
+tags: []
+wp_id: 587
+---
+Andy is in Arequipa und genießt dort den Sommer der Südhalbkugel.

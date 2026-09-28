@@ -8,7 +8,8 @@ umlauts decoded correctly, paragraphs/typography applied, shortcodes gone, and s
 old-host URLs already cleaned by wp-local/.../mu-plugins/vf-local-cleanup.php.
 
 Writes (and replaces on every run):
-  _posts/YYYY-MM-DD-<slug>.html       one file per published post
+  _posts/YYYY-MM-DD-<slug>.md|.html   one file per published post: Markdown if html2md.py can
+                                      convert it and it renders back identically, else HTML
   assets/images/YYYY/MM/…             images the posts reference (year/month of the old
   assets/files/YYYY/MM/…              upload path, else of the first post using them)
   _data/categories.yml, _data/tags.yml   display name -> slug of the terms the posts use
@@ -26,6 +27,8 @@ import sys
 import urllib.request
 from html.parser import HTMLParser
 from urllib.parse import quote, unquote
+
+import html2md  # conservative HTML -> Markdown, only used when it renders back identically
 
 WP = os.environ.get("WP_URL", "http://localhost:8080")
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -345,6 +348,7 @@ def main():
     dead_img = re.compile(r"""<img[^>]*\ssrc=["']/(?:wp-content|downloads)/[^>]*>""")
     dead_link = re.compile(r"""<a[^>]*\shref=["']/(?:wp-content/|downloads/|wp-admin/|wp-login\.php)[^>]*>(.*?)</a>""", re.S)
     report["dead_links_unwrapped"] = report["dead_images_removed"] = 0
+    outputs = []
     for p, body in entries:
         body = REF_RE.sub(relink, body)
         # Whatever still points at WordPress paths never existed / only worked with WordPress:
@@ -367,10 +371,16 @@ def main():
             f"wp_id: {p['id']}",
             "---",
         ]
-        fname = f"{p['date'][:10]}-{p['slug']}.html"
-        with open(os.path.join(posts_dir, fname), "w", encoding="utf-8") as f:
-            f.write("\n".join(front) + "\n" + body)
+        outputs.append((f"{p['date'][:10]}-{p['slug']}", "\n".join(front) + "\n", body))
         report["posts"] += 1
+
+    # Simple posts become Markdown, but only if the Markdown renders back to the same HTML.
+    markdown = html2md.convert_verified({name: body for name, _, body in outputs})
+    for name, front, body in outputs:
+        ext, text = (".md", markdown[name]) if name in markdown else (".html", body)
+        with open(os.path.join(posts_dir, name + ext), "w", encoding="utf-8") as f:
+            f.write(front + text)
+    report["markdown_posts"] = len(markdown)
 
     # Sidebar/taxonomy data: display name -> original slug, only for terms the posts use.
     # Jekyll groups tags by name, so a name has one page; where the old blog had two terms with
@@ -394,7 +404,7 @@ def main():
 
     with open(os.path.join(SITE, "_migration", "export-report.json"), "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2, sort_keys=True)
-    print(f"posts: {report['posts']}  teasers: {report['teasers']}  files: {report['copied_files']} copied, "
+    print(f"posts: {report['posts']} ({report['markdown_posts']} as Markdown)  teasers: {report['teasers']}  files: {report['copied_files']} copied, "
           f"{len(moved)} links moved, {len(report['missing_files'])} missing, "
           f"{len(report['skipped_file_types'])} skipped (type)")
 

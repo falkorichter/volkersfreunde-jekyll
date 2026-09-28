@@ -1,0 +1,16 @@
+---
+title: "MP3-Player und iPod befüllen leicht gemacht"
+date: 2008-12-16 22:44:57 +0000
+permalink: /mp3-player-und-ipod-befuellen-leicht-gemacht/
+author: "andy"
+categories: ["Technik/Software"]
+tags: []
+wp_id: 902
+---
+Ich möchte euch heute mal ein nettes Programm vorstellen, was mir diese Woche über den Weg lief. Da die Menge der iPods unter volkersfreunden ständig wächst, ist das vielleicht eine sehr nette und zudem kostenlose Variante, seinen IPod zu verwalten.
+
+Denn [MediaMonkey](http://www.mediamonkey.com/mediamonkey_de.htm){: target="_blank"}, so nennt sich dieses Tool, kann schon in der kostenlosen Basisversion mit vielen Features dienen. Es beherrscht eigentlich alles, was iTunes auch kann, bringt aber den Vorteil, dass man nicht mehr nur einen einen PC/iPod gebunden ist. Auch die zusätzlichen Funktionen, wie z.B. das direkte Brennen einer Playlist vom Archiv oder direkt vom IPod fand ich sehr cool, da die erstellte CD/DVD die Songs in einer manuell festlegbaren Struktur benennt und so die Verwaltung vereinfacht.
+
+Von automatischem Tagging bis zum Finden von Duplikaten bieten das Tool alles, was eine Musikbibliothek auf dem Heimrechner braucht. Einzig das Verwalten von Videos war damit nicht möglich (oder ich habs nich gefunden).
+
+Also unbedingt mal ausprobieren, denn MediaMonkey kann neben dem iPod natürlich auch alle anderen MP3-Player bedienen.

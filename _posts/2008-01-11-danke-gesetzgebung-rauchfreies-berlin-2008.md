@@ -1,0 +1,10 @@
+---
+title: "Danke Gesetzgebung! – rauchfreies Berlin 2008"
+date: 2008-01-11 08:24:39 +0000
+permalink: /danke-gesetzgebung-rauchfreies-berlin-2008/
+author: "Falko"
+categories: ["Allgemein"]
+tags: ["berlin", "politik"]
+wp_id: 404
+---
+![](/assets/images/2008/01/img_9082.jpg)
