@@ -84,6 +84,8 @@ def clean(body):
     # Relative (../wp-content/…) and the old shared-hosting URL of the same folder.
     body = re.sub(r"""(?<=["'])(?:\.\./)+wp-content/""", "/wp-content/", body)
     body = re.sub(r"https?://(?:www\.)?falkorichter\.de/+_subdomains/volkersfreunde/wp-content/", "/wp-content/", body)
+    # Other relative links ("../other-post/") were written for a post at /<slug>/.
+    body = re.sub(r"""(href=["'])(?:\.\./)+""", r"\1/", body)
     # Local WordPress URL -> site-relative.
     body = re.sub(r"https?://localhost:8080(?=/)", "", body)
     body = re.sub(r"https?://localhost:8080\b", "/", body)
