@@ -528,23 +528,15 @@ h3#comments {
 	margin: 15px 0;
 }
 
-/* port: WordPress' own styles for these were not part of the theme */
+/* port: WordPress' own styles for this were not part of the theme */
 ol.commentlist {
 	overflow-wrap: break-word;
 }
 
-ul.children {
-	margin-left: 20px;
-}
-
-li.pingback, li.trackback, p.nocomments {
+p.nocomments {
 	font-size: 11px;
 	color: #808080;
 	margin: 5px 0;
-}
-
-li.pingback a, li.trackback a {
-	color: #808080;
 }
 
 /* ===== port: lightbox (assets/js/lightbox.js) ===== */

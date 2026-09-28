@@ -1,0 +1,2 @@
+{%- assign _comments = site.data.comments | where: "url", include.post.url -%}
+{%- if _comments.size == 1 -%}1 Kommentar{%- else -%}{{ _comments.size }} Kommentare{%- endif -%}

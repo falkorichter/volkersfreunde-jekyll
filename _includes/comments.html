@@ -1,15 +1,19 @@
 {%- comment -%}
-  comments.php, read-only: the old comments (from _data/comments.json, written by
-  _migration/export_comments.py) in the markup of wp_list_comments(). No form: the
-  blog is an archive, comments are closed.
+  comments.php, read-only: the old comments are shown, the form is gone (comments were
+  closed on the archived blog anyway).
 {%- endcomment -%}
-{%- assign _key = page.wp_id | append: "" -%}
-{%- assign _thread = site.data.comments[_key] -%}
-{%- if _thread and _thread.count > 0 %}
-				<h3 id="comments">{% if _thread.count == 1 %}Ein Kommentar{% else %}{{ _thread.count }} Kommentare{% endif %}</h3>
+{%- assign _comments = site.data.comments | where: "url", page.url -%}
+{%- if _comments.size > 0 %}
+				<h3 id="comments">{% if _comments.size == 1 %}Ein Kommentar{% else %}{{ _comments.size }} Kommentare{% endif %}</h3>
 				<ol class="commentlist">
-				{%- for _c in _thread.comments %}
-					{%- include comment.html comment=_c depth=1 index=forloop.index0 %}
+				{%- for c in _comments %}
+					{%- assign _m = c.date | date: "%-m" | minus: 1 %}
+					{%- assign _odd = forloop.index0 | modulo: 2 %}
+					<li class="comment {% if _odd == 1 %}odd alt{% else %}even{% endif %}" id="comment-{{ c.id }}">
+						<div class="comment-author vcard"><cite class="fn">{% if c.author_url != "" %}<a href="{{ c.author_url }}" rel="external nofollow ugc" class="url">{{ c.author | escape }}</a>{% else %}{{ c.author | escape }}{% endif %}</cite> <span class="says">sagt:</span></div>
+						<div class="comment-meta commentmetadata"><a href="#comment-{{ c.id }}">{{ c.date | date: "%-d" }}. {{ site.months_de[_m] }} {{ c.date | date: "%Y" }} um {{ c.date | date: "%H:%M" }}</a></div>
+						{{ c.content }}
+					</li>
 				{%- endfor %}
 				</ol>
 				<p class="nocomments">Kommentare sind geschlossen.</p>
