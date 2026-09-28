@@ -2,9 +2,10 @@
 layout: three-column
 ---
 {%- comment -%} single.php {%- endcomment -%}
-			<div class="entry single">
+			<div class="entry single" data-pagefind-body>
+				{% include search-meta.html post=page %}
 				<div class="entry-header">
-					<h2 class="entry-title"><a href="{{ page.url | relative_url }}">{{ page.title }}</a></h2>
+					<h2 class="entry-title" data-pagefind-meta="title"><a href="{{ page.url | relative_url }}">{{ page.title }}</a></h2>
 					{% include entry-meta.html post=page %}
 					<div class="clear"></div>
 				</div>

@@ -11,13 +11,24 @@ bundle install
 bundle exec jekyll serve      # http://localhost:4000
 ```
 
+Search (`/suche/`) uses [Pagefind](https://pagefind.app): the index is built from the
+finished HTML after `jekyll build` (the Pages workflow does this). `jekyll serve` has no
+index; to try the search locally:
+
+```sh
+bundle exec jekyll build && npx -y pagefind@1.5.2 --site _site --serve   # http://localhost:1414/suche/
+```
+
+Indexed: post title and text (`data-pagefind-body` in `_layouts/post.html`), with year and
+category filters (`_includes/search-meta.html`); comments and the date line are left out.
+
 ## What's here
 
 | Path | What |
 |---|---|
 | `_layouts/`, `_includes/`, `assets/css/style.css` | the ported theme (changes marked `port:` in the CSS) |
 | `_posts/` | 401 posts (Markdown where possible, see below), original URLs `/<slug>/` |
-| `_pages/` | Impressum, Kontakt, RSS (the old nav), the year archive `/archiv/` and `/statistiken/` (new: numbers counted at build time, export numbers from `_data/export_report.json`) |
+| `_pages/` | Impressum, Kontakt, RSS (the old nav), the year archive `/archiv/`, the search `/suche/` and `/statistiken/` (new: numbers counted at build time, export numbers from `_data/export_report.json`) |
 | `assets/images/YYYY/MM/`, `assets/files/YYYY/MM/` | images and documents used by the posts |
 | `assets/images/theme/` | theme graphics |
 | `assets/js/lightbox.js` | lightbox for post images and galleries (counter, ←/→, swipe, Esc) |

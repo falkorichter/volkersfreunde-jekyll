@@ -4,8 +4,8 @@
 {%- endcomment -%}
 {%- assign _comments = site.data.comments | where: "url", page.url -%}
 {%- if _comments.size > 0 %}
-				<h3 id="comments">{% if _comments.size == 1 %}Ein Kommentar{% else %}{{ _comments.size }} Kommentare{% endif %}</h3>
-				<ol class="commentlist">
+				<h3 id="comments" data-pagefind-ignore="all">{% if _comments.size == 1 %}Ein Kommentar{% else %}{{ _comments.size }} Kommentare{% endif %}</h3>
+				<ol class="commentlist" data-pagefind-ignore="all">
 				{%- for c in _comments %}
 					{%- assign _m = c.date | date: "%-m" | minus: 1 %}
 					{%- assign _odd = forloop.index0 | modulo: 2 %}
@@ -16,5 +16,5 @@
 					</li>
 				{%- endfor %}
 				</ol>
-				<p class="nocomments">Kommentare sind geschlossen.</p>
+				<p class="nocomments" data-pagefind-ignore>Kommentare sind geschlossen.</p>
 {%- endif %}
