@@ -1,5 +1,7 @@
 {
-  "copied_files": 242,
+  "copied_files": 251,
+  "dead_images_removed": 2,
+  "dead_links_unwrapped": 10,
   "missing_files": {
     "/downloads/Vererbung.java": [
       "raetsel-fuer-die-semesterferien"

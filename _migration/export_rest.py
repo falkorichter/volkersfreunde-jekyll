@@ -9,8 +9,9 @@ old-host URLs already cleaned by wp-local/.../mu-plugins/vf-local-cleanup.php.
 
 Writes (and replaces on every run):
   _posts/YYYY-MM-DD-<slug>.html       one file per published post
-  wp-content/…, downloads/…           only the files the posts reference, same paths,
-                                      so old image/file URLs keep working
+  assets/images/YYYY/MM/…             images the posts reference (year/month of the old
+  assets/files/YYYY/MM/…              upload path, else of the first post using them)
+  _data/moved_files.yml               old /wp-content/… URL -> new path (301s in .htaccess)
   _migration/export-report.json       what was done / what is missing
 
 Read-only towards WordPress. Usage (from the site/ folder):
@@ -24,7 +25,7 @@ import shutil
 import sys
 import urllib.request
 from html.parser import HTMLParser
-from urllib.parse import unquote
+from urllib.parse import quote, unquote
 
 WP = os.environ.get("WP_URL", "http://localhost:8080")
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -61,6 +62,9 @@ def clean(body):
     body = re.sub(r'<style>#fredi3\{.*?</style>\s*<div id="fredi3">.*?</div>\s*</div>', "", body, flags=re.S)
     # Old server file paths stored directly in post bodies.
     body = re.sub(r"(?:https?://localhost:8080)?" + OLD_PATH, "/wp-content/", body)
+    # Relative (../wp-content/…) and the old shared-hosting URL of the same folder.
+    body = re.sub(r"""(?<=["'])(?:\.\./)+wp-content/""", "/wp-content/", body)
+    body = re.sub(r"https?://(?:www\.)?falkorichter\.de/+_subdomains/volkersfreunde/wp-content/", "/wp-content/", body)
     # Local WordPress URL -> site-relative.
     body = re.sub(r"https?://localhost:8080(?=/)", "", body)
     body = re.sub(r"https?://localhost:8080\b", "/", body)
@@ -156,6 +160,9 @@ def find_source(rel):
     """Locate a referenced file; tolerate case differences (old host was case-insensitive)."""
     for base in FILE_SOURCES:
         path = os.path.join(base, rel.lstrip("/"))
+        encoded = os.path.join(os.path.dirname(path), quote(os.path.basename(path)))
+        if not os.path.isfile(path) and os.path.isfile(encoded):
+            return encoded  # some uploads were saved with a literal "%20" in the name
         if os.path.isfile(path):
             return path
         if "/uploads/" in path and not os.path.isfile(path):
@@ -174,29 +181,94 @@ def yaml_str(s):
     return json.dumps(s, ensure_ascii=False)  # JSON strings are valid YAML scalars
 
 
+IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp"}
+REF_RE = re.compile(r"""((?:src|href)=(["']))(/(?:wp-content|downloads)/[^"'#?]+)""")
+
+
+def new_location(rel, first_used):
+    """/wp-content/2008/10/foo.jpg -> /assets/images/2008/10/foo.jpg.
+    Files without a year/month in their old path get the date of the first post using them."""
+    ext = os.path.splitext(rel)[1].lower()
+    kind = "images" if ext in IMAGE_EXTS else "files"
+    m = re.search(r"/(\d{4})/(\d{2})/", rel)
+    year, month = m.groups() if m else (first_used[:4], first_used[5:7])
+    name = re.sub(r"(?:%20|\s)+", "-", os.path.basename(rel))
+    return f"/assets/{kind}/{year}/{month}/{name}"
+
+
 def main():
     posts = get_all("posts")
     cats = {c["id"]: html.unescape(c["name"]) for c in get_all("categories", ["id", "name"])}
     tags = {t["id"]: html.unescape(t["name"]) for t in get_all("tags", ["id", "name"])}
     users = {u["id"]: u["name"] for u in get_all("users", ["id", "name"])}
+    # WordPress attachment pages (/<post>/<image>/) -> the image file itself
+    attachments = {re.sub(r"^https?://[^/]+", "", a["link"]): clean(a["source_url"]).strip()
+                   for a in get_all("media", ["link", "source_url"])}
 
     posts_dir = os.path.join(SITE, "_posts")
     for name in os.listdir(posts_dir):
         if name.endswith((".html", ".md")):
             os.remove(os.path.join(posts_dir, name))
-    for d in ("wp-content", "downloads"):
+    for d in ("wp-content", "downloads", "assets/images/uploads", "assets/files"):
         shutil.rmtree(os.path.join(SITE, d), ignore_errors=True)
+    for year_dir in os.listdir(os.path.join(SITE, "assets", "images")):
+        if re.fullmatch(r"\d{4}", year_dir):  # previous run's output; theme/ stays
+            shutil.rmtree(os.path.join(SITE, "assets", "images", year_dir))
 
-    refs, report = {}, {"posts": 0, "teasers": 0, "missing_files": {},
-                        "skipped_file_types": {}, "copied_files": 0}
-    for p in posts:
+    report = {"posts": 0, "teasers": 0, "missing_files": {}, "skipped_file_types": {}, "copied_files": 0}
+
+    # Pass 1: clean the bodies, collect referenced files (with the date of the first post using them).
+    entries, refs = [], {}
+    for p in sorted(posts, key=lambda p: p["date_gmt"]):
         body = clean(p["content"]["rendered"])
         body, has_teaser = normalize_more(body)
         report["teasers"] += has_teaser
+        body = re.sub(r"""(href=["'])(/[^"'#?]+/)(?=["'])""",
+                      lambda m: m.group(1) + attachments.get(m.group(2), m.group(2)), body)
+        for m in REF_RE.finditer(body):
+            refs.setdefault(unquote(m.group(3)), {"first_used": p["date"], "used_by": set()})["used_by"].add(p["slug"])
+        entries.append((p, body))
 
-        for m in re.finditer(r'(?:src|href)="(/(?:wp-content|downloads)/[^"#?]+)', body):
-            refs.setdefault(unquote(m.group(1)), set()).add(p["slug"])
+    # Pass 2: copy files to assets/{images,files}/YYYY/MM/ and remember old -> new.
+    moved, taken = {}, {}
+    for rel, info in sorted(refs.items()):
+        used_by = sorted(info["used_by"])
+        if os.path.splitext(rel)[1].lower() not in COPY_EXTS:
+            report["skipped_file_types"][rel] = used_by
+            continue
+        src = find_source(rel)
+        if not src:
+            report["missing_files"][rel] = used_by
+            continue
+        new = new_location(rel, info["first_used"])
+        stem, ext = os.path.splitext(new)
+        n = 2
+        while taken.get(new.lower(), src) != src:  # same name, different file -> suffix
+            new, n = f"{stem}-{n}{ext}", n + 1
+        taken[new.lower()] = src
+        dest = os.path.join(SITE, new.lstrip("/"))
+        if not os.path.exists(dest):
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            shutil.copy2(src, dest)
+            report["copied_files"] += 1
+        moved[rel] = new
 
+    # Pass 3: rewrite links and write the posts.
+    def relink(m):
+        new = moved.get(unquote(m.group(3)))
+        return m.group(1) + quote(new) if new else m.group(0)
+
+    dead_img = re.compile(r"""<img[^>]*\ssrc=["']/(?:wp-content|downloads)/[^>]*>""")
+    dead_link = re.compile(r"""<a[^>]*\shref=["']/(?:wp-content/|downloads/|wp-admin/|wp-login\.php)[^>]*>(.*?)</a>""", re.S)
+    report["dead_links_unwrapped"] = report["dead_images_removed"] = 0
+    for p, body in entries:
+        body = REF_RE.sub(relink, body)
+        # Whatever still points at WordPress paths never existed / only worked with WordPress:
+        # keep the link text, drop images without a file.
+        body, n = dead_img.subn("", body)
+        report["dead_images_removed"] += n
+        body, n = dead_link.subn(r"\1", body)
+        report["dead_links_unwrapped"] += n
         permalink = re.sub(r"^https?://[^/]+", "", p["link"])
         categories = [cats[c] for c in p["categories"] if c in cats and cats[c] not in DROP_CATEGORIES]
         front = [
@@ -215,24 +287,17 @@ def main():
             f.write("\n".join(front) + "\n" + body)
         report["posts"] += 1
 
-    for rel, used_by in sorted(refs.items()):
-        ext = os.path.splitext(rel)[1].lower()
-        if ext not in COPY_EXTS:
-            report["skipped_file_types"][rel] = sorted(used_by)
-            continue
-        src = find_source(rel)
-        if not src:
-            report["missing_files"][rel] = sorted(used_by)
-            continue
-        dest = os.path.join(SITE, rel.lstrip("/"))
-        os.makedirs(os.path.dirname(dest), exist_ok=True)
-        shutil.copy2(src, dest)
-        report["copied_files"] += 1
+    # Old file URLs -> new ones; .htaccess turns these into 301 redirects.
+    with open(os.path.join(SITE, "_data", "moved_files.yml"), "w", encoding="utf-8") as f:
+        f.write("# Generated by _migration/export_rest.py: old file URL -> new location (301 in .htaccess)\n")
+        for old, new in sorted(moved.items()):
+            f.write(f"- from: {yaml_str(old)}\n  to: {yaml_str(new)}\n")
 
     with open(os.path.join(SITE, "_migration", "export-report.json"), "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2, sort_keys=True)
     print(f"posts: {report['posts']}  teasers: {report['teasers']}  files: {report['copied_files']} copied, "
-          f"{len(report['missing_files'])} missing, {len(report['skipped_file_types'])} skipped (type)")
+          f"{len(moved)} links moved, {len(report['missing_files'])} missing, "
+          f"{len(report['skipped_file_types'])} skipped (type)")
 
 
 if __name__ == "__main__":
