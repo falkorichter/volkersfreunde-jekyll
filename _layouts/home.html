@@ -4,10 +4,15 @@ layout: three-column
 {%- comment -%} index.php — the paginated post list {%- endcomment -%}
 {%- assign posts = paginator.posts | default: site.posts %}
 {%- for post in posts %}
+			{%- assign _key = post.wp_id | append: "" %}
+			{%- assign _comments = site.data.comments[_key].count | default: 0 %}
 			<div class="entry">
-				<div class="entry-header">
+				<div class="entry-header{% if _comments > 0 %} has-comments{% endif %}">
 					<h2 class="entry-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
 					{% include entry-meta.html post=post %}
+					{%- if _comments > 0 %}
+					<p class="meta entry-comments"><a href="{{ post.url | relative_url }}#comments" title="Kommentare zu {{ post.title | escape }}">{% if _comments == 1 %}1 Kommentar{% else %}{{ _comments }} Kommentare{% endif %}</a></p>
+					{%- endif %}
 					<div class="clear"></div>
 				</div>
 				<div class="entry-content">

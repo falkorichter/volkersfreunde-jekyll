@@ -1,0 +1,29 @@
+{%- comment -%}
+  One comment as wp_list_comments() printed it (XHTML style, no avatars); calls itself
+  for replies. include.comment = entry of _data/comments.json, include.depth = 1…
+{%- endcomment -%}
+{%- capture _author -%}
+{%- assign _internal = include.comment.author_url | slice: 0 -%}
+{%- if include.comment.author_url != "" %}<a href="{{ include.comment.author_url | relative_url }}"{% unless _internal == "/" %} rel="external nofollow ugc"{% endunless %} class="url">{{ include.comment.author | escape }}</a>{% else %}{{ include.comment.author | escape }}{% endif -%}
+{%- endcapture -%}
+{%- assign _parity = include.index | modulo: 2 -%}
+					<li class="{% if include.comment.type == 'comment' %}comment{% else %}{{ include.comment.type }}{% endif %}{% if _parity == 1 %} odd alt{% else %} even{% endif %}{% if include.comment.by_user %} byuser{% endif %} depth-{{ include.depth }}" id="comment-{{ include.comment.id }}">
+					{%- if include.comment.type == "comment" %}
+						<div id="div-comment-{{ include.comment.id }}" class="comment-body">
+							<div class="comment-author vcard"><cite class="fn">{{ _author }}</cite> <span class="says">sagt:</span></div>
+							{%- assign _m = include.comment.date | date: "%-m" | minus: 1 %}
+							<div class="comment-meta commentmetadata"><a href="#comment-{{ include.comment.id }}">{{ include.comment.date | date: "%-d" }}. {{ site.months_de[_m] }} {{ include.comment.date | date: "%Y" }} um {{ include.comment.date | date: "%H:%M" }}</a></div>
+							{{ include.comment.content }}
+						</div>
+					{%- else %}
+						<div class="comment-body">{% if include.comment.type == "trackback" %}Trackback{% else %}Pingback{% endif %}: {{ _author }}</div>
+					{%- endif %}
+					{%- if include.comment.replies.size > 0 %}
+						<ul class="children">
+						{%- for _reply in include.comment.replies %}
+							{%- assign _depth = include.depth | plus: 1 %}
+							{%- include comment.html comment=_reply depth=_depth index=forloop.index0 %}
+						{%- endfor %}
+						</ul>
+					{%- endif %}
+					</li>

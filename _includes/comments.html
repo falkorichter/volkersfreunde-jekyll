@@ -1,0 +1,16 @@
+{%- comment -%}
+  comments.php, read-only: the old comments (from _data/comments.json, written by
+  _migration/export_comments.py) in the markup of wp_list_comments(). No form: the
+  blog is an archive, comments are closed.
+{%- endcomment -%}
+{%- assign _key = page.wp_id | append: "" -%}
+{%- assign _thread = site.data.comments[_key] -%}
+{%- if _thread and _thread.count > 0 %}
+				<h3 id="comments">{% if _thread.count == 1 %}Ein Kommentar{% else %}{{ _thread.count }} Kommentare{% endif %}</h3>
+				<ol class="commentlist">
+				{%- for _c in _thread.comments %}
+					{%- include comment.html comment=_c depth=1 index=forloop.index0 %}
+				{%- endfor %}
+				</ol>
+				<p class="nocomments">Kommentare sind geschlossen.</p>
+{%- endif %}

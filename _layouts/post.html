@@ -15,6 +15,7 @@ layout: three-column
 				{%- if page.tags.size > 0 %}
 				<p class="meta">Tags: {% for t in page.tags %}{% include tag-link.html name=t %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
 				{%- endif %}
+				{%- include comments.html %}
 			</div>
 
 			<div id="entrynavi">
