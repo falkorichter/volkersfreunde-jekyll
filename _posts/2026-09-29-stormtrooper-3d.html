@@ -3,10 +3,10 @@ title: "Ein Stormtrooper aus Maya 2008 – jetzt in 3D im Browser"
 date: 2026-09-29 12:00:00 +0000
 permalink: /stormtrooper-3d/
 author: "Falko"
-categories: ["Allgemein"]
-tags: []
+categories: ["IMI-Showtime", "Projekte"]
+tags: ["3D", "imi", "IMI-Showtime"]
 ---
-<p>2008 hat Andy im 4. Semester (Kurs Visualisierung, B4IMI an der FHTW Berlin) einen Stormtrooper in Maya 2008 modelliert, UV-texturiert und gerendert. Die Projektseite mit allen Zwischenschritten gibt es noch: <a href="http://andreaskrienke.de/visu08/">andreaskrienke.de/visu08</a>. Hier kann man das Modell jetzt direkt im Browser drehen.</p>
+<p>Im Sommersemester 2008 hat Andi im Kurs Visualisierung einen Stormtrooper in Maya 2008 modelliert, UV-texturiert und gerendert. Hier im Blog war er damals schon bei der <a href="/eine-dreidimensionale-showtime/">dreidimensionalen Showtime</a> zu sehen, die Projektseite mit allen Zwischenschritten gibt es auch noch: <a href="http://andreaskrienke.de/visu08/">andreaskrienke.de/visu08</a>. 18 Jahre später kann man das Modell jetzt direkt im Browser drehen.</p>
 <!--more-->
 
 <figure class="trooper-3d">
@@ -17,7 +17,9 @@ tags: []
 </figure>
 
 <h3>Wie das Modell in den Browser kam</h3>
-<p>Die Original-Szene <code>trooper4_4.ma</code> ist eine Maya-ASCII-Datei, die gar keine fertige Geometrie enthält, sondern nur die Konstruktionshistorie: einen Würfel und rund 900 Modellier- und UV-Schritte danach (Smooth, Split, Extrude, Mirror, Planar-Projektionen …). Das kann nur Maya selbst nachrechnen. Also: Szene in Maya öffnen, Rumpf und Helm als OBJ exportieren, die Textur <code>TrooperUV_color.tga</code> aus Andreas’ Zip dazu, beides zu einer einzelnen glTF-Datei (<code>.glb</code>) zusammengepackt. Angezeigt wird sie mit <a href="https://threejs.org/">three.js</a>.</p>
+<p>Die Original-Szene <code>trooper4_4.ma</code> ist eine Maya-ASCII-Datei, die gar keine fertige Geometrie enthält, sondern nur die Konstruktionshistorie: einen Würfel und rund 900 Modellier- und UV-Schritte danach (Smooth, Split, Extrude, Mirror, Planar-Projektionen …). Das kann nur Maya selbst nachrechnen. Also: Szene in einem aktuellen Maya öffnen, Rumpf und Helm als OBJ exportieren und zusammen mit der Textur <code>TrooperUV_color.tga</code> aus Andis Zip in eine glTF-Datei (<code>.glb</code>) packen. Angezeigt wird sie mit <a href="https://threejs.org/">three.js</a>.</p>
+<p>Die Geometrie übersteht die 18 Jahre, die Textur leider nicht: Das heutige Maya spielt die rund 500 UV-Schritte der alten Historie anders ab als Maya 2008, die UV-Map kommt dabei völlig durcheinander heraus. Deshalb trägt der Trooper hier eine recht abstrakte Tarnbemalung aus seinen eigenen Rüstungsteilen. So sah er 2008 mit Textur aus (mehr Renderings auf <a href="http://andreaskrienke.de/visu08/">Andis Projektseite</a>):</p>
+<p><img loading="lazy" decoding="async" src="/assets/images/2008/10/trooper.jpg" alt="Der Stormtrooper mit Textur, gerendert in Maya 2008" width="458" height="465" /></p>
 
 <script type="importmap">
 { "imports": {
