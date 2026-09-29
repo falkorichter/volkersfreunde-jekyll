@@ -1,0 +1,79 @@
+---
+title: "Ein Stormtrooper aus Maya 2008 – jetzt in 3D im Browser"
+date: 2026-09-29 12:00:00 +0000
+permalink: /stormtrooper-3d/
+author: "Falko"
+categories: ["Allgemein"]
+tags: []
+---
+<p>2008 hat Andreas Krienke im 4. Semester (Kurs Visualisierung, B4IMI an der FHTW Berlin) einen Stormtrooper in Maya 2008 modelliert, UV-texturiert und gerendert. Die Projektseite mit allen Zwischenschritten gibt es noch: <a href="http://andreaskrienke.de/visu08/">andreaskrienke.de/visu08</a>. Hier kann man das Modell jetzt direkt im Browser drehen.</p>
+<!--more-->
+
+<figure class="trooper-3d">
+  <div id="trooper-viewer" style="position:relative;width:100%;aspect-ratio:3/4;max-height:600px;background:linear-gradient(#3a3f47,#15171b);border-radius:4px;overflow:hidden;cursor:grab;touch-action:none">
+    <p id="trooper-status" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:13px">3D-Modell wird geladen …</p>
+  </div>
+  <figcaption>Ziehen zum Drehen, Mausrad/Pinch zum Zoomen. <a id="trooper-model" href="/assets/files/2026/09/stormtrooper.glb">Modell herunterladen</a> (glTF, 1 MB, ca. 11.300 Polygone)</figcaption>
+</figure>
+
+<h3>Wie das Modell in den Browser kam</h3>
+<p>Die Original-Szene <code>trooper4_4.ma</code> ist eine Maya-ASCII-Datei, die gar keine fertige Geometrie enthält, sondern nur die Konstruktionshistorie: einen Würfel und rund 900 Modellier- und UV-Schritte danach (Smooth, Split, Extrude, Mirror, Planar-Projektionen …). Das kann nur Maya selbst nachrechnen. Also: Szene in Maya öffnen, Rumpf und Helm als OBJ exportieren, die Textur <code>TrooperUV_color.tga</code> aus Andreas’ Zip dazu, beides zu einer einzelnen glTF-Datei (<code>.glb</code>) zusammengepackt. Angezeigt wird sie mit <a href="https://threejs.org/">three.js</a>.</p>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const box = document.getElementById('trooper-viewer');
+const status = document.getElementById('trooper-status');
+const url = document.getElementById('trooper-model').href;
+
+function start() {
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  box.appendChild(renderer.domElement);
+  renderer.domElement.style.display = 'block';
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 500);
+  camera.position.set(14, 16, 44);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x444450, 1.6));
+  const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(10, 25, 20); scene.add(key);
+  const rim = new THREE.DirectionalLight(0x9fb8ff, 1.0); rim.position.set(-15, 10, -20); scene.add(rim);
+
+  const floor = new THREE.Mesh(new THREE.CircleGeometry(9, 64), new THREE.MeshStandardMaterial({ color: 0x2a2d33, roughness: 1 }));
+  floor.rotation.x = -Math.PI / 2; scene.add(floor);
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.target.set(0, 12, 0);
+  controls.enableDamping = true;
+  controls.autoRotate = true; controls.autoRotateSpeed = 1.5;
+  controls.minDistance = 8; controls.maxDistance = 90;
+  controls.maxPolarAngle = Math.PI * 0.55;
+  controls.addEventListener('start', () => { controls.autoRotate = false; box.style.cursor = 'grabbing'; });
+  controls.addEventListener('end', () => { box.style.cursor = 'grab'; });
+
+  new GLTFLoader().load(url, (gltf) => { scene.add(gltf.scene); status.remove(); },
+    undefined, () => { status.textContent = '3D-Modell konnte nicht geladen werden.'; });
+
+  const resize = () => {
+    const w = box.clientWidth, h = box.clientHeight;
+    renderer.setSize(w, h, false); renderer.domElement.style.width = '100%'; renderer.domElement.style.height = '100%';
+    camera.aspect = w / h; camera.updateProjectionMatrix();
+  };
+  new ResizeObserver(resize).observe(box); resize();
+  renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
+}
+
+// the model is 1 MB: only load it once the viewer scrolls into view
+new IntersectionObserver((entries, obs) => {
+  if (entries.some(e => e.isIntersecting)) { obs.disconnect(); start(); }
+}, { rootMargin: '200px' }).observe(box);
+</script>
