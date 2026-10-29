@@ -7,4 +7,5 @@ categories: ["tools", "Projekte"]
 tags: ["tools", "internet", "IMI-Showtime"]
 ---
 * https://meet.opentalk.eu/ (sehr gutes Video call)
-* https://nuudel.digitalcourage.de (Termine finden
+* https://nuudel.digitalcourage.de (Termine finden)
+* https://platform.openmeet.net/ (meet-up alternative)
