@@ -10,34 +10,46 @@ tags: ["Berlin", "Bildung", "IMI-Showtime"]
 
 # Der Lernerfolg
 
-* Wurde das Lernziel erreicht?
+* Was waren unseren Ziele?
+
+* Wurde die Ziele erreicht?
 
 * War die Lerngruppe motiviert?
 
 * Konnte die Gruppe selbstständig arbeiten?
 
+* Sollten wir die Ziele für die Zukunft anpassen?
+
 # Die Organisation
 
-War der Raum passend?
+* War der Raum passend?
 
-Reichte die Zeitspanne aus?
+* Reichte die Zeitspanne aus?
 
-Hat die Kommunikation mit der Direktion gut funktioniert?
+* Hat die Kommunikation mit der Direktion gut funktioniert?
 
-# Die Ausstattung
+* Hat die Kommunikation mit den Bega Beauftragten gut funktioniert?
 
-War die Laptops einsatzbereit?
+# Die Ausstattung (für die Schüler)
 
-Hat das Arbeitsmaterial ausgereicht? 
+* War die Laptops einsatzbereit?
 
-Gab es ein technisches Problem?
+* Hat das Arbeitsmaterial ausgereicht? Haben die Callioppe gut funktioniert?
+
+* Gab es ein technische Problem?
+
+# Die Ausstattung (für den Mentor)
+
+* Gab es ein technische Probleme?
+
+* Wie war die technische Ausstattung der Schule? 
 
 # Die Betreuung
 
-War die Aufgabenteilung zwischen dir und der zuständigen Lehrkraft klar?
+* War die Aufgabenteilung zwischen dir und der zuständigen Lehrkraft klar?
 
-Brauchte das ehrenamtliche Projekt mehr Unterstützung durch das Kollegium?
+* Brauchte das ehrenamtliche Projekt mehr Unterstützung durch das Kollegium?
 
 # Die Zukunft
 
-Gäbe es Verbesserungswünsche? Was sollte man unbedingt anders machen, wenn man so ein Angebot noch einmal wiederholt.
+* Gäbe es Verbesserungswünsche? Was sollte man unbedingt anders machen, wenn man so ein Angebot noch einmal wiederholt.
