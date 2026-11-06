@@ -1,5 +1,6 @@
 # Jugend hackt Hackathon Belin 2026
-* Alle video unter https://media.ccc.de/c/jh26/Berlin
+* Eine Zusammenfassung mit Fotos und Video unter https://35services.de/2026/jugend-hackt-congress-2026/
+* Alle videos unter https://media.ccc.de/c/jh26/Berlin
 * Falko hat https://media.ccc.de/v/jh26berlin-fakt-oder-fake als Mentor betreut
 
 <iframe width="1024" height="576" src="https://media.ccc.de/v/jh26berlin-fakt-oder-fake/oembed" frameborder="0" allowfullscreen></iframe>
