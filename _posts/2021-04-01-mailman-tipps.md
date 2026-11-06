@@ -4,7 +4,7 @@ date: 2021-04-01 08:32:17 +0000
 permalink: /mailman-tipps/
 author: "Falko"
 categories: ["Allgemein"]
-tags: ["mailman". "email"]
+tags: ["mailman", "email"]
 wp_id: 2538
 ---
 ### Wenn man Mailingliste für externe zugänglich machen will:
