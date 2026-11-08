@@ -696,3 +696,36 @@ div.entry-content ul.contact-links li {
 	--pagefind-ui-tag: #eee;
 	--pagefind-ui-font: Arial, Helvetica, sans-serif;
 }
+
+/* ===== PORT: "Diese Seite bearbeiten" (_includes/edit-page.html) ===== */
+
+p.edit-page {
+	margin: 20px 0 0;
+	font-size: 11px;
+	color: #808080;
+	overflow-wrap: anywhere;
+}
+
+a.edit-page-button {
+	display: inline-block;
+	margin-right: 8px;
+	padding: 3px 8px;
+	border: 1px dotted #D2D2D2;
+	background: #F6F4F0;
+	color: #000000;
+	text-decoration: none;
+}
+
+a.edit-page-button:hover, a.edit-page-button:focus {
+	color: #76B900;
+	border-color: #76B900;
+}
+
+a.edit-page-source {
+	color: #808080;
+	text-decoration: none;
+}
+
+a.edit-page-source:hover, a.edit-page-source:focus {
+	color: #76B900;
+}

@@ -1,0 +1,10 @@
+{%- comment -%}
+  Port addition: links the page's source file in the GitHub editor (same idea as ifsmb.de).
+  Skipped for generated pages (taxonomy archives) that have no source file.
+{%- endcomment -%}
+{%- if site.repository and page.path %}
+<p class="edit-page" data-pagefind-ignore>
+	<a class="edit-page-button" href="https://github.com/{{ site.repository }}/edit/{{ site.branch | default: 'main' }}/{{ page.path }}" target="_blank" rel="noopener" title="Quelldatei {{ page.path }} auf GitHub bearbeiten">✏️ Diese Seite bearbeiten</a>
+	<a class="edit-page-source" href="https://github.com/{{ site.repository }}/blob/{{ site.branch | default: 'main' }}/{{ page.path }}" target="_blank" rel="noopener"><code>{{ page.path }}</code></a>
+</p>
+{%- endif %}

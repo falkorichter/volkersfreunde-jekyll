@@ -8,6 +8,9 @@ layout: default
 	<div id="left">
 		<div id="content">
 {{ content }}
+{%- unless page.layout == "taxonomy" %}
+{% include edit-page.html %}
+{%- endunless %}
 		</div>
 {% include sidebar-left.html %}
 {% include sidebar-right.html %}
