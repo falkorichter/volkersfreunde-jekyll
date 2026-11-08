@@ -1,0 +1,51 @@
+# Pages CMS (https://app.pagescms.org) – see README "Editing"
+media:
+  input: assets/images
+  output: /assets/images
+
+content:
+  - name: posts
+    label: Beiträge
+    type: collection
+    path: _posts
+    # Only Markdown posts: the rich-text editor would rewrite the HTML posts (embeds, inline styles)
+    extension: md
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date]
+      primary: title
+      sort: date
+      order: desc
+    fields:
+      - name: title
+        label: Titel
+        type: string
+        required: true
+      - name: date
+        label: Datum
+        type: date
+        required: true
+        options:
+          time: true
+          format: "yyyy-MM-dd HH:mm"
+      - name: permalink
+        label: Adresse (z. B. /mein-beitrag/)
+        description: Bei alten Beiträgen nicht ändern – die URLs entsprechen den WordPress-Permalinks.
+        type: string
+      - name: author
+        label: Autor*in
+        type: string
+        default: Falko
+      - name: categories
+        label: Kategorien (z. B. Bildung, Projekte)
+        type: string
+        list: true
+      - name: tags
+        label: Tags (z. B. Berlin, IMI-Showtime)
+        type: string
+        list: true
+      - name: body
+        label: Text
+        type: rich-text
+        options:
+          format: markdown
