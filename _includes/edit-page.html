@@ -1,10 +1,18 @@
 {%- comment -%}
   Port addition: links the page's source file in the GitHub editor (same idea as ifsmb.de).
   Skipped for generated pages (taxonomy archives) that have no source file.
+  Posts still stored as HTML also get "Markdown-Vorschau" (assets/js/md-preview.js).
 {%- endcomment -%}
 {%- if site.repository and page.path %}
 <p class="edit-page" data-pagefind-ignore>
 	<a class="edit-page-button" href="https://github.com/{{ site.repository }}/edit/{{ site.branch | default: 'main' }}/{{ page.path }}" target="_blank" rel="noopener" title="Quelldatei {{ page.path }} auf GitHub bearbeiten">✏️ Diese Seite bearbeiten</a>
+	{%- if page.collection == "posts" and page.path contains ".html" %}
+	<button type="button" class="edit-page-button md-preview-button" hidden data-file="{{ page.path }}" data-baseurl="{{ site.baseurl }}" data-stats="{{ '/statistiken/#html-beitraege' | relative_url }}" data-edit="https://github.com/{{ site.repository }}/edit/{{ site.branch | default: 'main' }}/{{ page.path }}" title="Diesen HTML-Beitrag als Markdown ansehen und zum Bearbeiten kopieren">📝 Markdown-Vorschau</button>
+	{%- endif %}
 	<a class="edit-page-source" href="https://github.com/{{ site.repository }}/blob/{{ site.branch | default: 'main' }}/{{ page.path }}" target="_blank" rel="noopener"><code>{{ page.path }}</code></a>
 </p>
+{%- if page.collection == "posts" and page.path contains ".html" %}
+<script type="application/json" id="md-preview-front">{"title": {{ page.title | jsonify }}, "date": {{ page.date | date: "%Y-%m-%d %H:%M:%S %z" | jsonify }}, "permalink": {{ page.permalink | jsonify }}, "author": {{ page.author | jsonify }}, "categories": {{ page.categories | jsonify }}, "tags": {{ page.tags | jsonify }}, "wp_id": {{ page.wp_id | jsonify }}}</script>
+<script src="{{ '/assets/js/md-preview.js' | relative_url }}" defer></script>
+{%- endif %}
 {%- endif %}

@@ -44,6 +44,9 @@ to avoid the gender debate). This applies to all texts, alt texts, and commit me
   `_layouts/page-nosidebars.html`) shows "✏️ Diese Seite bearbeiten" under every post and page →
   GitHub's editor for `page.path` (repo/branch in `_config.yml` under `repository`/`branch`).
   Generated category/tag archives get no button.
+- **Markdown-Vorschau** on HTML posts: `assets/js/md-preview.js` (same safe subset as
+  `_migration/html2md.py` – keep both in sync). `_data/html_report.json` (shown on `/statistiken/`)
+  comes from `python3 _migration/html_report.py`; re-run it after converting or editing HTML posts.
 - CMS: [Pages CMS](https://pagescms.org), config in `.pages.yml` (Markdown posts only). Keep it in sync
   when posts get new front-matter fields.
 
