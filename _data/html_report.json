@@ -1,0 +1,2746 @@
+{
+ "html_posts": 224,
+ "lenient_identical": 164,
+ "features": [
+  {
+   "id": "style",
+   "label": "Inline-Styles (style=…)",
+   "lost": "Farben, Schriftgrößen, Abstände und Ausrichtungen, die direkt am Element stehen.",
+   "kramdown_syntax": false,
+   "posts": 81,
+   "only": 33
+  },
+  {
+   "id": "iframe",
+   "label": "Eingebettete Videos und Karten (iframe)",
+   "lost": "Der Player bzw. die Karte – reines Markdown kann nichts einbetten, übrig bliebe ein Link.",
+   "kramdown_syntax": false,
+   "posts": 47,
+   "only": 29
+  },
+  {
+   "id": "div",
+   "label": "Container (div, span)",
+   "lost": "Gruppierungen mit eigener Gestaltung, z. B. Galerien und Hinweiskästen.",
+   "kramdown_syntax": false,
+   "posts": 45,
+   "only": 4
+  },
+  {
+   "id": "render",
+   "label": "Nur feine Unterschiede beim Rendern",
+   "lost": "Fast nichts: ein Zeilenumbruch am Absatzende, leere Sprungmarken-Links, ein Leerzeichen innerhalb von fett/kursiv oder Listen, die kramdown mit etwas mehr Abstand setzt. Alle Elemente sind Markdown-fähig, nur das Ergebnis ist nicht Zeichen für Zeichen gleich.",
+   "kramdown_syntax": true,
+   "posts": 40,
+   "only": 40
+  },
+  {
+   "id": "class",
+   "label": "CSS-Klassen und Sprungmarken an Absätzen, Listen, Links (class, id)",
+   "lost": "Gestaltung über Klassen (z. B. WordPress-Galerien) und Anker für Links innerhalb der Seite. kramdown kann Klassen mit {: .klasse} setzen, das Ergebnis ist aber kaum noch lesbar.",
+   "kramdown_syntax": true,
+   "posts": 19,
+   "only": 9
+  },
+  {
+   "id": "figure",
+   "label": "Bilder mit Bildunterschrift (figure, figcaption)",
+   "lost": "Die Verbindung von Bild und Unterschrift; die Unterschrift würde ein normaler Absatz.",
+   "kramdown_syntax": false,
+   "posts": 17,
+   "only": 0
+  },
+  {
+   "id": "other",
+   "label": "Sonstiges (Attribute an Bildern, Zeilenumbrüchen, Links …)",
+   "lost": "Kleinigkeiten wie style an Bildern oder Zeilenumbrüche mit clear.",
+   "kramdown_syntax": false,
+   "posts": 17,
+   "only": 7
+  },
+  {
+   "id": "script",
+   "label": "Skripte und eingebettetes CSS (script, style)",
+   "lost": "Das Verhalten bzw. Aussehen, das die Skripte und Styles erzeugen.",
+   "kramdown_syntax": false,
+   "posts": 13,
+   "only": 2
+  },
+  {
+   "id": "strike",
+   "label": "Durchgestrichener Text (strike, s)",
+   "lost": "Das Durchstreichen – kramdown hat dafür keine Syntax.",
+   "kramdown_syntax": false,
+   "posts": 12,
+   "only": 10
+  },
+  {
+   "id": "align",
+   "label": "Ausrichtung per align=… (Absätze, Tabellen)",
+   "lost": "Zentrierte oder rechtsbündige Absätze.",
+   "kramdown_syntax": false,
+   "posts": 11,
+   "only": 4
+  },
+  {
+   "id": "embed-gone",
+   "label": "Hinweis „Flash-Video nicht mehr abspielbar“",
+   "lost": "Der gestaltete Hinweiskasten – er würde zu einem normalen Absatz.",
+   "kramdown_syntax": false,
+   "posts": 8,
+   "only": 7
+  },
+  {
+   "id": "abbr",
+   "label": "Abkürzungen mit Erklärung (abbr)",
+   "lost": "Nichts, wenn man kramdowns Abkürzungen (*[HTML]: …) nutzt – die gelten dann aber für den ganzen Beitrag.",
+   "kramdown_syntax": true,
+   "posts": 8,
+   "only": 6
+  },
+  {
+   "id": "dl",
+   "label": "Definitionslisten (dl, dt, dd)",
+   "lost": "Die CSS-Klassen der Liste; kramdown kennt Definitionslisten.",
+   "kramdown_syntax": true,
+   "posts": 8,
+   "only": 0
+  },
+  {
+   "id": "audio",
+   "label": "Audio-Player (audio)",
+   "lost": "Der Player – übrig bliebe ein Link auf die MP3-Datei.",
+   "kramdown_syntax": false,
+   "posts": 7,
+   "only": 0
+  },
+  {
+   "id": "comment",
+   "label": "HTML-Kommentare",
+   "lost": "Nichts Sichtbares – Kommentare sind ohnehin unsichtbar.",
+   "kramdown_syntax": true,
+   "posts": 5,
+   "only": 2
+  },
+  {
+   "id": "small",
+   "label": "Kleine Schrift, Zitate (small, cite)",
+   "lost": "Die Auszeichnung (kleinere Schrift bzw. Werktitel).",
+   "kramdown_syntax": false,
+   "posts": 4,
+   "only": 1
+  },
+  {
+   "id": "pre",
+   "label": "Vorformatierter Text (pre)",
+   "lost": "Nichts – als Codeblock darstellbar, nur der Umbau fehlt noch.",
+   "kramdown_syntax": true,
+   "posts": 2,
+   "only": 2
+  },
+  {
+   "id": "table",
+   "label": "Tabellen (table)",
+   "lost": "Breiten und Ausrichtung der Zellen; kramdown kennt einfache Tabellen.",
+   "kramdown_syntax": true,
+   "posts": 1,
+   "only": 0
+  },
+  {
+   "id": "broken",
+   "label": "Kaputtes HTML aus WordPress (z. B. <size>, <your>)",
+   "lost": "Nichts Gewolltes – das sind Reste von Tippfehlern im alten Editor.",
+   "kramdown_syntax": false,
+   "posts": 1,
+   "only": 0
+  }
+ ],
+ "posts": [
+  {
+   "file": "_posts/2007-04-03-medien-technik-ubung-no-1.html",
+   "title": "Medien Technik Übung No. 1",
+   "url": "/medien-technik-ubung-no-1/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-04-15-mymapblogcom.html",
+   "title": "myMapBlog",
+   "url": "/mymapblogcom/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-04-23-medien-technik-ubung-no-2-2.html",
+   "title": "Medien Technik Übung No. 2",
+   "url": "/medien-technik-ubung-no-2-2/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 5
+  },
+  {
+   "file": "_posts/2007-05-08-medien-technik-ubung-no-3.html",
+   "title": "Medien Technik Übung No. 3",
+   "url": "/medien-technik-ubung-no-3/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 21
+  },
+  {
+   "file": "_posts/2007-05-15-schicke-couch-von-andi.html",
+   "title": "Schicke Couch abzugeben",
+   "url": "/schicke-couch-von-andi/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-05-16-riddle-falkodaniel.html",
+   "title": "Riddle X3",
+   "url": "/riddle-falkodaniel/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 48
+  },
+  {
+   "file": "_posts/2007-05-18-die-freunde-on-tour.html",
+   "title": "Die Freunde on Tour",
+   "url": "/die-freunde-on-tour/",
+   "features": [
+    "style",
+    "align"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 3,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2007-05-20-volker-war-bei-starbucks.html",
+   "title": "Volker war bei Starbucks",
+   "url": "/volker-war-bei-starbucks/",
+   "features": [
+    "align"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 3,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2007-05-21-der-alte-volker.html",
+   "title": "Der Alte Volker",
+   "url": "/der-alte-volker/",
+   "features": [
+    "align"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2007-05-24-vorlesung-im-grunen.html",
+   "title": "Vorlesung im Grünen",
+   "url": "/vorlesung-im-grunen/",
+   "features": [
+    "style",
+    "align",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 4,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2007-05-30-am-samstag-zum-ssv-lehnitz.html",
+   "title": "Am Samstag zum SSV Lehnitz",
+   "url": "/am-samstag-zum-ssv-lehnitz/",
+   "features": [
+    "align"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 3,
+   "html_share": 44
+  },
+  {
+   "file": "_posts/2007-05-30-kafer-finden.html",
+   "title": "Käfer finden",
+   "url": "/kafer-finden/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 7
+  },
+  {
+   "file": "_posts/2007-06-02-mit-muke-gewonnen.html",
+   "title": "Mit Myke gewonnen",
+   "url": "/mit-muke-gewonnen/",
+   "features": [
+    "script",
+    "style",
+    "align",
+    "div",
+    "dl"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 7,
+   "html_share": 52
+  },
+  {
+   "file": "_posts/2007-06-04-grillen-bei-volker.html",
+   "title": "Grillen bei Volkersfreunden",
+   "url": "/grillen-bei-volker/",
+   "features": [
+    "script",
+    "style",
+    "div",
+    "dl"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 74
+  },
+  {
+   "file": "_posts/2007-06-08-another-world-is-possible.html",
+   "title": "Another world is possible!",
+   "url": "/another-world-is-possible/",
+   "features": [
+    "script",
+    "style",
+    "div",
+    "dl"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 55
+  },
+  {
+   "file": "_posts/2007-06-11-another-world-is-still-possible.html",
+   "title": "Another world is still possible!",
+   "url": "/another-world-is-still-possible/",
+   "features": [
+    "script",
+    "style",
+    "div",
+    "dl"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 53
+  },
+  {
+   "file": "_posts/2007-06-11-die-schonsten-kommen-aus-berlin.html",
+   "title": "Die Schönsten kommen aus Berlin",
+   "url": "/die-schonsten-kommen-aus-berlin/",
+   "features": [
+    "script",
+    "style",
+    "div",
+    "dl"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 29
+  },
+  {
+   "file": "_posts/2007-06-11-und-zum-fruhstuck-ham-and-eggs.html",
+   "title": "Und zum Frühstück: Ham and Eggs",
+   "url": "/und-zum-fruhstuck-ham-and-eggs/",
+   "features": [
+    "script",
+    "style",
+    "div",
+    "dl"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 2,
+   "html_share": 16
+  },
+  {
+   "file": "_posts/2007-06-12-nach-der-uni-an-den-see.html",
+   "title": "Der große Badereport No.1",
+   "url": "/nach-der-uni-an-den-see/",
+   "features": [
+    "script",
+    "style",
+    "div",
+    "dl"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 23,
+   "html_share": 64
+  },
+  {
+   "file": "_posts/2007-06-14-probleme-mit-dem-muller.html",
+   "title": "Probleme mit dem Müller",
+   "url": "/probleme-mit-dem-muller/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-06-14-ted-empfehlungen.html",
+   "title": "Video Empfehlungen",
+   "url": "/ted-empfehlungen/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 9
+  },
+  {
+   "file": "_posts/2007-06-20-open-source.html",
+   "title": "Kommerzielle Nutzung von Open Source",
+   "url": "/open-source/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-06-28-mete-pruefungsvorbereitung.html",
+   "title": "Mete Prüfungsvorbereitung",
+   "url": "/mete-pruefungsvorbereitung/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 8,
+   "html_share": 23
+  },
+  {
+   "file": "_posts/2007-07-15-imi-showtime-sose07.html",
+   "title": "imi.Showtime() SoSe07",
+   "url": "/imi-showtime-sose07/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-07-16-raetsel-fuer-die-semesterferien.html",
+   "title": "Rätsel für die Semesterferien",
+   "url": "/raetsel-fuer-die-semesterferien/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-08-06-norwegen-panoramen-sagen-mehr-als-worte.html",
+   "title": "Norwegen – Panoramen und weitere Fotos",
+   "url": "/norwegen-panoramen-sagen-mehr-als-worte/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-08-07-opensearch-in-5-minuten.html",
+   "title": "Opensearch in 5 Minuten",
+   "url": "/opensearch-in-5-minuten/",
+   "features": [
+    "pre"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 6
+  },
+  {
+   "file": "_posts/2007-09-01-ifa-vs-cebit.html",
+   "title": "IFA vs. Cebit",
+   "url": "/ifa-vs-cebit/",
+   "features": [
+    "other"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 2,
+   "html_share": 8
+  },
+  {
+   "file": "_posts/2007-09-16-buzz-der-woche.html",
+   "title": "Buzz der Woche",
+   "url": "/buzz-der-woche/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-09-23-doodlede-sachen-veranstalten.html",
+   "title": "doodle.de – Sachen veranstalten",
+   "url": "/doodlede-sachen-veranstalten/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2007-09-23-freiheit-statt-angst-demo-gegen-die-vorratsdatenspeicherung.html",
+   "title": "Freiheit statt Angst – Demo gegen die Vorratsdatenspeicherung",
+   "url": "/freiheit-statt-angst-demo-gegen-die-vorratsdatenspeicherung/",
+   "features": [
+    "strike"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 2,
+   "html_share": 45
+  },
+  {
+   "file": "_posts/2007-10-04-free-burma.html",
+   "title": "Free Burma",
+   "url": "/free-burma/",
+   "features": [
+    "comment",
+    "other"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-10-05-aus-dem-netz-gefischt-0110-051007.html",
+   "title": "Aus dem Netz gefischt  [01.10-05.10.2007]",
+   "url": "/aus-dem-netz-gefischt-0110-051007/",
+   "features": [
+    "class"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 62
+  },
+  {
+   "file": "_posts/2007-10-06-web-20-expo-berlin-2007.html",
+   "title": "Web 2.0 Expo Berlin 2007",
+   "url": "/web-20-expo-berlin-2007/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2007-10-16-which-file-extension-are-you.html",
+   "title": "Which File Extension Are You?",
+   "url": "/which-file-extension-are-you/",
+   "features": [
+    "other"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-10-18-which-betriebssystem-are-you.html",
+   "title": "Which Betriebssystem are you?",
+   "url": "/which-betriebssystem-are-you/",
+   "features": [
+    "other"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 2,
+   "html_share": 21
+  },
+  {
+   "file": "_posts/2007-10-19-which-programming-language-are-you.html",
+   "title": "Which Programming Language are you?",
+   "url": "/which-programming-language-are-you/",
+   "features": [
+    "other"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 12
+  },
+  {
+   "file": "_posts/2007-10-22-gewinnen.html",
+   "title": "Gewinnen",
+   "url": "/gewinnen/",
+   "features": [
+    "other"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 6
+  },
+  {
+   "file": "_posts/2007-10-23-meine-erste-homepage.html",
+   "title": "Meine erste Homepage…",
+   "url": "/meine-erste-homepage/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 63
+  },
+  {
+   "file": "_posts/2007-11-01-elektrischer-reporter.html",
+   "title": "Elektrischer Reporter",
+   "url": "/elektrischer-reporter/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-11-03-ueberwachung-vs-freiheit-vs-datenschutz.html",
+   "title": "Überwachung vs. Freiheit vs. Datenschutz",
+   "url": "/ueberwachung-vs-freiheit-vs-datenschutz/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 3,
+   "html_share": 28
+  },
+  {
+   "file": "_posts/2007-11-09-23-kurzfilmfestival.html",
+   "title": "23. Kurzfilmfestival",
+   "url": "/23-kurzfilmfestival/",
+   "features": [
+    "strike"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 14
+  },
+  {
+   "file": "_posts/2007-11-09-das-internet-trauert-um-das-telekommunikationsgeheimnis-08112007.html",
+   "title": "Das Internet trauert um das Telekommunikationsgeheimnis (08.11.2007)",
+   "url": "/das-internet-trauert-um-das-telekommunikationsgeheimnis-08112007/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 89
+  },
+  {
+   "file": "_posts/2007-11-09-happy-boersday2.html",
+   "title": "happy börsday[2]",
+   "url": "/happy-boersday2/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-11-09-sauerei-kein-semesterticket.html",
+   "title": "Sauerei: kein Semesterticket!",
+   "url": "/sauerei-kein-semesterticket/",
+   "features": [
+    "strike"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 14
+  },
+  {
+   "file": "_posts/2007-11-10-ich-und-mein-erstes-mikroblog-oder-was-ist-eigetlich-twitter-1.html",
+   "title": "“Ich und mein erstes Mikroblog” oder “Was ist eigetlich Twitter?” [1]",
+   "url": "/ich-und-mein-erstes-mikroblog-oder-was-ist-eigetlich-twitter-1/",
+   "features": [
+    "strike"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 4,
+   "html_share": 23
+  },
+  {
+   "file": "_posts/2007-11-11-zur-hoelle.html",
+   "title": "“Zur Hölle”",
+   "url": "/zur-hoelle/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-11-15-and-the-winner-is.html",
+   "title": "and the winner is…",
+   "url": "/and-the-winner-is/",
+   "features": [
+    "strike"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 61
+  },
+  {
+   "file": "_posts/2007-11-19-kostenlose-arcor-hotline.html",
+   "title": "Kostenlose Arcor Hotline",
+   "url": "/kostenlose-arcor-hotline/",
+   "features": [
+    "strike"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 63
+  },
+  {
+   "file": "_posts/2007-11-20-neues-google-maps-feature.html",
+   "title": "neues Google Maps Feature",
+   "url": "/neues-google-maps-feature/",
+   "features": [
+    "iframe",
+    "style",
+    "small"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 22
+  },
+  {
+   "file": "_posts/2007-11-22-klein-aber-oho.html",
+   "title": "Klein, aber oho! Asus Eee PC",
+   "url": "/klein-aber-oho/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-11-23-einweihungsfeier-bei-simi.html",
+   "title": "Einweihungsfeier bei Simi",
+   "url": "/einweihungsfeier-bei-simi/",
+   "features": [
+    "strike"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 72
+  },
+  {
+   "file": "_posts/2007-11-24-aus-dem-netz-gefischt-1611-24112007.html",
+   "title": "Aus dem Netz gefischt [16.11-24.11.2007]",
+   "url": "/aus-dem-netz-gefischt-1611-24112007/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-11-27-medienproduktion-berlin-2007.html",
+   "title": "Medienproduktion Berlin 2007",
+   "url": "/medienproduktion-berlin-2007/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 55
+  },
+  {
+   "file": "_posts/2007-11-28-fingerabdrucksystem-ueberlistet.html",
+   "title": "Fingerabdrucksystem überlistet",
+   "url": "/fingerabdrucksystem-ueberlistet/",
+   "features": [
+    "comment"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-11-28-live-von-der-stupa-sitzung.html",
+   "title": "Live von der StuPa Sitzung",
+   "url": "/live-von-der-stupa-sitzung/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 3,
+   "html_share": 36
+  },
+  {
+   "file": "_posts/2007-11-29-meine-seite.html",
+   "title": "Meine seite…",
+   "url": "/meine-seite/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-12-01-erich-lebt.html",
+   "title": "Erich lebt…",
+   "url": "/erich-lebt/",
+   "features": [
+    "strike"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2007-12-14-aus-dem-netz-gefischt-2911-13122007.html",
+   "title": "Aus dem Netz gefischt [29.11.-13.12.2007]",
+   "url": "/aus-dem-netz-gefischt-2911-13122007/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 2
+  },
+  {
+   "file": "_posts/2007-12-14-die-kanzlerin-liest-volkersfreundede.html",
+   "title": "Die Kanzlerin liest volkersfreunde.de",
+   "url": "/die-kanzlerin-liest-volkersfreundede/",
+   "features": [
+    "align"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 4,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2007-12-17-mypodder-ein-exzelenter-podcatcher.html",
+   "title": "myPodder – ein exzellenter Podcatcher",
+   "url": "/mypodder-ein-exzelenter-podcatcher/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-12-18-gliffy-oder-wie-collaboration-funktioniert.html",
+   "title": "Gliffy – oder wie Collaboration funktioniert",
+   "url": "/gliffy-oder-wie-collaboration-funktioniert/",
+   "features": [
+    "style",
+    "other"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 2,
+   "html_share": 28
+  },
+  {
+   "file": "_posts/2007-12-19-wien-20-mit-dem-travelwiki.html",
+   "title": "Wien 2.0 – mit dem Travelwiki",
+   "url": "/wien-20-mit-dem-travelwiki/",
+   "features": [
+    "class"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 46
+  },
+  {
+   "file": "_posts/2007-12-25-video-tutorial-mobile-gmaps.html",
+   "title": "Video-Tutorial: Mobile GMaps",
+   "url": "/video-tutorial-mobile-gmaps/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2007-12-26-frohes-fest-2007.html",
+   "title": "frohes fest 2007",
+   "url": "/frohes-fest-2007/",
+   "features": [
+    "comment"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-01-02-30000-gegen-schaeuble.html",
+   "title": "30000 gegen Schäuble",
+   "url": "/30000-gegen-schaeuble/",
+   "features": [
+    "small",
+    "other"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-01-03-vom-funken-zum-pixel.html",
+   "title": "Vom Funken zum Pixel",
+   "url": "/vom-funken-zum-pixel/",
+   "features": [
+    "style",
+    "strike"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 76
+  },
+  {
+   "file": "_posts/2008-01-07-google-praesentation.html",
+   "title": "Präsentation 2.0 – Reich durch Web 2.0",
+   "url": "/google-praesentation/",
+   "features": [
+    "iframe",
+    "align"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-01-09-fon-wifi-fuer-jeden.html",
+   "title": "FON – WiFi für jeden",
+   "url": "/fon-wifi-fuer-jeden/",
+   "features": [
+    "abbr"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 3,
+   "html_share": 75
+  },
+  {
+   "file": "_posts/2008-01-11-aus-dem-netz-gefischt-0301-11012008.html",
+   "title": "Aus dem Netz gefischt [03.01-11.01.2008]",
+   "url": "/aus-dem-netz-gefischt-0301-11012008/",
+   "features": [
+    "other"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 85
+  },
+  {
+   "file": "_posts/2008-01-16-apple-keynote-08-ein-review.html",
+   "title": "Apple Keynote ’08 – ein Review",
+   "url": "/apple-keynote-08-ein-review/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 62
+  },
+  {
+   "file": "_posts/2008-01-21-aus-dem-netz-gefischt-1101-21012008.html",
+   "title": "Aus dem Netz gefischt [11.01.-21.01.2008]",
+   "url": "/aus-dem-netz-gefischt-1101-21012008/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-01-29-java-mysql-connector-j-direkt-downloaden.html",
+   "title": "Java MySQL Connector-J direkt downloaden",
+   "url": "/java-mysql-connector-j-direkt-downloaden/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-02-09-abschlussprojekte-mete-ii.html",
+   "title": "Abschlussprojekte Mete II",
+   "url": "/abschlussprojekte-mete-ii/",
+   "features": [
+    "align",
+    "other"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 7,
+   "html_share": 36
+  },
+  {
+   "file": "_posts/2008-03-03-auf-nach-florenz.html",
+   "title": "Auf nach Florenz!",
+   "url": "/auf-nach-florenz/",
+   "features": [
+    "strike"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 82
+  },
+  {
+   "file": "_posts/2008-03-04-lust-auf-osteuropa.html",
+   "title": "Lust auf Osteuropa?",
+   "url": "/lust-auf-osteuropa/",
+   "features": [
+    "other"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 30
+  },
+  {
+   "file": "_posts/2008-03-09-wir-bestreiken-berlin.html",
+   "title": "Aktion “Wir bestreiken Berlin”",
+   "url": "/wir-bestreiken-berlin/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 23
+  },
+  {
+   "file": "_posts/2008-03-17-alles-gute.html",
+   "title": "Alles Gute!",
+   "url": "/alles-gute/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-03-20-prag-eine-auswertung.html",
+   "title": "Prag – eine Auswertung",
+   "url": "/prag-eine-auswertung/",
+   "features": [
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 64
+  },
+  {
+   "file": "_posts/2008-04-01-publicons-dein-leben-in-microbuttons.html",
+   "title": "Publicons – Dein Leben in Microbuttons",
+   "url": "/publicons-dein-leben-in-microbuttons/",
+   "features": [
+    "style",
+    "other"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-04-02-podcast-no1-republica.html",
+   "title": "Podcast No1 – re:publica",
+   "url": "/podcast-no1-republica/",
+   "features": [
+    "audio",
+    "figure",
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 4,
+   "html_share": 50
+  },
+  {
+   "file": "_posts/2008-04-02-republica08.html",
+   "title": "#Republica08",
+   "url": "/republica08/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 29
+  },
+  {
+   "file": "_posts/2008-04-04-nun-auch-in-deutschland.html",
+   "title": "Nun auch in Deutschland :)",
+   "url": "/nun-auch-in-deutschland/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-04-04-zeitraffer-rp08.html",
+   "title": "Zeitraffer #rp08",
+   "url": "/zeitraffer-rp08/",
+   "features": [
+    "iframe",
+    "figure",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-04-07-wordpress-gehackt.html",
+   "title": "WordPress gehackt",
+   "url": "/wordpress-gehackt/",
+   "features": [
+    "style",
+    "abbr"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 4,
+   "html_share": 84
+  },
+  {
+   "file": "_posts/2008-04-10-volkersfreunde-feat-upload-podcast-die-republica08.html",
+   "title": "Volkersfreunde feat. Upload Podcast – UPL45: Falko & Jan & die re:publica08",
+   "url": "/volkersfreunde-feat-upload-podcast-die-republica08/",
+   "features": [
+    "audio",
+    "figure",
+    "style"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 2,
+   "html_share": 2
+  },
+  {
+   "file": "_posts/2008-04-20-wg-zimmer.html",
+   "title": "nettes WG-Zimmer ab Juni 2008",
+   "url": "/wg-zimmer/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 3,
+   "html_share": 23
+  },
+  {
+   "file": "_posts/2008-04-24-yeah-cool.html",
+   "title": "Upload feat. volkersfreunde.de No 2 – UPL47: Falko & Jan & Twitter",
+   "url": "/yeah-cool/",
+   "features": [
+    "audio",
+    "figure",
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 3
+  },
+  {
+   "file": "_posts/2008-05-05-gratisscriptde.html",
+   "title": "Gratisscript.de",
+   "url": "/gratisscriptde/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-05-07-gewonnen.html",
+   "title": "Gewonnen",
+   "url": "/gewonnen/",
+   "features": [
+    "script",
+    "style",
+    "div",
+    "dl"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 37
+  },
+  {
+   "file": "_posts/2008-05-08-pdf-als-flash.html",
+   "title": "PDF als Flash",
+   "url": "/pdf-als-flash/",
+   "features": [
+    "embed-gone",
+    "style",
+    "class",
+    "div",
+    "other"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 3,
+   "html_share": 4
+  },
+  {
+   "file": "_posts/2008-05-08-thickbox-issuucom.html",
+   "title": "Thickbox + issuu.com",
+   "url": "/thickbox-issuucom/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 33
+  },
+  {
+   "file": "_posts/2008-05-13-windoofs.html",
+   "title": "Windoofs",
+   "url": "/windoofs/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-05-15-haeppi-boersday-volkersfreundede.html",
+   "title": "Häppi Börsday Volkersfreunde.de",
+   "url": "/haeppi-boersday-volkersfreundede/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 22
+  },
+  {
+   "file": "_posts/2008-05-21-erfahrungsbericht-asus-notebook-garantie.html",
+   "title": "Erfahrungsbericht ASUS Notebook-Garantie",
+   "url": "/erfahrungsbericht-asus-notebook-garantie/",
+   "features": [
+    "abbr"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 2,
+   "html_share": 19
+  },
+  {
+   "file": "_posts/2008-06-02-3-tage-borgia-senza-la-b.html",
+   "title": "Florenz 2008 – 3 Tage Borgia (remix)",
+   "url": "/3-tage-borgia-senza-la-b/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-06-03-podcasting4anfaenger.html",
+   "title": "Podcasting4Anfänger – UPL49: Falko & Jan & Podcasting für Einsteiger",
+   "url": "/podcasting4anfaenger/",
+   "features": [
+    "audio",
+    "figure"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 8
+  },
+  {
+   "file": "_posts/2008-06-15-firefox-3.html",
+   "title": "Firefox 3.0 – Wir brechen den Rekord",
+   "url": "/firefox-3/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-06-18-flock-20-beta.html",
+   "title": "Flock 2.0 Beta",
+   "url": "/flock-20-beta/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-07-15-wordpress-26.html",
+   "title": "WordPress 2.6 – jetzt downloaden",
+   "url": "/wordpress-26/",
+   "features": [
+    "embed-gone"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 10
+  },
+  {
+   "file": "_posts/2008-07-16-guide-to-microformats-eine-nettes-video.html",
+   "title": "Guide to Microformats – eine nettes Video",
+   "url": "/guide-to-microformats-eine-nettes-video/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-07-16-upl57-falko-jan-madrid-wordpress-26-iphone-3g.html",
+   "title": "Upload feat. volkersfreunde.de – UPL57: Falko & Jan & Madrid, WordPress 2.6, iPhone 3G",
+   "url": "/upl57-falko-jan-madrid-wordpress-26-iphone-3g/",
+   "features": [
+    "audio",
+    "figure"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 1
+  },
+  {
+   "file": "_posts/2008-07-23-wordpress-for-iphone.html",
+   "title": "WordPress for iPhone",
+   "url": "/wordpress-for-iphone/",
+   "features": [
+    "embed-gone"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-08-05-warum-photos-nicht-nur-im-studi-sein-sollten.html",
+   "title": "Warum Photos nicht nur im Studi sein sollten",
+   "url": "/warum-photos-nicht-nur-im-studi-sein-sollten/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 38
+  },
+  {
+   "file": "_posts/2008-08-08-volkersfreunde-im-gameslab.html",
+   "title": "Volkersfreunde im Gameslab",
+   "url": "/volkersfreunde-im-gameslab/",
+   "features": [
+    "style",
+    "class",
+    "div"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 8
+  },
+  {
+   "file": "_posts/2008-08-14-map-track.html",
+   "title": "gmap-track",
+   "url": "/map-track/",
+   "features": [
+    "iframe",
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 5
+  },
+  {
+   "file": "_posts/2008-08-15-jugendmedientage-2008-in-mainz.html",
+   "title": "Jugendmedientage 2008 in Mainz",
+   "url": "/jugendmedientage-2008-in-mainz/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 92
+  },
+  {
+   "file": "_posts/2008-08-17-pixolu-find-what-you-imagine.html",
+   "title": "Pixolu – find what you imagine",
+   "url": "/pixolu-find-what-you-imagine/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-08-22-falko-en-madrid-2-preview.html",
+   "title": "Falko en Madrid 2 – Preview",
+   "url": "/falko-en-madrid-2-preview/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-08-22-falko-en-madrid-3.html",
+   "title": "Falko en Madrid 3",
+   "url": "/falko-en-madrid-3/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-08-22-falko-en-madrid-preview.html",
+   "title": "Falko en Madrid – Preview",
+   "url": "/falko-en-madrid-preview/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-08-22-my-house-has-a-pool.html",
+   "title": "My house has a pool",
+   "url": "/my-house-has-a-pool/",
+   "features": [
+    "iframe",
+    "style",
+    "small"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-09-18-erfahrungsbericht-asus-notebook-garantie-2.html",
+   "title": "Erfahrungsbericht ASUS Notebook-Garantie 2",
+   "url": "/erfahrungsbericht-asus-notebook-garantie-2/",
+   "features": [
+    "abbr"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 8
+  },
+  {
+   "file": "_posts/2008-09-27-holux-m241-bluetooth-gps-logger-angefasst.html",
+   "title": "Holux M241 Bluetooth GPS Logger angefasst",
+   "url": "/holux-m241-bluetooth-gps-logger-angefasst/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-09-27-volkersfreunde-techgespraeche-android.html",
+   "title": "Volkersfreunde TechGespräche – Android",
+   "url": "/volkersfreunde-techgespraeche-android/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-10-01-origam.html",
+   "title": "Beeindruckende Mathematik",
+   "url": "/origam/",
+   "features": [
+    "embed-gone"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 22
+  },
+  {
+   "file": "_posts/2008-10-03-aus-dem-netz-gefischt.html",
+   "title": "Aus dem Netz gefischt",
+   "url": "/aus-dem-netz-gefischt/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-10-03-berlinjar-die-java-konferenz-in-berlin.html",
+   "title": "berlin.jar – Die Java-Konferenz in Berlin",
+   "url": "/berlinjar-die-java-konferenz-in-berlin/",
+   "features": [
+    "abbr"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 29
+  },
+  {
+   "file": "_posts/2008-10-04-demo-gegen-den-ueberwachunswahn.html",
+   "title": "Demo gegen den Überwachunswahn",
+   "url": "/demo-gegen-den-ueberwachunswahn/",
+   "features": [
+    "iframe",
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-10-05-forvolkersfreunde.html",
+   "title": "for:Volkersfreunde",
+   "url": "/forvolkersfreunde/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-10-06-old3-school-programming.html",
+   "title": "Old^3 School Programming",
+   "url": "/old3-school-programming/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 49
+  },
+  {
+   "file": "_posts/2008-10-07-wordpress-html-css-auf-einen-blick.html",
+   "title": "WordPress, HTML, CSS auf einen Blick!",
+   "url": "/wordpress-html-css-auf-einen-blick/",
+   "features": [
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 58
+  },
+  {
+   "file": "_posts/2008-10-10-ct-tv-schick-und-neu.html",
+   "title": "c’t-TV – schick und neu",
+   "url": "/ct-tv-schick-und-neu/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-10-12-freiheit-statt-angst.html",
+   "title": "Freiheit statt Angst",
+   "url": "/freiheit-statt-angst/",
+   "features": [
+    "abbr"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 14
+  },
+  {
+   "file": "_posts/2008-10-13-links-3-13okt.html",
+   "title": "Aus dem Netz gefischt (3.-13. Oktober 2008)",
+   "url": "/links-3-13okt/",
+   "features": [
+    "style",
+    "class",
+    "div"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 94
+  },
+  {
+   "file": "_posts/2008-10-21-wenn-kleine-brueder-langeweile-haben.html",
+   "title": "Wenn kleine Brüder Langeweile haben",
+   "url": "/wenn-kleine-brueder-langeweile-haben/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 88
+  },
+  {
+   "file": "_posts/2008-10-23-lafonera20-preview.html",
+   "title": "LaFonera2.0 Preview",
+   "url": "/lafonera20-preview/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 2,
+   "html_share": 46
+  },
+  {
+   "file": "_posts/2008-10-29-aus-dem-netz-gefischt-20-29-oktober-2008.html",
+   "title": "Aus dem Netz gefischt (20.-29. Oktober 2008)",
+   "url": "/aus-dem-netz-gefischt-20-29-oktober-2008/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-11-21-aus-dem-netz-gefischt-11-21sept-2008.html",
+   "title": "Aus dem Netz gefischt (11.-21.Sept. 2008)",
+   "url": "/aus-dem-netz-gefischt-11-21sept-2008/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 91
+  },
+  {
+   "file": "_posts/2008-11-23-iphone-werbespot.html",
+   "title": "iPhone Werbespot",
+   "url": "/iphone-werbespot/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-11-27-the-bobs.html",
+   "title": "The BOBs",
+   "url": "/the-bobs/",
+   "features": [
+    "div"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 66
+  },
+  {
+   "file": "_posts/2008-11-30-youtube-live-eine-medienrevolution.html",
+   "title": "YouTube live – eine Medienrevolution?",
+   "url": "/youtube-live-eine-medienrevolution/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-12-03-apple-simpson.html",
+   "title": "miPod and mapple",
+   "url": "/apple-simpson/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-12-03-aus-dem-leben-eine-entwicklers.html",
+   "title": "aus dem Leben eine Entwicklers",
+   "url": "/aus-dem-leben-eine-entwicklers/",
+   "features": [
+    "embed-gone"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 61
+  },
+  {
+   "file": "_posts/2008-12-03-aus-dem-netz-gefischt-21sept-02dez-2008.html",
+   "title": "Aus dem Netz gefischt (21.Sept.-02.Dez 2008)",
+   "url": "/aus-dem-netz-gefischt-21sept-02dez-2008/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-12-10-regex.html",
+   "title": "Regex",
+   "url": "/regex/",
+   "features": [
+    "style",
+    "class",
+    "div",
+    "other"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 16,
+   "html_share": 24
+  },
+  {
+   "file": "_posts/2008-12-18-volkersfreundinnengeschenke.html",
+   "title": "Volkersfreundinnengeschenke",
+   "url": "/volkersfreundinnengeschenke/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2008-12-19-aus-dem-netz-gefischt-02-19-dez.html",
+   "title": "Aus dem Netz gefischt (02.-19.Dez 2008)",
+   "url": "/aus-dem-netz-gefischt-02-19-dez/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2008-12-21-koelner-aufruf-gegen-computergewalt.html",
+   "title": "Kölner Aufruf gegen Computergewalt",
+   "url": "/koelner-aufruf-gegen-computergewalt/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 3,
+   "html_share": 82
+  },
+  {
+   "file": "_posts/2009-01-07-fiktive-personen.html",
+   "title": "Fiktive Personen???",
+   "url": "/fiktive-personen/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2009-01-15-openstreetmap-2008.html",
+   "title": "OpenStreetMap 2008",
+   "url": "/openstreetmap-2008/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2009-01-25-sankt-oberholz-cafe-fuer-nerds.html",
+   "title": "Sankt Oberholz – Café für Nerds",
+   "url": "/sankt-oberholz-cafe-fuer-nerds/",
+   "features": [
+    "small"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 5
+  },
+  {
+   "file": "_posts/2009-01-26-showtime-sose09.html",
+   "title": "Showtime WiSe 08/09",
+   "url": "/showtime-sose09/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 3,
+   "html_share": 23
+  },
+  {
+   "file": "_posts/2009-03-10-firefox-plugins-bauen-lernen.html",
+   "title": "Firefox Plugins bauen lernen",
+   "url": "/firefox-plugins-bauen-lernen/",
+   "features": [
+    "style",
+    "align",
+    "class",
+    "div",
+    "table"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 3,
+   "html_share": 95
+  },
+  {
+   "file": "_posts/2009-03-13-sms-versand-mit-windows-mobile.html",
+   "title": "SMS-Versand mit Windows Mobile",
+   "url": "/sms-versand-mit-windows-mobile/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2009-03-28-personas-for-firefox.html",
+   "title": "Personas for Firefox",
+   "url": "/personas-for-firefox/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 69
+  },
+  {
+   "file": "_posts/2009-04-15-904.html",
+   "title": "9.04…",
+   "url": "/904/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 0,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2009-04-17-griechisch-essen-in-berlin.html",
+   "title": "Griechisch essen in Berlin",
+   "url": "/griechisch-essen-in-berlin/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 34
+  },
+  {
+   "file": "_posts/2009-04-18-die-dna-einer-website.html",
+   "title": "Die DNA einer Website",
+   "url": "/die-dna-einer-website/",
+   "features": [
+    "abbr"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 51
+  },
+  {
+   "file": "_posts/2009-06-04-upload-late-night-podcast-barcamps-konferenzen-usw.html",
+   "title": "Upload Late Night Podcast: BarCamps, Konferenzen usw.",
+   "url": "/upload-late-night-podcast-barcamps-konferenzen-usw/",
+   "features": [
+    "audio",
+    "figure"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 15
+  },
+  {
+   "file": "_posts/2009-06-18-upload-late-night-podcast-google-wave-smartphones-mobiles-internet.html",
+   "title": "Upload Late Night Podcast: Google Wave, Smartphones & mobiles Internet",
+   "url": "/upload-late-night-podcast-google-wave-smartphones-mobiles-internet/",
+   "features": [
+    "audio",
+    "figure"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 2
+  },
+  {
+   "file": "_posts/2009-06-20-quicktip.html",
+   "title": "Quicktip google mit wolframalfa verheiraten",
+   "url": "/quicktip/",
+   "features": [
+    "style",
+    "class",
+    "div",
+    "other"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 3,
+   "html_share": 45
+  },
+  {
+   "file": "_posts/2009-07-14-test-from-da-android.html",
+   "title": "Test from da android",
+   "url": "/test-from-da-android/",
+   "features": [
+    "align",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2009-07-29-pro-git-kostenloses-ebook-ueber-git.html",
+   "title": "Pro Git – Kostenloses eBook über Git",
+   "url": "/pro-git-kostenloses-ebook-ueber-git/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2009-07-30-der-sechste-sinn.html",
+   "title": "Der Sechste Sinn",
+   "url": "/der-sechste-sinn/",
+   "features": [
+    "embed-gone"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2009-08-13-fuer-zwischendurch-cduremix09s-photostream.html",
+   "title": "für Zwischendurch: cduremix09’s Photostream",
+   "url": "/fuer-zwischendurch-cduremix09s-photostream/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2009-08-17-diverse-androids-vom-htc.html",
+   "title": "diverse Androids vom HTC",
+   "url": "/diverse-androids-vom-htc/",
+   "features": [
+    "iframe",
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2009-08-17-mymapblog-auf-einem-android-telefon.html",
+   "title": "MyMapblog auf einem Android Telefon",
+   "url": "/mymapblog-auf-einem-android-telefon/",
+   "features": [
+    "iframe",
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 9
+  },
+  {
+   "file": "_posts/2009-08-30-youtube-tribute.html",
+   "title": "youtube tribute",
+   "url": "/youtube-tribute/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 62
+  },
+  {
+   "file": "_posts/2009-09-01-make-a-melody.html",
+   "title": "einfach mal eine melodie machen…",
+   "url": "/make-a-melody/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2009-09-16-geh-waehlen.html",
+   "title": "Rette deine Freiheit",
+   "url": "/geh-waehlen/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2009-09-16-rb-grafikjungs-blog-archiv-toyota-erfaehrt-die-iq-font.html",
+   "title": "RB: GRAFIKJUNGS  » Blog Archiv   » Toyota erfährt die IQ-Font",
+   "url": "/rb-grafikjungs-blog-archiv-toyota-erfaehrt-die-iq-font/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2009-09-16-wir-sind-terroristen.html",
+   "title": "Wir sind Terroristen!",
+   "url": "/wir-sind-terroristen/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2009-10-25-was-ist-das.html",
+   "title": "was ist das?",
+   "url": "/was-ist-das/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2009-10-27-idos-and-idonts.html",
+   "title": "iDo`s and iDon´ts",
+   "url": "/idos-and-idonts/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2009-10-28-flamecake-in-new-cologne.html",
+   "title": "Lecker Flammkuchen Essen in Neukölln",
+   "url": "/flamecake-in-new-cologne/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 15
+  },
+  {
+   "file": "_posts/2009-10-29-schick.html",
+   "title": "schick",
+   "url": "/schick/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2009-11-07-jitouch-multitouch-extension-for-macbooks-trackpad.html",
+   "title": "jitouch – Multitouch Extension for MacBook’s Trackpad",
+   "url": "/jitouch-multitouch-extension-for-macbooks-trackpad/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2009-11-21-pdf-splitten-und-mergen-pdfsam.html",
+   "title": "PDF Splitten und Mergen – PDFSAM",
+   "url": "/pdf-splitten-und-mergen-pdfsam/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 3,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2010-03-07-kittens.html",
+   "title": "kittens",
+   "url": "/kittens/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2010-04-14-ilike.html",
+   "title": "iLike",
+   "url": "/ilike/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2010-04-25-baelle-im-park.html",
+   "title": "Bälle im Park",
+   "url": "/baelle-im-park/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2010-06-19-exma-feier.html",
+   "title": "Exma Feier",
+   "url": "/exma-feier/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2010-07-07-java-jetzt-auch-im-kino.html",
+   "title": "Java jetzt auch im Kino",
+   "url": "/java-jetzt-auch-im-kino/",
+   "features": [
+    "embed-gone"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2010-07-12-app-inventor-for-android.html",
+   "title": "App Inventor for Android",
+   "url": "/app-inventor-for-android/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2010-07-12-fake-webseitenablaeufe-automatisieren.html",
+   "title": "Fake – Webseitenabläufe automatisieren",
+   "url": "/fake-webseitenablaeufe-automatisieren/",
+   "features": [
+    "iframe",
+    "style"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 2,
+   "html_share": 84
+  },
+  {
+   "file": "_posts/2010-07-14-deutsche-ingenieurskunst.html",
+   "title": "Deutsche Ingenieurskunst",
+   "url": "/deutsche-ingenieurskunst/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2010-07-15-rapid-development-at-its-best.html",
+   "title": "Rapid Development at it´s best",
+   "url": "/rapid-development-at-its-best/",
+   "features": [
+    "embed-gone"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 13
+  },
+  {
+   "file": "_posts/2010-09-07-must-have-for-macs.html",
+   "title": "Must-have for Macs",
+   "url": "/must-have-for-macs/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2010-09-08-google-sagt-vorraus-was-du-schreiben-willst.html",
+   "title": "Google Sagt vorraus was du schreiben willst",
+   "url": "/google-sagt-vorraus-was-du-schreiben-willst/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 60
+  },
+  {
+   "file": "_posts/2010-09-12-maenner-mediathek.html",
+   "title": "Männer – Mediathek",
+   "url": "/maenner-mediathek/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2010-09-19-howto-htc-magic-mit-android-2-2-aka-froyo.html",
+   "title": "HowTo: HTC Magic mit Android 2.2 aka Froyo",
+   "url": "/howto-htc-magic-mit-android-2-2-aka-froyo/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 33,
+   "html_share": 98
+  },
+  {
+   "file": "_posts/2010-09-20-3-twitter-clients-fuer-den-mac-kurz-vorgestellt.html",
+   "title": "3 Twitter Clients für den Mac kurz vorgestellt",
+   "url": "/3-twitter-clients-fuer-den-mac-kurz-vorgestellt/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 3,
+   "html_share": 61
+  },
+  {
+   "file": "_posts/2010-09-20-ein-geraet-was-wep-knackt.html",
+   "title": "Ein Gerät was WEP knackt…",
+   "url": "/ein-geraet-was-wep-knackt/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2010-09-21-ddr-nationalhymne-2010.html",
+   "title": "DDR Nationalhymne 2010",
+   "url": "/ddr-nationalhymne-2010/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2010-09-24-hier-ist-volker-gerade.html",
+   "title": "Hier ist Volker gerade",
+   "url": "/hier-ist-volker-gerade/",
+   "features": [
+    "iframe",
+    "comment"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2010-10-01-teufel.html",
+   "title": "Teufel",
+   "url": "/teufel/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 3,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2010-11-23-lobo-uwe-woellner.html",
+   "title": "Lobo & Uwe Wöllner",
+   "url": "/lobo-uwe-woellner/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2010-12-09-erstflug.html",
+   "title": "Erstflug",
+   "url": "/erstflug/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2011-01-10-arduino.html",
+   "title": "Arduino",
+   "url": "/arduino/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2011-02-07-hdr-video.html",
+   "title": "HDR Video",
+   "url": "/hdr-video/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2011-02-10-nerdmusic.html",
+   "title": "Nerdmusic",
+   "url": "/nerdmusic/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2011-05-29-spreepark.html",
+   "title": "Spreepark",
+   "url": "/spreepark/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 12
+  },
+  {
+   "file": "_posts/2011-07-31-puroguramingu-mazaafakkaa.html",
+   "title": "Puroguramingu, Mazaafakkaa",
+   "url": "/puroguramingu-mazaafakkaa/",
+   "features": [
+    "style",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2011-08-30-scroll-reverser-for-lion.html",
+   "title": "Scroll Reverser for Lion",
+   "url": "/scroll-reverser-for-lion/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2012-08-20-the-kickback-machine-a-kickstarter-research-tool.html",
+   "title": "The KickBack Machine – a Kickstarter research tool",
+   "url": "/the-kickback-machine-a-kickstarter-research-tool/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2012-09-04-volkerfreundschaft.html",
+   "title": "VOLKERFREUNDSCHAFT",
+   "url": "/volkerfreundschaft/",
+   "features": [
+    "style"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2012-10-31-koptercast.html",
+   "title": "koptercast",
+   "url": "/koptercast/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 26
+  },
+  {
+   "file": "_posts/2012-12-16-2-morgan-freeman-filmtips.html",
+   "title": "2 Morgan Freeman Filmtips",
+   "url": "/2-morgan-freeman-filmtips/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 66
+  },
+  {
+   "file": "_posts/2013-01-07-slingshot-channel.html",
+   "title": "Slingshot channel",
+   "url": "/slingshot-channel/",
+   "features": [
+    "iframe"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2013-01-27-macmini-disk-update-with-fusiondrive.html",
+   "title": "MacMini Disk Update – with FusionDrive",
+   "url": "/macmini-disk-update-with-fusiondrive/",
+   "features": [
+    "iframe",
+    "broken"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 3,
+   "html_share": 75
+  },
+  {
+   "file": "_posts/2013-09-15-elektronik-online-shops.html",
+   "title": "Elektronik Online Shops",
+   "url": "/elektronik-online-shops/",
+   "features": [
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 11
+  },
+  {
+   "file": "_posts/2013-09-30-suspend-to-disc-ram-on-non-portable-macs.html",
+   "title": "Suspend to disc & RAM on non-portable macs",
+   "url": "/suspend-to-disc-ram-on-non-portable-macs/",
+   "features": [
+    "pre"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 11
+  },
+  {
+   "file": "_posts/2015-03-25-android-debug-buildtype-custon-label.html",
+   "title": "Android debug buildType with custom name",
+   "url": "/android-debug-buildtype-custon-label/",
+   "features": [
+    "script"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2015-04-01-android-jar-tasks.html",
+   "title": "Android jar tasks",
+   "url": "/android-jar-tasks/",
+   "features": [
+    "script"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 88
+  },
+  {
+   "file": "_posts/2019-04-23-how-to-docker.html",
+   "title": "how to docker",
+   "url": "/how-to-docker/",
+   "features": [
+    "render"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 2,
+   "html_share": 43
+  },
+  {
+   "file": "_posts/2020-02-03-koptercast-es-lebt.html",
+   "title": "koptercast – es lebt",
+   "url": "/koptercast-es-lebt/",
+   "features": [
+    "iframe",
+    "script",
+    "figure",
+    "class",
+    "strike",
+    "other"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 6,
+   "html_share": 53
+  },
+  {
+   "file": "_posts/2020-02-03-volker-beim-rantvoll-podcast.html",
+   "title": "Volker beim rantvoll podcast",
+   "url": "/volker-beim-rantvoll-podcast/",
+   "features": [
+    "iframe",
+    "script",
+    "figure",
+    "class",
+    "other"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 5,
+   "html_share": 69
+  },
+  {
+   "file": "_posts/2020-02-06-fahrrad-registrieren-in-berlin.html",
+   "title": "Fahrrad registrieren in Berlin",
+   "url": "/fahrrad-registrieren-in-berlin/",
+   "features": [
+    "class"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 2,
+   "html_share": 71
+  },
+  {
+   "file": "_posts/2020-02-07-open-source-open-hardware-tueroffener-mit-flutter-app.html",
+   "title": "open source / open hardware türoffener mit flutter app",
+   "url": "/open-source-open-hardware-tueroffener-mit-flutter-app/",
+   "features": [
+    "class"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 55
+  },
+  {
+   "file": "_posts/2020-04-20-crop-video-with-ffmpeg.html",
+   "title": "crop video with ffmpeg",
+   "url": "/crop-video-with-ffmpeg/",
+   "features": [
+    "iframe",
+    "figure",
+    "div"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 3,
+   "html_share": 8
+  },
+  {
+   "file": "_posts/2020-05-11-chaos-macht-kita-3d-druck-fuer-kinder-1-0.html",
+   "title": "Chaos macht Kita – 3D Druck für Kinder 1.0",
+   "url": "/chaos-macht-kita-3d-druck-fuer-kinder-1-0/",
+   "features": [
+    "iframe",
+    "figure",
+    "class",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 12,
+   "html_share": 66
+  },
+  {
+   "file": "_posts/2020-08-10-android-apk-hacking.html",
+   "title": "Android APK hacking",
+   "url": "/android-apk-hacking/",
+   "features": [
+    "strike"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 25
+  },
+  {
+   "file": "_posts/2021-02-09-awesome-falsehoods.html",
+   "title": "awesome falsehoods",
+   "url": "/awesome-falsehoods/",
+   "features": [
+    "figure",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 44
+  },
+  {
+   "file": "_posts/2021-03-09-tinkercad.html",
+   "title": "tinkercad – simple 3d CAD",
+   "url": "/tinkercad/",
+   "features": [
+    "iframe",
+    "figure",
+    "comment"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 6,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2021-12-18-remote-workshop.html",
+   "title": "remote / workshop",
+   "url": "/remote-workshop/",
+   "features": [
+    "class"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 4,
+   "html_share": 96
+  },
+  {
+   "file": "_posts/2023-03-29-digitale-angebote-in-berliner-bibliotheken.html",
+   "title": "Digitale Angebote in Berliner Bibliotheken",
+   "url": "/digitale-angebote-in-berliner-bibliotheken/",
+   "features": [
+    "class"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 49
+  },
+  {
+   "file": "_posts/2024-02-21-sehr-gute-dokumentation.html",
+   "title": "Sehr gute Dokumentation",
+   "url": "/sehr-gute-dokumentation/",
+   "features": [
+    "iframe",
+    "figure",
+    "div"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 1,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2024-07-24-jetbrains-plugins-eine-sammlung.html",
+   "title": "Jetbrains plugins – Eine Sammlung",
+   "url": "/jetbrains-plugins-eine-sammlung/",
+   "features": [
+    "class"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 1,
+   "html_share": 100
+  },
+  {
+   "file": "_posts/2025-02-24-berlin-tips-2025.html",
+   "title": "Berlin tips 2025",
+   "url": "/berlin-tips-2025/",
+   "features": [
+    "class"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 4,
+   "html_share": 96
+  },
+  {
+   "file": "_posts/2026-09-28-event-sourcing-and-cqrs.html",
+   "title": "event sourcing and CQRS",
+   "url": "/event-sourcing-and-cqrs/",
+   "features": [
+    "iframe",
+    "figure",
+    "div"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 4,
+   "html_share": 0
+  },
+  {
+   "file": "_posts/2026-09-28-scrum-resources.html",
+   "title": "Scrum resources",
+   "url": "/scrum-resources/",
+   "features": [
+    "class"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 77
+  },
+  {
+   "file": "_posts/2026-09-29-stormtrooper-3d.html",
+   "title": "Ein Stormtrooper aus Maya 2008 – jetzt in 3D im Browser",
+   "url": "/stormtrooper-3d/",
+   "features": [
+    "script",
+    "figure",
+    "style",
+    "class",
+    "div"
+   ],
+   "lenient_identical": false,
+   "html_blocks": 3,
+   "html_share": 69
+  },
+  {
+   "file": "_posts/2026-10-02-20-jahre-imi.html",
+   "title": "20 Jahre IMI",
+   "url": "/20-jahre-imi/",
+   "features": [
+    "style",
+    "abbr"
+   ],
+   "lenient_identical": true,
+   "html_blocks": 2,
+   "html_share": 100
+  }
+ ]
+}

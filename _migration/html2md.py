@@ -252,6 +252,90 @@ def convert(body):
         return None
 
 
+# --- opportunistic conversion --------------------------------------------------------
+
+class _Segmenter(HTMLParser):
+    """Splits a body into its top-level pieces (source slices), tolerating any markup."""
+
+    def __init__(self, text):
+        super().__init__(convert_charrefs=True)
+        self.text, self.stack, self.chunks, self.start = text, [], [], None
+        self._lines = [0]
+        for line in text.split("\n"):
+            self._lines.append(self._lines[-1] + len(line) + 1)
+        self.feed(text)
+        self.close()
+        if self.start is not None:  # unclosed element: the rest of the body is one piece
+            self.chunks.append(text[self.start:])
+
+    def _offset(self):
+        line, col = self.getpos()
+        return self._lines[line - 1] + col
+
+    def _top_open(self):
+        if not self.stack and self.start is None:
+            self.start = self._offset()
+
+    def _close_top(self, end):
+        if not self.stack and self.start is not None:
+            self.chunks.append(self.text[self.start:end])
+            self.start = None
+
+    def handle_starttag(self, tag, attrs):
+        self._top_open()
+        if tag in VOID or tag in ("source", "param", "wbr", "input", "embed"):
+            self._close_top(self._offset() + len(self.get_starttag_text()))
+            return
+        if tag in ("p", "li") and self.stack and self.stack[-1] == tag:  # implied end
+            self.stack.pop()
+        self.stack.append(tag)
+
+    def handle_startendtag(self, tag, attrs):
+        self._top_open()
+        self._close_top(self._offset() + len(self.get_starttag_text()))
+
+    def handle_endtag(self, tag):
+        if tag not in self.stack:
+            return
+        while self.stack and self.stack.pop() != tag:
+            pass
+        end = self.text.index(">", self._offset()) + 1
+        self._close_top(end)
+
+    def handle_data(self, data):
+        if not self.stack and self.start is None:
+            if data.strip():
+                self.chunks.append(data.strip())
+            return
+
+    def handle_comment(self, data):
+        if not self.stack and self.start is None:
+            self.chunks.append(f"<!--{data}-->")
+
+
+def convert_lenient(body):
+    """HTML body -> (Markdown, number of pieces kept as raw HTML).
+
+    Every top-level piece that the strict converter handles becomes Markdown; everything else
+    (embeds, tables, styled paragraphs, …) is kept verbatim as an HTML block, which kramdown
+    passes through. Not verified: use convert_lenient_verified() before saving anything."""
+    out, raw = [], 0
+    for chunk in _Segmenter(body).chunks:
+        md = MORE + "\n" if chunk == MORE else convert(chunk)
+        if md is None:
+            raw += 1
+            md = chunk.strip() + "\n"
+        out.append(md.strip())
+    return "\n\n".join(o for o in out if o) + "\n", raw
+
+
+def convert_lenient_verified(bodies):
+    """{key: html} -> {key: (markdown, raw_blocks, identical)} for every body."""
+    results = {k: convert_lenient(b) for k, b in bodies.items()}
+    rendered = render({k: md for k, (md, _) in results.items()}) if results else {}
+    return {k: (md, raw, equivalent(bodies[k], rendered[k])) for k, (md, raw) in results.items()}
+
+
 # --- verification ------------------------------------------------------------------
 
 class _Events(HTMLParser):
