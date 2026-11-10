@@ -10,6 +10,10 @@ baseurl: ""
 timezone: Europe/Berlin
 since: 2007
 
+# "Diese Seite bearbeiten" link (_includes/edit-page.html)
+repository: falkorichter/volkersfreunde-jekyll
+branch: main
+
 # --- URLs: must match the old WordPress permalinks -------------------------
 # permalink_structure = /%postname%/  (posts also carry an explicit permalink)
 permalink: /:title/
