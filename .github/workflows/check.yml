@@ -1,0 +1,26 @@
+# Checks every pull request: new galleries must be Markdown (_scripts/check_galleries.rb),
+# and the site must build (the gallery plugin stops on images without alt text).
+name: Check
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Galleries are Markdown
+        run: ruby _scripts/check_galleries.rb
+      - name: Build
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production

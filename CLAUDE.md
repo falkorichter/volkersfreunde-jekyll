@@ -38,6 +38,28 @@ to avoid the gender debate). This applies to all texts, alt texts, and commit me
   (`.embed-gone`), and YouTube or other videos are only linked, never embedded.
 - Lightbox: `assets/js/lightbox.js` picks up post images automatically.
 
+## Images and galleries in Markdown
+
+- **Galleries are Markdown only** (plugin `_plugins/galleries.rb`): images directly below each
+  other, no blank line between them, then `{: .gallery}` (a blank line before the block):
+  ```markdown
+  ![Alt text 1](/assets/images/2026/11/foo-01.jpg)
+  ![Alt text 2](/assets/images/2026/11/foo-02.jpg)
+  {: .gallery}
+  ```
+  The plugin turns it into `<div class="md-gallery">` with image links (the lightbox opens them)
+  and uses `foo-01-600w.jpg` as thumbnail if that file exists, otherwise the image itself. A single
+  image gets `md-gallery-single` (full column width). Every image needs an alt text, otherwise the
+  build stops. Styles: `port: Markdown galleries` in `assets/css/style.css`.
+- **Videos:** `![Short description](/assets/files/…/clip.mp4)` as a paragraph of its own becomes
+  `<video class="post-video" controls>`, with `clip.jpg` as poster if it exists. Local files only;
+  external videos are still only linked.
+- **Check:** `ruby _scripts/check_galleries.rb` fails (exit 1, file:line) on HTML gallery markup
+  (`<div class="gallery">`, `<a class="lightbox">`, WordPress/NextGEN galleries, `[gallery]`). It runs
+  on every pull request (`.github/workflows/check.yml`) and before the Pages build. Only the old
+  WordPress posts listed in `LEGACY` in the script are exempt (legacy import, not converted) – never
+  add new files there and never write gallery HTML by hand.
+
 ## Editing
 
 - **Edit button:** `_includes/edit-page.html` (included by `_layouts/three-column.html` and
@@ -58,5 +80,6 @@ to avoid the gender debate). This applies to all texts, alt texts, and commit me
 
 Whoever pushes a branch (not `main`) always opens a pull request for it with `gh pr create`. The
 description says **what** changes, **why** and **how it was tested** (build, `compare_builds.py`,
-pages looked at), and its title matches the commit message. For visible changes, add screenshots of
+pages looked at), and its title matches the commit message. The `Check` workflow
+(`check.yml`: gallery check and build) must pass before merging. For visible changes, add screenshots of
 the affected pages (desktop and phone); if nothing is visible, say why there are none.

@@ -628,6 +628,41 @@ dialog.lightbox button[hidden] { display: none; }
 	dialog.lightbox .lightbox-prev, dialog.lightbox .lightbox-next { top: auto; bottom: 8px; transform: none; }
 }
 
+/* ===== port: Markdown galleries (_plugins/galleries.rb) =====
+   New Markdown posts: images + {: .gallery} → div.md-gallery with image links (lightbox above).
+   The old WordPress galleries (#gallery-N with inline styles) are not affected. */
+
+div.entry-content div.md-gallery {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+	gap: 6px;
+	margin: 10px 0;
+}
+div.entry-content div.md-gallery a {
+	display: block;
+}
+div.entry-content div.md-gallery img {
+	display: block;
+	width: 100%;
+	height: 110px;
+	margin: 0;
+	object-fit: cover;
+}
+div.entry-content div.md-gallery-single {
+	grid-template-columns: 1fr;
+}
+div.entry-content div.md-gallery-single img {
+	height: auto;
+	object-fit: contain;
+}
+div.entry-content video.post-video {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 10px 0;
+	background: #000000;
+}
+
 /* port: note in place of Flash players that can't play anywhere any more */
 .entry-content .embed-gone {
 	display: inline-block;
