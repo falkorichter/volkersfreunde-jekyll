@@ -26,6 +26,8 @@ jobs:
         with:
           ruby-version: "3.3"
           bundler-cache: true
+      # New galleries must be Markdown (old WordPress posts are allowlisted in the script)
+      - run: ruby _scripts/check_galleries.rb
       - id: pages
         uses: actions/configure-pages@v5
       # url/baseurl of the Pages site (absolute links: canonical, feed); _config.yml keeps

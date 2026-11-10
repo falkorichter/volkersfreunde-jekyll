@@ -36,6 +36,8 @@ category filters (`_includes/search-meta.html`); comments and the date line are 
 | `_data/comments.json` | the 365 approved comments, flat list matched by `url` (same format as madrid) |
 | `_plugins/taxonomy_pages.rb` | generates the category/tag archive pages |
 | `_plugins/baseurl_links.rb` | prefixes root links in post bodies when built under a sub-path |
+| `_plugins/galleries.rb` | Markdown galleries (`![…](…)` lines + `{: .gallery}`) and videos for new Markdown posts |
+| `_scripts/check_galleries.rb` | rejects gallery HTML in content files (old WordPress posts allowlisted); runs in `check.yml` on pull requests and in the Pages build |
 | `feed-redirect.html` | `/feed/` (the old WordPress feed URL) forwards to `/feed.xml` |
 | `_migration/export_rest.py` | the exporter (see below) |
 | `_migration/html2md.py`, `kramdown_render.rb`, `compare_builds.py` | HTML → Markdown conversion and its checks (see [Markdown posts](#markdown-posts)) |
@@ -128,6 +130,23 @@ to Markdown has to be removed from that list. Every change is a commit on `main`
 Built by `.github/workflows/pages.yml` on every push to `main` (repo setting *Pages → Source:
 GitHub Actions*): it runs the custom `_plugins/` and passes the Pages address as `url`/`baseurl`.
 `_config.yml` keeps `url: https://www.volkersfreunde.de` and `baseurl: ""` for the real domain.
+
+Pull requests run `.github/workflows/check.yml`: `ruby _scripts/check_galleries.rb` (galleries
+must be Markdown, see `CLAUDE.md`) and a build. The Pages workflow runs the gallery check too.
+
+## Galleries
+
+New posts write galleries in Markdown – images on consecutive lines, then `{: .gallery}`:
+
+```markdown
+![Alt text 1](/assets/images/2026/11/foo-01.jpg)
+![Alt text 2](/assets/images/2026/11/foo-02.jpg)
+{: .gallery}
+```
+
+`_plugins/galleries.rb` turns that into `<div class="md-gallery">` with image links for the
+lightbox (thumbnail `foo-01-600w.jpg` if present, alt text required). The old WordPress galleries
+in the imported 2007/2008 posts stay as they are.
 
 ## Dropped on purpose
 The comment form (old comments are shown read-only), the podcast (podPress/Podlove players, the `podcast` category), all WordPress plugins,
